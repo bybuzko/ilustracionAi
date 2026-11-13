@@ -50,6 +50,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
+  <!-- Gradio Client JS para conectar con Colab -->
+  <script type="module">
+    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/+esm";
+    window.gradioClient = client;
+  </script>
+
   <style>
     body { 
       font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -140,7 +146,7 @@
       <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[160px] transition-colors duration-300">
         <div class="relative z-10">
           <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Generador de consistencia de personajes 3D y animación</p>
+          <p class="text-xs sm:text-sm text-white/80 font-medium">Generador de consistencia de personajes 3D y render directo con IA</p>
         </div>
         
         <!-- Categorías de Filtro como badges flotantes -->
@@ -214,10 +220,13 @@
           </div>
         </div>
 
-        <!-- Botón Copiar Paso 1 -->
-        <div class="mt-4 flex justify-end">
-          <button onclick="copiarPrompt('step1')" title="Copiar Prompt Paso 1" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 1
+        <!-- Botones de Acción Paso 1 (Copiar + Generar con IA) -->
+        <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
+          <button onclick="copiarPrompt('step1')" title="Copiar Prompt Paso 1" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copiar Prompt
+          </button>
+          <button onclick="generarImagenConIA('step1')" title="Generar Imagen con Colab" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Generar Imagen Directa
           </button>
         </div>
       </section>
@@ -283,40 +292,69 @@
           </div>
         </div>
 
-        <!-- Botón Copiar Paso 2 -->
-        <div class="mt-4 flex justify-end">
-          <button onclick="copiarPrompt('step2')" title="Copiar Prompt Paso 2" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 2
+        <!-- Botones de Acción Paso 2 (Copiar + Generar con IA) -->
+        <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
+          <button onclick="copiarPrompt('step2')" title="Copiar Prompt Paso 2" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copiar Prompt
+          </button>
+          <button onclick="generarImagenConIA('step2')" title="Generar Imagen con Colab" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Generar Imagen Directa
           </button>
         </div>
       </section>
 
     </main>
 
-    <!-- ================= PANEL LATERAL DERECHO (RESUMEN / USUARIO / GUÍA) ================= -->
-    <aside class="w-full lg:w-80 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
-      <div class="space-y-6">
-        <!-- PERFIL DE USUARIO ESTILO REFERENCIA -->
-        <div class="flex items-center gap-3 bg-app-cardBg dark:bg-app-darkCardBg p-3.5 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder">
-          <div class="w-12 h-12 rounded-2xl bg-app-accentYellow/30 dark:bg-indigo-600/30 text-app-sidebar dark:text-indigo-400 flex items-center justify-center font-extrabold text-xl">
-            <i class="fa-solid fa-user-astronaut"></i>
+    <!-- ================= PANEL LATERAL DERECHO (CONEXIÓN COLAB + VISUALIZADOR + GUÍA) ================= -->
+    <aside class="w-full lg:w-96 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
+      <div class="space-y-6 flex flex-col">
+        
+        <!-- ENLACE DE CONEXIÓN CON COLAB -->
+        <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
+              <i class="fa-solid fa-cloud-bolt text-app-accentRose"></i> Conexión Google Colab
+            </span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">GPU T4</span>
           </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="text-sm font-bold text-app-textDark dark:text-white truncate">Creador Studio</h4>
-            <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted truncate">Plan Prompt Master</p>
-          </div>
-          <span class="px-2.5 py-1 rounded-full bg-app-sidebar dark:bg-indigo-600 text-white text-[10px] font-bold">PRO</span>
+          <input type="text" id="input-colab-url" placeholder="Pega tu enlace https://xxxx.gradio.live..." 
+            class="w-full bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-xl px-3 py-2 text-[11px] text-app-textDark dark:text-white placeholder-app-textMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar font-mono">
         </div>
 
-        <!-- SECCIÓN: ESTUDIOS DESTACADOS (RESUMEN DE GUÍA) -->
+        <!-- VISUALIZADOR DE IMAGEN EN VIVO -->
+        <div class="flex flex-col gap-2">
+          <h4 class="text-xs font-extrabold text-app-textDark dark:text-white flex items-center justify-between">
+            <span>Render en Vivo (IA)</span>
+            <span id="status-render" class="text-[10px] font-mono text-app-textMuted">Listo</span>
+          </h4>
+
+          <div id="image-preview-container" class="w-full h-56 bg-app-cardBg dark:bg-app-darkCardBg rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-center relative overflow-hidden shadow-inner">
+            <!-- Placeholder -->
+            <div id="placeholder-content" class="text-center p-4 space-y-2">
+              <i class="fa-solid fa-image text-2xl text-app-textMuted dark:text-slate-600"></i>
+              <p class="text-[11px] text-app-textMuted dark:text-slate-400">Haz clic en "✨ Generar" para renderizar con tu GPU.</p>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader-content" class="hidden absolute inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2">
+              <div class="w-8 h-8 border-4 border-app-sidebar border-t-transparent rounded-full animate-spin"></div>
+              <p class="text-xs font-bold text-app-textDark dark:text-white animate-pulse">Renderizando en la nube...</p>
+            </div>
+
+            <!-- Imagen Final -->
+            <img id="output-image" class="hidden w-full h-full object-cover rounded-2xl" alt="Imagen generada por IA">
+          </div>
+        </div>
+
+        <!-- SECCIÓN: ESTUDIOS DESTACADOS (GUÍA ORIGINAL) -->
         <div>
-          <h4 class="text-sm font-extrabold text-app-textDark dark:text-white mb-3 flex items-center justify-between">
+          <h4 class="text-xs font-extrabold text-app-textDark dark:text-white mb-2.5 flex items-center justify-between">
             <span>Guía de Estudios</span>
             <span class="text-[10px] font-mono text-app-textMuted dark:text-app-darkTextMuted">INDUSTRY SPEC</span>
           </h4>
 
-          <div class="space-y-2.5 text-xs">
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
               <div>
                 <p class="font-bold text-app-sidebar dark:text-rose-400">Blur Studio</p>
                 <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Love, Death & Robots</p>
@@ -324,7 +362,7 @@
               <span class="px-2 py-0.5 rounded-md bg-app-accentRose/20 dark:bg-rose-500/20 text-app-sidebar dark:text-rose-300 font-bold text-[10px]">CGI Sci-Fi</span>
             </div>
 
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
               <div>
                 <p class="font-bold text-app-textDark dark:text-cyan-300">Fortiche Production</p>
                 <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Arcane / League of Legends</p>
@@ -332,7 +370,7 @@
               <span class="px-2 py-0.5 rounded-md bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 font-bold text-[10px]">Híbrido 2D/3D</span>
             </div>
 
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
               <div>
                 <p class="font-bold text-app-textDark dark:text-indigo-300">Pixar Animation</p>
                 <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Inside Out, Soul</p>
@@ -340,7 +378,7 @@
               <span class="px-2 py-0.5 rounded-md bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 font-bold text-[10px]">Cine 3D</span>
             </div>
 
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
               <div>
                 <p class="font-bold text-app-textDark dark:text-amber-300">Wētā FX / ILM</p>
                 <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Avatar: Way of Water</p>
@@ -352,9 +390,9 @@
       </div>
 
       <!-- FOOTER MINI DENTRO DEL PANEL DERECHO -->
-      <div class="pt-4 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-2">
-        <p>© AI Prompt Studio — Interfaz adaptativa Dark / Warm Light.</p>
-        <div class="flex items-center justify-center gap-3 text-app-textDark dark:text-app-darkText font-medium">
+      <div class="pt-3 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-1">
+        <p>© AI Prompt Studio — Dark / Warm Light.</p>
+        <div class="flex items-center justify-center gap-3 text-app-textDark dark:text-app-darkText font-medium text-[10px]">
           <span><i class="fa-solid fa-bolt text-app-accentYellow"></i> Render 1:1</span>
           <span><i class="fa-solid fa-cube text-app-sidebar dark:text-indigo-400"></i> PBR Shading</span>
         </div>
@@ -1086,6 +1124,47 @@ Key Consistency Requirements:
       document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
     }
 
+    // --- CONEXIÓN CON COLAB Y GENERACIÓN DIRECTA ---
+    async function generarImagenConIA(paso) {
+      const urlColab = document.getElementById('input-colab-url').value.trim();
+      if (!urlColab) {
+        alert("⚠️ Por favor, pega primero tu enlace de Gradio (.gradio.live) de Google Colab en el panel lateral derecho.");
+        document.getElementById('input-colab-url').focus();
+        return;
+      }
+
+      const promptAUsar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
+      
+      const placeholder = document.getElementById('placeholder-content');
+      const loader = document.getElementById('loader-content');
+      const outputImg = document.getElementById('output-image');
+      const statusRender = document.getElementById('status-render');
+
+      placeholder.classList.add('hidden');
+      outputImg.classList.add('hidden');
+      loader.classList.remove('hidden');
+      statusRender.innerText = "Renderizando...";
+
+      try {
+        const app = await window.gradioClient(urlColab);
+        const result = await app.predict(0, { prompt_ingles: promptAUsar });
+        
+        const imageUrl = result.data[0].url || result.data[0];
+        
+        outputImg.src = imageUrl;
+        outputImg.classList.remove('hidden');
+        loader.classList.add('hidden');
+        statusRender.innerText = "¡Completado!";
+        mostrarToast("Imagen Generada", "Render exitoso con GPU Colab.");
+      } catch (err) {
+        console.error(err);
+        loader.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        statusRender.innerText = "Error";
+        alert("❌ Error al conectar con Colab. Verifica que el enlace sea correcto y el servidor siga activo.");
+      }
+    }
+
     // COPIADO Y NOTIFICACIÓN
     function copiarPrompt(paso) {
       const textoACopiar = paso === 'step1' 
@@ -1094,7 +1173,7 @@ Key Consistency Requirements:
 
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textoACopiar).then(() => {
-          mostrarToast(paso);
+          mostrarToastPaso(paso);
         }).catch(() => {
           copiarFallback(textoACopiar, paso);
         });
@@ -1112,7 +1191,7 @@ Key Consistency Requirements:
       area.select();
       try {
         document.execCommand('copy');
-        mostrarToast(paso);
+        mostrarToastPaso(paso);
       } catch (err) {
         console.error('Error al copiar', err);
       }
@@ -1120,7 +1199,7 @@ Key Consistency Requirements:
     }
 
     let toastTimeout;
-    function mostrarToast(paso) {
+    function mostrarToastPaso(paso) {
       const toast = document.getElementById('toast');
       const toastTitle = document.getElementById('toast-title');
       const toastMsg = document.getElementById('toast-msg');
@@ -1130,7 +1209,7 @@ Key Consistency Requirements:
         toastMsg.innerText = `Listo para Midjourney / Flux / DALL-E.`;
       } else {
         toastTitle.innerText = `Paso 2 Copiado (${opcionPaso2Seleccionada.es})`;
-        toastMsg.innerText = `Usa la foto de Paso 1 para mantener consistencia.`;
+        toastMsg.innerText = `Consistencia de personaje lista.`;
       }
 
       toast.classList.remove('translate-y-10', 'opacity-0');
@@ -1138,6 +1217,18 @@ Key Consistency Requirements:
 
       clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-10', 'opacity-0');
+      }, 3000);
+    }
+
+    function mostrarToast(titulo, msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-title').innerText = titulo;
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.remove('translate-y-10', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-10', 'opacity-0');
       }, 3000);
