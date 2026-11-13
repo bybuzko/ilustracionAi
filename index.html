@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Prompt Studio - Img2Img Studio</title>
+  <title>AI Prompt Studio - Img2Img Studio Pro</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -104,8 +104,8 @@
       <!-- HERO BANNER -->
       <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[160px] transition-colors duration-300">
         <div class="relative z-10">
-          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio (Img2Img)</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Sube tu foto local, aplica el estilo del estudio seleccionado y transfórmala al instante</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio (Img2Img Pro)</h2>
+          <p class="text-xs sm:text-sm text-white/80 font-medium">Sube tu foto local, aplica el estilo de estudio detallado y transfórmala al instante</p>
         </div>
         
         <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-4 no-scrollbar" id="categoria-filtros">
@@ -126,7 +126,7 @@
               <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">1</span>
               <div>
                 <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado</p>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado detallado</p>
               </div>
             </div>
             <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
@@ -141,13 +141,13 @@
                 <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
               </summary>
               <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed" id="explicacion-es-paso1">Cargando...</p>
+                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line" id="explicacion-es-paso1">Cargando...</p>
               </div>
             </details>
 
             <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
               <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400 font-mono">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt Generado (Inglés)</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt Detallado (Inglés)</span>
                 <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
               </summary>
               <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
@@ -175,7 +175,7 @@
               <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm">2</span>
               <div>
                 <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose o Ángulo Adicional</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma manteniendo la foto base</p>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma manteniendo la consistencia</p>
               </div>
             </div>
             <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30 truncate max-w-[180px]">Hereda: Pixar 3D</span>
@@ -196,7 +196,7 @@
                 <span class="text-[11px] text-app-textMuted dark:text-slate-400 font-normal" id="badge-opcion-activa-nombre">Vista Frontal</span>
               </summary>
               <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed" id="explicacion-es-paso2">Cargando...</p>
+                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line" id="explicacion-es-paso2">Cargando...</p>
               </div>
             </details>
 
@@ -240,7 +240,7 @@
             class="w-full bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-xl px-3 py-2 text-[11px] text-app-textDark dark:text-white placeholder-app-textMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar font-mono">
         </div>
 
-        <!-- SUBIR FOTO LOCAL (NUEVO) -->
+        <!-- SUBIR FOTO LOCAL -->
         <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
@@ -285,7 +285,7 @@
 
       <!-- FOOTER MINI -->
       <div class="pt-3 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-1">
-        <p>© AI Prompt Studio — Img2Img Edition.</p>
+        <p>© AI Prompt Studio — Img2Img Edition Pro.</p>
       </div>
     </aside>
 
@@ -324,7 +324,7 @@
       }
     }
 
-    // CATALOGO DE ESTUDIOS (13 ESTILOS)
+    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS (CON TODO EL DETALLE ORIGINAL)
     const estilosPaso1 = [
       {
         id: "BLUR_LDR",
@@ -334,10 +334,30 @@
         icon: "fa-skull",
         iconColor: "text-app-accentRose dark:text-rose-400",
         descripcionCorta: "CGI hiperrealista, estética cyberpunk y ciencia ficción madura.",
-        promptEs: "Estilo Blur Studio / Love Death & Robots CGI hiperrealista, piel PBR detallada, iluminación cinematográfica dramática.",
-        promptEn: "Blur Studio style, gritty adult sci-fi CGI character render, highly detailed PBR skin, dramatic cinematic volumetric lighting.",
-        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio",
-        refPrompt2En: "Blur Studio gritty adult CGI sci-fi style"
+        promptEs: `PASO 1 (Estilo Blur Studio / Love, Death & Robots / Secret Level):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D fotorrealista de ciencia ficción madura estilo Blur Studio basado en la foto del sujeto.
+
+Requisitos:
+- Conservar los rasgos faciales clave, estructura ósea, ojos y tono de piel del sujeto con textura fotorrealista.
+- Piel PBR hiper-detallada con imperfecciones reales, micro-poros, cicatrices sutiles o polvo ambiental.
+- Iluminación cinematográfica oscura estilo Octane Render / Redshift, neones de alto contraste o iluminación dramática de ciencia ficción.
+- Traje / ropa con texturas de alto detalle táctil (fibra de carbono, metal desgastado, tela militar de ciencia ficción).
+- Fondo neutro o entorno cyberpunk oscuro en penumbra con profundidades de campo cinemáticas.`,
+        promptEn: `STEP 1 (Blur Studio / Love Death & Robots / Secret Level Style):
+[Reference Image: Photo of the subject]
+
+A photorealistic gritty 3D adult sci-fi CGI character render of the subject, crafted in the signature Blur Studio style (Love, Death & Robots / Secret Level).
+
+Key Requirements:
+- Faithfully preserve key facial features, facial symmetry, skin tone, and eyes from the reference photo.
+- Ultra-detailed photorealistic PBR skin shader: realistic pores, subtle skin flaws, micro-scratches, subsurface skin glow.
+- Cinematic Octane Render / Redshift lighting: volumetric rim lights, atmospheric dark sci-fi contrast, moody neon key lights.
+- High-grade tactical/sci-fi attire with worn metal textures, carbon fiber weave, and realistic weathering.
+- Atmospheric dark sci-fi studio backdrop with elegant shallow depth of field.`,
+        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio / Love Death & Robots",
+        refPrompt2En: "Blur Studio Love Death & Robots gritty adult CGI sci-fi style"
       },
       {
         id: "FORTICHE_ARCANE",
@@ -347,10 +367,29 @@
         icon: "fa-palette",
         iconColor: "text-app-sidebar dark:text-cyan-400",
         descripcionCorta: "Texturas pictóricas pintadas a mano sobre geometría 3D.",
-        promptEs: "Estilo Fortiche Production Arcane, texturas pictóricas de pintura al óleo hechas a mano, sombreado 2D/3D expresivo.",
-        promptEn: "Fortiche Production Arcane style, 2D/3D hybrid painterly animated character, hand-painted digital oil brushstrokes, dramatic rim highlights.",
-        refPrompt2Es: "estilo híbrido 2D/3D pintura manual Fortiche Arcane",
-        refPrompt2En: "Fortiche Production Arcane hand-painted style"
+        promptEs: `PASO 1 (Estilo Fortiche Production / Arcane):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D con la estética arte-pictórico híbrido 2D/3D de Fortiche Production (Arcane) basado en la foto.
+
+Requisitos:
+- Conservar los rasgos faciales y actitud del sujeto adaptados al estilo característico de Zaun / Piltover.
+- Sombreado 3D con texturas de pinceladas manuales de pintura al óleo (hand-painted digital brushstrokes).
+- Ojos expresivos dibujados con pinceladas estilizadas y sombras con trazos visibles.
+- Iluminación de alto impacto dramático, colores intensos y bordes con pinceladas expresivas.
+- Fondo conceptual de ilustración digital 3D.`,
+        promptEn: `STEP 1 (Fortiche Production / Arcane Style):
+[Reference Image: Photo of the subject]
+
+An iconic 2D/3D hybrid painterly animated character based on the reference photo, rendered in Fortiche Production style (Arcane: League of Legends).
+
+Key Requirements:
+- Preserve subject's core facial identity, face proportions, and hairstyle with stylized Arcane artistic sculpture.
+- Distinctive painterly hand-painted digital textures: visible oil brushstrokes on skin, clothes, and hair geometry.
+- Highly dramatic directional key lighting, vivid painterly shadows, rich color palette, and graphic rim highlights.
+- Stylized cloth with tactile paint textures, elegant concept art background.`,
+        refPrompt2Es: "estilo híbrido 2D/3D de pintura manual Fortiche Arcane",
+        refPrompt2En: "Fortiche Production Arcane hand-painted 2D/3D hybrid style"
       },
       {
         id: "BLUE_EYE_SAMURAI",
@@ -360,10 +399,29 @@
         icon: "fa-khanda",
         iconColor: "text-app-accentYellow dark:text-amber-400",
         descripcionCorta: "Animación 3D Cel-shade inspirada en grabados Ukiyo-e.",
-        promptEs: "Estilo Blue Eye Samurai 3D cel-shaded, grabado tradicional japonés Ukiyo-e, trazos de tinta de caligrafía.",
-        promptEn: "Blue Eye Samurai cel-shaded 3D style, traditional Japanese Ukiyo-e woodblock print aesthetic, calligraphic ink linework accents.",
+        promptEs: `PASO 1 (Estilo Samurái de ojos azules / Ukiyo-e 3D):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D cel-shaded estilizado en el arte de Samurái de ojos azules (Blue Eye Samurai) basado en la foto.
+
+Requisitos:
+- Conservar rasgos del sujeto fusionados con la estética de grabado japonés tradicional en madera (Ukiyo-e).
+- Sombreado Cel-Shade 3D refinado con trazos de tinta de caligrafía japonesa en los bordes.
+- Texturas de tela de kimonos o ropajes antiguos de época con sombreado plano y elegante.
+- Iluminación dramática estilo cine de samuráis tradicional.
+- Fondo neutro con textura de papel washi o gradiente atmosférico.`,
+        promptEn: `STEP 1 (Blue Eye Samurai Ukiyo-e 3D Style):
+[Reference Image: Photo of the subject]
+
+A striking stylized 3D cel-shaded character based on the reference photo, rendered in Blue Eye Samurai animation style inspired by traditional Japanese Ukiyo-e woodblock prints.
+
+Key Requirements:
+- Retain recognizable facial likeness of the subject while rendering through Japanese woodblock art aesthetics.
+- Elegant 3D cel-shading with subtle calligraphic ink linework accents along geometry contours.
+- High-contrast dramatic samurai cinema lighting, vivid deep color tones.
+- Traditional textile textures with flat graphic shading, seamless atmospheric background with subtle paper texture.`,
         refPrompt2Es: "estilo 3D Cel-shade Ukiyo-e Samurái de Ojos Azules",
-        refPrompt2En: "Blue Eye Samurai Ukiyo-e cel-shaded style"
+        refPrompt2En: "Blue Eye Samurai Ukiyo-e cel-shaded 3D style"
       },
       {
         id: "GLITCH_CIRCUS",
@@ -373,10 +431,29 @@
         icon: "fa-ghost",
         iconColor: "text-app-sidebar dark:text-purple-400",
         descripcionCorta: "Estética 3D retro estilo juego de los 90 y terror indie.",
-        promptEs: "Estilo Glitch Productions Digital Circus, 3D retro de finales de los 90, juguetes plásticos y colores saturados.",
-        promptEn: "Glitch Productions Digital Circus style, stylized retro 90s PC game CGI toy-like 3D model, clean plastic shaders, saturated lighting.",
+        promptEs: `PASO 1 (Estilo Glitch Productions / The Amazing Digital Circus):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D caricaturesco y surrealista estilo Glitch Productions (El asombroso circo digital) basado en la foto.
+
+Requisitos:
+- Conservar los elementos clave del sujeto pero simplificados en una figura estilizada de videojuego 3D CGI de finales de los 90.
+- Expresión facial intensa o cómica con ojos grandes y geométricos.
+- Renderizado 3D de juguetes plásticos/polígonos limpios pero con un tono inquietante y colorido.
+- Iluminación de estudio saturada pero con sombras marcadas.
+- Fondo de estudio virtual retro o espacio de prueba 3D.`,
+        promptEn: `STEP 1 (Glitch Productions / The Amazing Digital Circus Style):
+[Reference Image: Photo of the subject]
+
+A stylized retro 90s CGI 3D character based on the reference photo, created in Glitch Productions style (The Amazing Digital Circus).
+
+Key Requirements:
+- Translate subject's facial traits into a simplified, slightly surreal 90s PC game CGI toy-like 3D model.
+- Expressive, geometric eyes with existential/playful cartoon expressions.
+- Clean smooth plastic/toy surface shaders, saturated retro lighting, sharp ambient shadow details.
+- Surreal 3D digital void background or colorful retro studio backdrop.`,
         refPrompt2Es: "estilo 3D CGI retro 90s Glitch Digital Circus",
-        refPrompt2En: "Glitch Productions Digital Circus retro 90s style"
+        refPrompt2En: "Glitch Productions Digital Circus retro 90s CGI style"
       },
       {
         id: "DIGIC_PICTURES",
@@ -386,10 +463,28 @@
         icon: "fa-shield-halved",
         iconColor: "text-app-accentRose dark:text-rose-500",
         descripcionCorta: "Cinemáticas oscuras y fotorrealistas para juegos AAA.",
-        promptEs: "Estilo Digic Pictures fantasía oscura, cinemática de juego AAA fotorrealista, poros detallados y luz de antorchas.",
-        promptEn: "Digic Pictures dark fantasy cinematic render, 1:1 photorealistic digital double, micro skin pores, atmospheric torchlight.",
+        promptEs: `PASO 1 (Estilo Digic Pictures / Cinemática Fantasía Oscura):
+[Imagen de Referencia: Foto del sujeto]
+
+Un render 3D hiperrealista de fantasía oscura y estética de videojuego AAA estilo Digic Pictures basado en la foto.
+
+Requisitos:
+- Fidelidad 1:1 al rostro del sujeto con arrugas de expresión, cicatrices y tono de piel realista.
+- Sombreado de piel PBR con poros micro, cabello realista y ropa con armaduras/telas detalladas.
+- Iluminación cinematográfica oscura, luces de vela, fuego o neblina atmosférica.
+- Fondo de estudio o atmósfera de fantasía medieval oscura en penumbra.`,
+        promptEn: `STEP 1 (Digic Pictures Dark Cinematic Style):
+[Reference Image: Photo of the subject]
+
+A photorealistic dark fantasy 3D game cinematic render based on the reference photo, created in Digic Pictures studio standards (as seen in The Witcher 3 and Assassin's Creed cinematics).
+
+Key Requirements:
+- 1:1 photorealistic facial likeness, micro skin pore details, realistic facial hair, and realistic iris reflections.
+- Ultra-detailed PBR medieval or dark tactical leather/metal attire with realistic scratches and weathering.
+- Dark atmospheric key lighting: torchlight glow, moody shadows, fog volume, cinematic grading.
+- Deep moody studio environment with narrow depth of field.`,
         refPrompt2Es: "estilo de cinemática 3D fotorrealista oscura Digic Pictures",
-        refPrompt2En: "Digic Pictures photorealistic dark fantasy cinematic style"
+        refPrompt2En: "Digic Pictures photorealistic dark fantasy game cinematic 3D style"
       },
       {
         id: "PIXAR",
@@ -399,8 +494,28 @@
         icon: "fa-film",
         iconColor: "text-app-sidebar dark:text-indigo-400",
         descripcionCorta: "Cartoon tradicional avanzado (Inside Out, Soul, Toy Story).",
-        promptEs: "Estilo Pixar Animation Studios, personaje 3D carismático, ojos grandes luminosos, Sub-Surface Scattering en piel.",
-        promptEn: "Pixar Animation Studios style, charming 3D animated character, glossy luminous eyes, soft subsurface scattering skin shader, warm studio lighting.",
+        promptEs: `PASO 1 (Estilo Pixar Animation Studios):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D con la estética icónica de animación Pixar Animation Studios basado en la foto del sujeto.
+
+Requisitos:
+- Conservar los rasgos faciales distintivos, tono de piel, estructura visual y peinado del sujeto.
+- Expresión facial súper carismática, ojos grandes, expresivos y cristalinos con reflejos de luz de estudio.
+- Renderizado 3D de alta gama con Sub-Surface Scattering (SSS) en la piel.
+- Iluminación cinematográfica suave y cálida.
+- Fondo de estudio pulido con gradiente suave.`,
+        promptEn: `STEP 1 (Pixar Animation Studios Style):
+[Reference Image: Photo of the subject]
+
+A highly charming 3D animated character based on the reference photo, crafted in the signature Pixar Animation Studios feature film style (as seen in Inside Out and Soul).
+
+Key Requirements:
+- Faithfully preserve key facial features, face shape, natural hair texture, and distinct characteristics from the reference photo.
+- Highly expressive visual design: prominent glossy luminous eyes, warm appealing facial proportions.
+- World-class 3D render with soft subsurface scattering (SSS) skin shader, detailed stylized garment materials.
+- Warm cinematic studio lighting, key light highlights, soft volumetric glow.
+- Clean seamless studio backdrop with subtle color gradient blur.`,
         refPrompt2Es: "estilo de animación Pixar Studios 3D",
         refPrompt2En: "Pixar Animation Studios feature 3D style"
       },
@@ -412,10 +527,29 @@
         icon: "fa-dragon",
         iconColor: "text-app-accentYellow dark:text-amber-400",
         descripcionCorta: "Snappy, poses cómicas y caricatura dinámica (Shrek).",
-        promptEs: "Estilo DreamWorks Animation, caricatura dinámica expresiva, texturas ricas y colores vibrantes.",
-        promptEn: "DreamWorks Animation style, dynamic charismatic 3D cartoon character, expressive facial features, premium tactile textures, vibrant lighting.",
+        promptEs: `PASO 1 (Estilo DreamWorks Animation):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D dinámico y carismático al estilo distintivo de DreamWorks Animation basado en la foto.
+
+Requisitos:
+- Conservar fielmente el rostro, peinado y esencia de la foto de referencia.
+- Caricatura estilizada con micro-expresiones dinámicas y actitud carismática.
+- Renderizado 3D rico en textura y sombras suaves.
+- Iluminación de alto contraste cinematográfico y colores vibrantes.
+- Fondo neutro estilo concepto de producción 3D.`,
+        promptEn: `STEP 1 (DreamWorks Animation Style):
+[Reference Image: Photo of the subject]
+
+A dynamic and charismatic 3D animated character based on the reference photo, rendered in the distinctive DreamWorks Animation style (Shrek, Puss in Boots: The Last Wish).
+
+Key Requirements:
+- Accurately retain facial identity, key expression cues, skin tone, and hair structure from reference photo.
+- Snappy dynamic character appeal, expressive asymmetrical facial features.
+- Premium 3D cartoon render, rich material tactile textures, sharp highlights.
+- Vibrant cinematic key lighting with energetic color grade.`,
         refPrompt2Es: "estilo de caricatura dinámica DreamWorks 3D",
-        refPrompt2En: "dynamic snappy DreamWorks Animation style"
+        refPrompt2En: "dynamic snappy DreamWorks Animation 3D style"
       },
       {
         id: "SONY_SPIDERVERSE",
@@ -425,10 +559,27 @@
         icon: "fa-spider",
         iconColor: "text-app-sidebar dark:text-purple-400",
         descripcionCorta: "Estilo Híbrido 3D/Comic (Spider-Verse).",
-        promptEs: "Estilo Sony Pictures Animation Spider-Verse, cómic 3D híbrido, tramas de puntos halftone y líneas de tinta.",
-        promptEn: "Sony Pictures Animation Spider-Verse style, 3D hybrid comic book character, halftone dot patterns, hand-drawn ink line accents.",
+        promptEs: `PASO 1 (Estilo Sony Pictures Animation / Spider-Verse):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D estilizado en formato cómic híbrido estilo Sony Pictures Animation (Spider-Verse) basado en la foto.
+
+Requisitos:
+- Conservar los rasgos faciales del sujeto mezclados con líneas de tinta dibujadas a mano.
+- Texturas con tramas de puntos de imprenta (halftone patterns) y desenfoque estilo cómic.
+- Iluminación neo-noir estilizada con colores saturados y bordes acentuados.
+- Fondo conceptual de ilustración 3D.`,
+        promptEn: `STEP 1 (Sony Pictures Animation / Spider-Verse Style):
+[Reference Image: Photo of the subject]
+
+An iconic stylized 3D hybrid comic-book character based on the reference photo, rendered in Sony Pictures Animation style (Spider-Man: Into the Spider-Verse).
+
+Key Requirements:
+- Preserve subject's face geometry while applying stylized 2D ink line accents over 3D model.
+- Comic book aesthetics: subtle halftone dot patterns, hand-drawn hatch marks, chromatic aberration.
+- Bold graphic art direction with high contrast directional light and rim lighting.`,
         refPrompt2Es: "estilo Cómic 3D híbrido Sony Pictures Animation",
-        refPrompt2En: "Sony Pictures Animation Spider-Verse hybrid style"
+        refPrompt2En: "Sony Pictures Animation Spider-Verse hybrid comic 3D style"
       },
       {
         id: "DISNEY_3D",
@@ -438,10 +589,28 @@
         icon: "fa-wand-magic",
         iconColor: "text-app-accentGreen dark:text-cyan-400",
         descripcionCorta: "Cartoon estilizado y musical clásico (Frozen, Moana).",
-        promptEs: "Estilo Walt Disney Animation Studios, encanto musical clásico, proporciones suaves y piel aterciopelada.",
-        promptEn: "Walt Disney Animation Studios style, enchanting 3D animated character, soft elegant design, velvet skin finish, rich cloth details.",
+        promptEs: `PASO 1 (Estilo Walt Disney Animation Studios):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D con el encanto visual clásico de Walt Disney Animation Studios basado en la foto.
+
+Requisitos:
+- Conservar rasgos clave del rostro, ropa y forma de peinado.
+- Proporciones suavizadas, ojos brillantes y expresividad emotiva.
+- Sombreado 3D de alta precisión con piel aterciopelada.
+- Iluminación poética y cálida.
+- Fondo estilo estudio con gradiente.`,
+        promptEn: `STEP 1 (Walt Disney Animation Studios Style):
+[Reference Image: Photo of the subject]
+
+An enchanting 3D animated character based on the reference photo, crafted in Walt Disney Animation Studios style (Frozen, Moana, Encanto).
+
+Key Requirements:
+- Maintain faithful facial likeness and hairstyle traits from reference image.
+- Soft elegant character design, expressive glossy eyes.
+- Premium 3D surface shaders, soft velvet skin finish, rich detailed cloth weave patterns.`,
         refPrompt2Es: "estilo clásico Walt Disney 3D Animation",
-        refPrompt2En: "Walt Disney Animation Studios style"
+        refPrompt2En: "Walt Disney Animation Studios feature 3D style"
       },
       {
         id: "ILLUMINATION",
@@ -451,10 +620,27 @@
         icon: "fa-face-laugh-beam",
         iconColor: "text-app-accentGreen dark:text-emerald-400",
         descripcionCorta: "Snappy extremo y humorístico (Minions, Mario).",
-        promptEs: "Estilo Illumination Mac Guff, caricatura limpia y brillante, formas geométricas muy pulidas.",
-        promptEn: "Illumination Mac Guff style, clean bright 3D cartoon character, smooth rounded shapes, vibrant saturated studio lighting.",
+        promptEs: `PASO 1 (Estilo Illumination Mac Guff):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D caricaturizado estilo Illumination Mac Guff (Super Mario Bros / Minions) basado en la foto.
+
+Requisitos:
+- Conservar rasgos del sujeto simplificados en una silueta limpia.
+- Expresión cómica, ojos grandes y formas geométricas pulidas.
+- Sombreado 3D limpio de alto brillo y colores saturados.
+- Fondo de estudio brillante.`,
+        promptEn: `STEP 1 (Illumination Mac Guff Style):
+[Reference Image: Photo of the subject]
+
+A clean, brightly colored 3D caricatured character based on the reference photo, rendered in Illumination Entertainment style (The Super Mario Bros. Movie).
+
+Key Requirements:
+- Preserve primary facial shape while simplifying geometry into clean appealing cartoon shapes.
+- Playful expression, clean bold cartoon eyes, smooth rounded character design.
+- Crisp ultra-clean 3D render, vibrant saturated lighting.`,
         refPrompt2Es: "estilo caricatura limpia Illumination 3D",
-        refPrompt2En: "Illumination Mac Guff 3D style"
+        refPrompt2En: "Illumination Mac Guff 3D cartoon style"
       },
       {
         id: "WETA_ILM",
@@ -464,10 +650,27 @@
         icon: "fa-eye",
         iconColor: "text-app-accentRose dark:text-rose-400",
         descripcionCorta: "Hiperrealismo CGI cinematográfico y MoCap (Avatar).",
-        promptEs: "Estilo Wētā FX / ILM hiperrealismo cinematográfico, doble digital perfecto y simulación de cabello real.",
-        promptEn: "Wētā FX / ILM photorealistic cinematic CGI style, digital double likeness, advanced SSS skin, physical hair simulation.",
+        promptEs: `PASO 1 (Estilo Wētā FX / ILM Hiperrealismo):
+[Imagen de Referencia: Foto del sujeto]
+
+Un render 3D hiperrealista CGI de calidad cinematográfica estilo Wētā FX / ILM basado en la foto.
+
+Requisitos:
+- Conservación 1:1 de poros, micro-arrugas, imperfecciones de la piel y ojos fotorrealistas.
+- Sombreado PBR con física SSS avanzada.
+- Simulación física de cabello pelo por pelo.
+- Iluminación cinematográfica de estudio fotográfico real.`,
+        promptEn: `STEP 1 (Wētā FX / ILM Photorealistic CGI Style):
+[Reference Image: Photo of the subject]
+
+A photorealistic 3D cinematic CGI character render of the subject in the reference image, created in Wētā FX / ILM standards (Avatar: The Way of Water).
+
+Key Requirements:
+- 1:1 photorealistic digital double likeness: accurate facial structure, micro-skin pores, realistic iris reflections.
+- Ultra-high fidelity PBR shader with advanced SSS skin glow and physical hair strand simulation.
+- Photorealistic studio key light setup, realistic ray-traced shadows.`,
         refPrompt2Es: "estilo Hiperrealismo CGI Wētā FX / ILM",
-        refPrompt2En: "photorealistic CGI Wētā FX / ILM style"
+        refPrompt2En: "photorealistic CGI Wētā FX / ILM movie style"
       },
       {
         id: "SIMS4_ALPHA",
@@ -477,10 +680,27 @@
         icon: "fa-gamepad",
         iconColor: "text-app-accentGreen dark:text-teal-400",
         descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.",
-        promptEs: "Estilo Sims 4 Alpha CC y Unreal Engine 5, personaje de videojuego ultra detallado, cabello alpha y piel suave.",
-        promptEn: "Alpha Sims 4 CC and Unreal Engine 5 style, high-detail video game character, PBR smooth skin, alpha hair strands.",
+        promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / UE5):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje 3D ultra detallado de videojuego basado en la foto, estilo Alpha Sims 4 Custom Content y Unreal Engine 5.
+
+Requisitos:
+- Conservar estructura facial y vestimenta exacta.
+- Piel suave PBR, pestañas 3D definidas y brillo en ojos.
+- Cabello Alpha en capas estilizadas.
+- Iluminación de estudio en tiempo real.`,
+        promptEn: `STEP 1 (Sims 4 Alpha CC / Unreal Engine 5 Style):
+[Reference Image: Photo of the subject]
+
+A high-detail 3D video game character model of the subject in the reference photo, rendered in Alpha Sims 4 CC style using Unreal Engine 5 real-time aesthetics.
+
+Key Requirements:
+- Perfectly preserve facial structure, expression, exact clothing, and hairstyle.
+- Real-time 3D game character shader, smooth PBR skin, crisp 3D eyelashes, glossy eyes.
+- Hyper-detailed alpha hair strands, soft 3D game portrait lighting setup.`,
         refPrompt2Es: "estilo Alpha Sims 4 CC / Unreal Engine 5",
-        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 style"
+        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 game style"
       },
       {
         id: "ANIME_3D_CG",
@@ -490,37 +710,54 @@
         icon: "fa-bolt",
         iconColor: "text-app-accentYellow dark:text-sky-400",
         descripcionCorta: "Anime 3D CG de alta gama (Genshin Impact).",
-        promptEs: "Estilo Anime 3D CG de alta gama Genshin Impact y Studio Orange, sombreado cel-shaded refinado y ojos de anime.",
-        promptEn: "High-end 3D anime CG character style, Genshin Impact aesthetic, cel-shaded features, sculpted 3D anime hair.",
+        promptEs: `PASO 1 (Estilo Anime 3D CG):
+[Imagen de Referencia: Foto del sujeto]
+
+Un personaje de anime 3D CG de alta gama (estilo Genshin Impact / Studio Orange) basado en la foto.
+
+Requisitos:
+- Rostro Cel-shaded 3D refinado con ojos expresivos tipo anime.
+- Cabello anime esculpido en mechones 3D definidos.
+- Sombreado híbrido cel-shade.
+- Fondo de estudio estilo figura coleccionable.`,
+        promptEn: `STEP 1 (Anime 3D CG / Genshin Style):
+[Reference Image: Photo of the subject]
+
+A high-end 3D anime CG character based on the reference photo, rendered in Genshin Impact / Studio Orange aesthetic.
+
+Key Requirements:
+- Crisp 3D anime facial features, clean line art accents, stylized luminous anime eyes.
+- Sculpted 3D anime hair geometry with sharp specular highlights.
+- Hybrid cel-shaded textures, seamless studio lighting backdrop.`,
         refPrompt2Es: "estilo 3D Anime CG Genshin Impact",
-        refPrompt2En: "high-end 3D Anime CG style"
+        refPrompt2En: "high-end 3D Anime CG Genshin style"
       }
     ];
 
     const opcionesPaso2 = {
       expresiones: [
-        { es: "Risa grande con boca abierta", en: "expressive big open-mouth laugh, joyful ecstatic facial expression" },
-        { es: "Sorpresa e incredulidad", en: "wide amazed eyes, raised eyebrows, surprised astonished expression" },
-        { es: "Cantando con pasión", en: "mouth open singing passionately, highly expressive musical face" },
-        { es: "Pensativo con mano en barbilla", en: "thoughtful inquisitive expression, index finger near chin" },
-        { es: "Gran sonrisa entusiasta", en: "wide excited grin showing teeth, positive facial posture" },
-        { es: "Guiño confidencial y divertido", en: "playful wink with one eye closed, cheeky confident smirk" }
+        { es: "Risa grande con boca abierta", descEs: "Expresión eufórica de carcajada abierta, transmite alegría contagiosa.", en: "expressive big open-mouth laugh, joyful ecstatic facial expression, smiling eyes" },
+        { es: "Sorpresa e incredulidad", descEs: "Ojos muy abiertos, cejas levantadas y boca ligeramente entreabierta.", en: "wide amazed eyes, raised eyebrows, surprised astonished expression" },
+        { es: "Cantando con pasión", descEs: "Boca abierta en gesto de canto, rostro muy emotivo e interpretativo.", en: "mouth open singing passionately, highly expressive musical posture and face" },
+        { es: "Pensativo con mano en barbilla", descEs: "Mirada reflexiva de lado con la mano cerca de la barbilla.", en: "thoughtful inquisitive expression, index finger near chin, looking slightly away" },
+        { es: "Gran sonrisa entusiasta", descEs: "Sonrisa amplia mostrando dientes con mirada enérgica y positiva.", en: "wide excited grin showing teeth, highly energetic positive facial posture" },
+        { es: "Guiño confidencial y divertido", descEs: "Un ojo guiñado con una ligera sonrisa complice.", en: "playful wink with one eye closed, cheeky confident smirk" }
       ],
       angulos: [
-        { es: "Vista frontal neutral", en: "close-up portrait, front view facing camera directly" },
-        { es: "Vista 3/4 hacia la izquierda", en: "close-up portrait, three-quarter 3/4 angle view facing left" },
-        { es: "Vista 3/4 hacia la derecha", en: "close-up portrait, three-quarter 3/4 angle view facing right" },
-        { es: "Perfil izquierdo completo (90°)", en: "close-up portrait, sharp full left side profile view 90 degrees" },
-        { es: "Perfil derecho completo (90°)", en: "close-up portrait, sharp full right side profile view 90 degrees" },
-        { es: "Ángulo contrapicado (Cámara abajo)", en: "low-angle shot looking up at subject, heroic camera angle" }
+        { es: "Vista frontal neutral", descEs: "Primer plano directo mirando a cámara con hombros nivelados.", en: "close-up portrait, front view facing camera directly, eye-level camera shot" },
+        { es: "Vista 3/4 hacia la izquierda", descEs: "Rostro girado 45 grados a la izquierda, ángulo clásico de retrato.", en: "close-up portrait, three-quarter 3/4 angle view facing left, elegant studio framing" },
+        { es: "Vista 3/4 hacia la derecha", descEs: "Rostro girado 45 grados a la derecha, resalta estructura lateral.", en: "close-up portrait, three-quarter 3/4 angle view facing right, studio lighting" },
+        { es: "Perfil izquierdo completo (90°)", descEs: "Silueta de perfil izquierdo estricto a 90 grados.", en: "close-up portrait, sharp full left side profile view 90 degrees" },
+        { es: "Perfil derecho completo (90°)", descEs: "Silueta de perfil derecho estricto a 90 grados.", en: "close-up portrait, sharp full right side profile view 90 degrees" },
+        { es: "Ángulo contrapicado (Cámara abajo)", descEs: "Cámara apuntando desde abajo hacia arriba, postura imponente.", en: "low-angle shot looking up at subject, heroic camera angle, close-up composition" }
       ],
       poses: [
-        { es: "De pie vista frontal completa", en: "full body shot, standing upright front view" },
-        { es: "De pie de espaldas mirando atrás", en: "full body shot, standing facing backwards, turning head over shoulder" },
-        { es: "Saludando alegre con la mano", en: "full body shot, friendly waving hand pose, cheerful posture" },
-        { es: "Saltando en el aire (Dinámico)", en: "full body shot, dynamic mid-air jumping action pose" },
-        { es: "Sentado con piernas cruzadas", en: "full body shot, sitting cross-legged on floor comfortably" },
-        { es: "Caminando hacia adelante", en: "full body shot, walking forward towards camera pose" }
+        { es: "De pie vista frontal completa", descEs: "Plano entero de cuerpo completo de pie en postura neutral.", en: "full body shot, standing upright front view, full figure visible from head to toe" },
+        { es: "De pie de espaldas mirando atrás", descEs: "Cuerpo de espaldas con la cabeza girada mirando sobre el hombro.", en: "full body shot, standing facing backwards, turning head over shoulder towards camera" },
+        { es: "Saludando alegre con la mano", descEs: "Plano entero levantando la mano amistosamente para saludar.", en: "full body shot, friendly waving hand pose, cheerful posture, standing position" },
+        { es: "Saltando en el aire (Dinámico)", descEs: "Pose de salto en medio del aire llena de energía y movimiento.", en: "full body shot, dynamic mid-air jumping action pose, energetic composition" },
+        { es: "Sentado con piernas cruzadas", descEs: "Personaje sentado en el suelo con piernas cruzadas de manera relajada.", en: "full body shot, sitting cross-legged on floor comfortably, relaxed pose" },
+        { es: "Caminando hacia adelante", descEs: "Plano en movimiento caminando en dirección a la cámara.", en: "full body shot, walking forward towards camera pose, natural stride movement" }
       ]
     };
 
@@ -529,9 +766,8 @@
     let opcionPaso2Seleccionada = opcionesPaso2.expresiones[0];
     let filtroCategoriaActual = 'todos';
     let textoBusqueda = '';
-    let archivoFotoLocal = null; // Almacena el archivo de la foto local
+    let archivoFotoLocal = null;
 
-    // CARGAR FOTO LOCAL DESDE EL INPUT FILE
     function cargarFotoLocal(event) {
       const file = event.target.files[0];
       if (file) {
@@ -551,20 +787,52 @@
     }
 
     function getPrompt2Es(opcionObj) {
-      return `PASO 2 (Transformación con pose/expresión):
-Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSeleccionado.refPrompt2Es}).`;
+      return `PASO 2 (Manteniendo personaje de Paso 1):
+[Imagen de Referencia: Imagen generada previamente en Paso 1]
+
+Render 3D con consistencia 1:1 estricta del personaje en rostro, peinado, ropa y tono de piel usando (${estiloSeleccionado.refPrompt2Es}).
+
+Acción / Expresión / Pose Especificada:
+-> ${opcionObj.es}
+
+Requisitos Clave de Consistencia:
+- Mantener la identidad facial 1:1 exacta de la imagen del Paso 1.
+- Renderizado 3D de estudio, iluminación idéntica y fondo neutro coherente.`;
     }
 
     function getPrompt2En(opcionObj) {
-      return `${estiloSeleccionado.promptEn}, ${opcionObj.en}`;
+      return `STEP 2 (Character Consistency Render):
+[Reference Image: 3D character image generated in Step 1]
+
+A consistent 3D character render maintaining strict 1:1 identical facial structure, hairstyle, skin tone, and outfit in (${estiloSeleccionado.refPrompt2En}).
+
+Shot / Action / Pose Specification:
+-> ${opcionObj.en}
+
+Key Consistency Requirements:
+- Character Identity Match: Replicate exact face geometry, eyes, hair color, and clothing from reference Step 1 image.
+- Render Quality: High-end 3D character render matching ${estiloSeleccionado.nombre} visual style, lighting setup, and seamless background.`;
     }
 
     window.onload = function() {
       renderEstilos();
-      actualizarUI_Paso1();
+      aktualizarUI_Paso1();
       renderOpcionesPaso2();
-      actualizarUI_Paso2();
+      aktualizarUI_Paso2();
     };
+
+    function aktualizarUI_Paso1() {
+      document.getElementById('badge-estilo-activo').innerText = estiloSeleccionado.badge;
+      document.getElementById('badge-herencia-estilo').innerText = `Hereda: ${estiloSeleccionado.badge}`;
+      document.getElementById('explicacion-es-paso1').innerText = estiloSeleccionado.promptEs;
+      document.getElementById('display-prompt-step1').innerText = estiloSeleccionado.promptEn;
+    }
+
+    function aktualizarUI_Paso2() {
+      document.getElementById('badge-opcion-activa-nombre').innerText = opcionPaso2Seleccionada.es;
+      document.getElementById('explicacion-es-paso2').innerText = getPrompt2Es(opcionPaso2Seleccionada);
+      document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
+    }
 
     function filtrarPorTexto() {
       textoBusqueda = document.getElementById('input-busqueda').value.toLowerCase().trim();
@@ -607,8 +875,8 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
         btn.onclick = () => {
           estiloSeleccionado = estilo;
           renderEstilos();
-          actualizarUI_Paso1();
-          actualizarUI_Paso2();
+          aktualizarUI_Paso1();
+          aktualizarUI_Paso2();
         };
 
         btn.className = `p-3 rounded-2xl text-xs font-semibold text-left border transition-all duration-150 flex flex-col justify-between gap-1 cursor-pointer ${
@@ -631,13 +899,6 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
       });
     }
 
-    function actualizarUI_Paso1() {
-      document.getElementById('badge-estilo-activo').innerText = estiloSeleccionado.badge;
-      document.getElementById('badge-herencia-estilo').innerText = `Hereda: ${estiloSeleccionado.badge}`;
-      document.getElementById('explicacion-es-paso1').innerText = estiloSeleccionado.promptEs;
-      document.getElementById('display-prompt-step1').innerText = estiloSeleccionado.promptEn;
-    }
-
     function cambiarTabPaso2(tabKey) {
       tabPaso2Actual = tabKey;
       ['expresiones', 'angulos', 'poses'].forEach(t => {
@@ -650,7 +911,7 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
       });
       opcionPaso2Seleccionada = opcionesPaso2[tabKey][0];
       renderOpcionesPaso2();
-      actualizarUI_Paso2();
+      aktualizarUI_Paso2();
     }
 
     function renderOpcionesPaso2() {
@@ -664,7 +925,7 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
         btn.onclick = () => {
           opcionPaso2Seleccionada = item;
           renderOpcionesPaso2();
-          actualizarUI_Paso2();
+          aktualizarUI_Paso2();
         };
 
         btn.className = `p-2.5 rounded-2xl text-xs font-medium text-left border transition-all flex items-center justify-between gap-2 cursor-pointer ${
@@ -676,12 +937,6 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
         btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs"></i>' : ''}`;
         contenedor.appendChild(btn);
       });
-    }
-
-    function actualizarUI_Paso2() {
-      document.getElementById('badge-opcion-activa-nombre').innerText = opcionPaso2Seleccionada.es;
-      document.getElementById('explicacion-es-paso2').innerText = getPrompt2Es(opcionPaso2Seleccionada);
-      document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
     }
 
     // --- CONEXIÓN CON COLAB Y ENVÍO DE FOTO LOCAL (IMG2IMG) ---
@@ -712,7 +967,6 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
 
       try {
         const app = await window.gradioClient(urlColab);
-        // Gradio espera el orden de inputs de Python: [imagenLocal, prompt]
         const result = await app.predict(0, [archivoFotoLocal, promptAUsar]);
         
         const imageUrl = result.data[0].url || result.data[0].path || result.data[0];
@@ -721,19 +975,19 @@ Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSel
         outputImg.classList.remove('hidden');
         loader.classList.add('hidden');
         statusRender.innerText = "¡Completado!";
-        mostrarToast("Transformación Exitosa", "Foto convertida al estilo del estudio.");
+        mostrarToast("Transformación Exitosa", "Foto convertida con el prompt detallado del estudio.");
       } catch (err) {
         console.error(err);
         loader.classList.add('hidden');
         placeholder.classList.remove('hidden');
         statusRender.innerText = "Error";
-        alert("❌ Error al conectar con Colab. Asegúrate de haber actualizado el código de Colab a Img2Img.");
+        alert("❌ Error al conectar con Colab. Asegúrate de que el script de Colab esté corriendo y actualizado.");
       }
     }
 
     function copiarPrompt(paso) {
       const textoACopiar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
-      navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles."));
+      navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles con todo su detalle."));
     }
 
     function mostrarToast(titulo, msg) {
