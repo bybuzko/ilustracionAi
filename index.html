@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Prompt Studio - Img2Img Studio Pro</title>
+  <title>AI Prompt Studio - Biblioteca & Generador Pro</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -48,12 +48,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <!-- Gradio Client JS -->
-  <script type="module">
-    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/+esm";
-    window.gradioClient = client;
-  </script>
-
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -104,8 +98,8 @@
       <!-- HERO BANNER -->
       <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[160px] transition-colors duration-300">
         <div class="relative z-10">
-          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio (Img2Img Pro)</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Sube tu foto local, aplica el estilo de estudio detallado y transfórmala al instante</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio Pro</h2>
+          <p class="text-xs sm:text-sm text-white/80 font-medium">Biblioteca de consistencia de personajes 3D y motores de renderizado industrial</p>
         </div>
         
         <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-4 no-scrollbar" id="categoria-filtros">
@@ -157,12 +151,9 @@
           </div>
         </div>
 
-        <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
-          <button onclick="copiarPrompt('step1')" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
-            <i class="fa-regular fa-copy"></i> Copiar Prompt
-          </button>
-          <button onclick="generarImagenConIA('step1')" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Transformar mi Foto (Estilo Estudio)
+        <div class="mt-4 flex justify-end">
+          <button onclick="copiarPrompt('step1')" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 1
           </button>
         </div>
       </section>
@@ -212,80 +203,80 @@
           </div>
         </div>
 
-        <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
-          <button onclick="copiarPrompt('step2')" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
-            <i class="fa-regular fa-copy"></i> Copiar Prompt
-          </button>
-          <button onclick="generarImagenConIA('step2')" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Transformar con Pose (Img2Img)
+        <div class="mt-4 flex justify-end">
+          <button onclick="copiarPrompt('step2')" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 2
           </button>
         </div>
       </section>
 
     </main>
 
-    <!-- PANEL LATERAL DERECHO (CONEXIÓN COLAB + FOTO LOCAL + VISUALIZADOR) -->
-    <aside class="w-full lg:w-96 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
-      <div class="space-y-6 flex flex-col">
-        
-        <!-- CONEXIÓN GOOGLE COLAB -->
-        <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
-              <i class="fa-solid fa-cloud-bolt text-app-accentRose"></i> Conexión Google Colab
-            </span>
-            <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">GPU T4</span>
+    <!-- PANEL LATERAL DERECHO (GUÍA DE ESTUDIOS LIMPIA) -->
+    <aside class="w-full lg:w-80 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
+      <div class="space-y-6">
+        <!-- PERFIL -->
+        <div class="flex items-center gap-3 bg-app-cardBg dark:bg-app-darkCardBg p-3.5 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder">
+          <div class="w-12 h-12 rounded-2xl bg-app-accentYellow/30 dark:bg-indigo-600/30 text-app-sidebar dark:text-indigo-400 flex items-center justify-center font-extrabold text-xl">
+            <i class="fa-solid fa-user-astronaut"></i>
           </div>
-          <input type="text" id="input-colab-url" placeholder="Pega tu enlace https://xxxx.gradio.live..." 
-            class="w-full bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-xl px-3 py-2 text-[11px] text-app-textDark dark:text-white placeholder-app-textMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar font-mono">
+          <div class="flex-1 min-w-0">
+            <h4 class="text-sm font-bold text-app-textDark dark:text-white truncate">Creador Studio</h4>
+            <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted truncate">Plan Prompt Master</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-app-sidebar dark:bg-indigo-600 text-white text-[10px] font-bold">PRO</span>
         </div>
 
-        <!-- SUBIR FOTO LOCAL -->
-        <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
-              <i class="fa-solid fa-image text-app-sidebar"></i> 1. Sube tu Foto Local
-            </span>
-            <span id="badge-estado-foto" class="text-[10px] font-mono text-app-textMuted font-bold">Requerido</span>
-          </div>
-          <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl cursor-pointer bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition overflow-hidden relative">
-            <div id="upload-placeholder" class="flex flex-col items-center justify-center p-2 text-center">
-              <i class="fa-solid fa-cloud-arrow-up text-app-sidebar text-lg mb-1"></i>
-              <p class="text-[11px] text-app-textDark dark:text-slate-300 font-bold">Haz clic para elegir foto</p>
-              <p class="text-[9px] text-app-textMuted">JPG, PNG o WEBP</p>
-            </div>
-            <img id="preview-foto-local" class="hidden w-full h-full object-cover absolute inset-0">
-            <input type="file" id="input-foto-local" accept="image/*" class="hidden" onchange="cargarFotoLocal(event)">
-          </label>
-        </div>
-
-        <!-- VISUALIZADOR DE RENDER EN VIVO -->
-        <div class="flex flex-col gap-2">
-          <h4 class="text-xs font-extrabold text-app-textDark dark:text-white flex items-center justify-between">
-            <span>2. Resultado Transformado</span>
-            <span id="status-render" class="text-[10px] font-mono text-app-textMuted">Listo</span>
+        <!-- GUÍA DE ESTUDIOS -->
+        <div>
+          <h4 class="text-sm font-extrabold text-app-textDark dark:text-white mb-3 flex items-center justify-between">
+            <span>Guía de Estudios</span>
+            <span class="text-[10px] font-mono text-app-textMuted dark:text-app-darkTextMuted">INDUSTRY SPEC</span>
           </h4>
 
-          <div id="image-preview-container" class="w-full h-48 bg-app-cardBg dark:bg-app-darkCardBg rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-center relative overflow-hidden shadow-inner">
-            <div id="placeholder-content" class="text-center p-4 space-y-2">
-              <i class="fa-solid fa-wand-magic text-2xl text-app-textMuted dark:text-slate-600"></i>
-              <p class="text-[11px] text-app-textMuted dark:text-slate-400">Sube tu foto y dale a "✨ Transformar mi Foto".</p>
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+              <div>
+                <p class="font-bold text-app-sidebar dark:text-rose-400">Blur Studio</p>
+                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Love, Death & Robots</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-app-accentRose/20 dark:bg-rose-500/20 text-app-sidebar dark:text-rose-300 font-bold text-[10px]">CGI Sci-Fi</span>
             </div>
 
-            <div id="loader-content" class="hidden absolute inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2">
-              <div class="w-8 h-8 border-4 border-app-sidebar border-t-transparent rounded-full animate-spin"></div>
-              <p class="text-xs font-bold text-app-textDark dark:text-white animate-pulse">Procesando Img2Img en GPU...</p>
+            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+              <div>
+                <p class="font-bold text-app-textDark dark:text-cyan-300">Fortiche Production</p>
+                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Arcane / League of Legends</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 font-bold text-[10px]">Híbrido 2D/3D</span>
             </div>
 
-            <img id="output-image" class="hidden w-full h-full object-cover rounded-2xl" alt="Imagen transformada por IA">
+            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+              <div>
+                <p class="font-bold text-app-textDark dark:text-indigo-300">Pixar Animation</p>
+                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Inside Out, Soul</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 font-bold text-[10px]">Cine 3D</span>
+            </div>
+
+            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
+              <div>
+                <p class="font-bold text-app-textDark dark:text-amber-300">Wētā FX / ILM</p>
+                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Avatar: Way of Water</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-md bg-app-sidebar/20 dark:bg-amber-500/20 text-app-sidebar dark:text-amber-300 font-bold text-[10px]">Hiperrealismo</span>
+            </div>
           </div>
         </div>
-
       </div>
 
       <!-- FOOTER MINI -->
-      <div class="pt-3 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-1">
-        <p>© AI Prompt Studio — Img2Img Edition Pro.</p>
+      <div class="pt-4 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-2">
+        <p>© AI Prompt Studio — Biblioteca Pro.</p>
+        <div class="flex items-center justify-center gap-3 text-app-textDark dark:text-app-darkText font-medium">
+          <span><i class="fa-solid fa-bolt text-app-accentYellow"></i> Copia & Pega</span>
+          <span><i class="fa-solid fa-cube text-app-sidebar dark:text-indigo-400"></i> PBR Shading</span>
+        </div>
       </div>
     </aside>
 
@@ -298,7 +289,7 @@
         <i class="fa-solid fa-check"></i>
       </div>
       <div>
-        <h4 class="text-xs font-bold" id="toast-title">Copiado</h4>
+        <h4 class="text-xs font-bold" id="toast-title">Prompt Copiado</h4>
         <p class="text-[11px] text-white/70 dark:text-slate-400" id="toast-msg">Listo en tu portapapeles.</p>
       </div>
     </div>
@@ -670,7 +661,7 @@ Key Requirements:
 - Ultra-high fidelity PBR shader with advanced SSS skin glow and physical hair strand simulation.
 - Photorealistic studio key light setup, realistic ray-traced shadows.`,
         refPrompt2Es: "estilo Hiperrealismo CGI Wētā FX / ILM",
-        refPrompt2En: "photorealistic CGI Wētā FX / ILM movie style"
+        refPrompt2En: "photorealistic CGI Wētā FX / ILM style"
       },
       {
         id: "SIMS4_ALPHA",
@@ -700,7 +691,7 @@ Key Requirements:
 - Real-time 3D game character shader, smooth PBR skin, crisp 3D eyelashes, glossy eyes.
 - Hyper-detailed alpha hair strands, soft 3D game portrait lighting setup.`,
         refPrompt2Es: "estilo Alpha Sims 4 CC / Unreal Engine 5",
-        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 game style"
+        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 style"
       },
       {
         id: "ANIME_3D_CG",
@@ -730,7 +721,7 @@ Key Requirements:
 - Sculpted 3D anime hair geometry with sharp specular highlights.
 - Hybrid cel-shaded textures, seamless studio lighting backdrop.`,
         refPrompt2Es: "estilo 3D Anime CG Genshin Impact",
-        refPrompt2En: "high-end 3D Anime CG Genshin style"
+        refPrompt2En: "high-end 3D Anime CG style"
       }
     ];
 
@@ -766,25 +757,6 @@ Key Requirements:
     let opcionPaso2Seleccionada = opcionesPaso2.expresiones[0];
     let filtroCategoriaActual = 'todos';
     let textoBusqueda = '';
-    let archivoFotoLocal = null;
-
-    function cargarFotoLocal(event) {
-      const file = event.target.files[0];
-      if (file) {
-        archivoFotoLocal = file;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const preview = document.getElementById('preview-foto-local');
-          const placeholder = document.getElementById('upload-placeholder');
-          preview.src = e.target.result;
-          preview.classList.remove('hidden');
-          placeholder.classList.add('hidden');
-          document.getElementById('badge-estado-foto').innerText = "Cargada ✓";
-          document.getElementById('badge-estado-foto').className = "text-[10px] font-mono text-emerald-500 font-bold";
-        }
-        reader.readAsDataURL(file);
-      }
-    }
 
     function getPrompt2Es(opcionObj) {
       return `PASO 2 (Manteniendo personaje de Paso 1):
@@ -937,52 +909,6 @@ Key Consistency Requirements:
         btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs"></i>' : ''}`;
         contenedor.appendChild(btn);
       });
-    }
-
-    // --- CONEXIÓN CON COLAB Y ENVÍO DE FOTO LOCAL (IMG2IMG) ---
-    async function generarImagenConIA(paso) {
-      const urlColab = document.getElementById('input-colab-url').value.trim();
-      if (!urlColab) {
-        alert("⚠️ Por favor, pega primero tu enlace de Gradio (.gradio.live) de Google Colab.");
-        document.getElementById('input-colab-url').focus();
-        return;
-      }
-
-      if (!archivoFotoLocal) {
-        alert("⚠️ Por favor, sube una foto local primero en el panel derecho.");
-        return;
-      }
-
-      const promptAUsar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
-      
-      const placeholder = document.getElementById('placeholder-content');
-      const loader = document.getElementById('loader-content');
-      const outputImg = document.getElementById('output-image');
-      const statusRender = document.getElementById('status-render');
-
-      placeholder.classList.add('hidden');
-      outputImg.classList.add('hidden');
-      loader.classList.remove('hidden');
-      statusRender.innerText = "Transformando...";
-
-      try {
-        const app = await window.gradioClient(urlColab);
-        const result = await app.predict(0, [archivoFotoLocal, promptAUsar]);
-        
-        const imageUrl = result.data[0].url || result.data[0].path || result.data[0];
-        
-        outputImg.src = imageUrl;
-        outputImg.classList.remove('hidden');
-        loader.classList.add('hidden');
-        statusRender.innerText = "¡Completado!";
-        mostrarToast("Transformación Exitosa", "Foto convertida con el prompt detallado del estudio.");
-      } catch (err) {
-        console.error(err);
-        loader.classList.add('hidden');
-        placeholder.classList.remove('hidden');
-        statusRender.innerText = "Error";
-        alert("❌ Error al conectar con Colab. Asegúrate de que el script de Colab esté corriendo y actualizado.");
-      }
     }
 
     function copiarPrompt(paso) {
