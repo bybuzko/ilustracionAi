@@ -1099,7 +1099,7 @@ Key Consistency Requirements:
       document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
     }
 
-    // --- CONEXIÓN CON COLAB Y GENERACIÓN DIRECTA ---
+    // --- CONEXIÓN CON COLAB Y GENERACIÓN DIRECTA (CORREGIDO) ---
     async function generarImagenConIA(paso) {
       const urlColab = document.getElementById('input-colab-url').value.trim();
       if (!urlColab) {
@@ -1122,7 +1122,8 @@ Key Consistency Requirements:
 
       try {
         const app = await window.gradioClient(urlColab);
-        const result = await app.predict(promptAUsar);
+        // LLAMADA CORREGIDA A GRADIO API: app.predict(0, [prompt])
+        const result = await app.predict(0, [promptAUsar]);
         
         const imageUrl = result.data[0].url || result.data[0].path || result.data[0];
         
