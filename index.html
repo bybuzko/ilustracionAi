@@ -78,41 +78,22 @@
   <!-- MARCO PRINCIPAL DEL DASHBOARD (CONTENEDOR GLOBAL TIPO APP) -->
   <div class="w-full max-w-[1440px] bg-white dark:bg-app-darkSidebar rounded-[40px] shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-[#EAD5C3] dark:border-app-darkBorder transition-colors duration-300">
 
-    <!-- ================= BARRA LATERAL IZQUIERDA (SIDEBAR) ================= -->
+    <!-- ================= BARRA LATERAL IZQUIERDA (SIDEBAR LIMPIA) ================= -->
     <aside class="w-full lg:w-20 bg-app-sidebar dark:bg-app-darkCardBg flex lg:flex-col items-center justify-between p-4 lg:py-8 gap-6 shrink-0 transition-colors duration-300">
-      <!-- Icono Menú / Logo Superior -->
+      <!-- Logo Principal -->
       <div class="flex flex-row lg:flex-col items-center gap-6">
-        <button class="w-10 h-10 rounded-2xl bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition">
-          <i class="fa-solid fa-bars text-lg"></i>
-        </button>
-        <button class="w-10 h-10 rounded-2xl bg-white dark:bg-indigo-600 text-app-sidebar dark:text-white flex items-center justify-center shadow-md">
+        <div class="w-10 h-10 rounded-2xl bg-white dark:bg-indigo-600 text-app-sidebar dark:text-white flex items-center justify-center shadow-md">
           <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
-        </button>
+        </div>
       </div>
 
-      <!-- Iconos Centrales de Navegación -->
-      <div class="flex lg:flex-col items-center gap-5 text-white/70">
-        <button class="w-10 h-10 rounded-2xl hover:bg-white/15 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-house text-base"></i>
-        </button>
-        <button class="w-10 h-10 rounded-2xl hover:bg-white/15 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-chart-pie text-base"></i>
-        </button>
-        <button class="w-10 h-10 rounded-2xl hover:bg-white/15 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-sliders text-base"></i>
-        </button>
-        <button class="w-10 h-10 rounded-2xl hover:bg-white/15 hover:text-white flex items-center justify-center transition">
-          <i class="fa-solid fa-user text-base"></i>
-        </button>
-      </div>
+      <!-- Espaciador central limpio (sin botones fantasma) -->
+      <div class="hidden lg:block flex-1"></div>
 
       <!-- BOTÓN SWITCH MODO OSCURO EN SIDEBAR -->
       <div class="flex flex-col items-center gap-3">
         <button onclick="toggleDarkMode()" title="Cambiar Tema Dark/Light" class="w-10 h-10 rounded-full bg-white/20 dark:bg-indigo-500/30 text-white flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
           <i id="theme-icon-sidebar" class="fa-solid fa-moon text-base"></i>
-        </button>
-        <button class="hidden lg:flex w-10 h-10 rounded-full bg-white/20 text-white items-center justify-center hover:bg-white/30 transition">
-          <i class="fa-solid fa-question text-sm"></i>
         </button>
       </div>
     </aside>
@@ -120,23 +101,17 @@
     <!-- ================= CONTENIDO CENTRAL ================= -->
     <main class="flex-1 bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-6 overflow-y-auto transition-colors duration-300">
 
-      <!-- BARRA DE BÚSQUEDA, MODO OSCURO Y NOTIFICACIÓN SUPERIOR -->
+      <!-- BARRA DE BÚSQUEDA Y MODO OSCURO SUPERIOR -->
       <div class="flex items-center gap-4">
-        <!-- Notificación (Boton Rosa) -->
-        <div class="w-11 h-11 rounded-2xl bg-app-accentRose text-white flex items-center justify-center shrink-0 shadow-sm relative">
-          <i class="fa-solid fa-bell text-base"></i>
-          <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-app-accentGreen border-2 border-app-accentRose"></span>
-        </div>
-
         <!-- Input Búsqueda Estilo Referencia -->
-        <div class="relative flex-1 max-w-xl">
+        <div class="relative flex-1 max-w-2xl">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-app-textMuted dark:text-app-darkTextMuted text-xs"></i>
           <input type="text" id="input-busqueda" oninput="filtrarPorTexto()" placeholder="Buscar estudio (ej: Blur, Arcane, Pixar, Weta)..." 
-            class="w-full bg-white dark:bg-app-darkCardBg border-0 dark:border dark:border-app-darkBorder rounded-full pl-10 pr-4 py-2.5 text-xs text-app-textDark dark:text-app-darkText placeholder-app-textMuted dark:placeholder-app-darkTextMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar shadow-sm font-sans transition-colors">
+            class="w-full bg-white dark:bg-app-darkCardBg border-0 dark:border dark:border-app-darkBorder rounded-full pl-10 pr-4 py-3 text-xs text-app-textDark dark:text-app-darkText placeholder-app-textMuted dark:placeholder-app-darkTextMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar shadow-sm font-sans transition-colors">
         </div>
 
         <!-- Botón Modo Oscuro Header -->
-        <button onclick="toggleDarkMode()" class="px-3.5 py-2.5 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
+        <button onclick="toggleDarkMode()" class="px-4 py-3 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
           <i id="theme-icon-header" class="fa-solid fa-moon text-app-sidebar dark:text-amber-400"></i>
           <span id="theme-text-header" class="hidden sm:inline">Modo Oscuro</span>
         </button>
@@ -1147,9 +1122,9 @@ Key Consistency Requirements:
 
       try {
         const app = await window.gradioClient(urlColab);
-        const result = await app.predict(0, { prompt_ingles: promptAUsar });
+        const result = await app.predict(promptAUsar);
         
-        const imageUrl = result.data[0].url || result.data[0];
+        const imageUrl = result.data[0].url || result.data[0].path || result.data[0];
         
         outputImg.src = imageUrl;
         outputImg.classList.remove('hidden');
