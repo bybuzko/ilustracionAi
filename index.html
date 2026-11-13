@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Prompt Studio - Dashboard Multi-Theme</title>
+  <title>AI Prompt Studio - Img2Img Studio</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +18,6 @@
           },
           colors: {
             app: {
-              // Modo Claro (Diseño Referencia Warm Pastel)
               bg: '#F9EFE6',
               sidebar: '#DC6A48',
               cardBg: '#FFF9F3',
@@ -29,7 +28,6 @@
               textDark: '#332924',
               textMuted: '#8C7A70',
 
-              // Modo Oscuro (Dark Theme Studio)
               darkBg: '#070A12',
               darkSidebar: '#0F172A',
               darkCardBg: '#1E293B',
@@ -50,23 +48,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
-  <!-- Gradio Client JS para conectar con Colab -->
+  <!-- Gradio Client JS -->
   <script type="module">
     import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client/+esm";
     window.gradioClient = client;
   </script>
 
   <style>
-    body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    /* Scrollbars personalizadas */
+    body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #DC6A48; border-radius: 9999px; }
-
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     summary::-webkit-details-marker { display: none; }
@@ -75,22 +67,16 @@
 
 <body class="min-h-screen bg-app-bg dark:bg-app-darkBg text-app-textDark dark:text-app-darkText flex items-center justify-center p-3 sm:p-6 selection:bg-[#DC6A48] selection:text-white transition-colors duration-300">
 
-  <!-- MARCO PRINCIPAL DEL DASHBOARD (CONTENEDOR GLOBAL TIPO APP) -->
   <div class="w-full max-w-[1440px] bg-white dark:bg-app-darkSidebar rounded-[40px] shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-[#EAD5C3] dark:border-app-darkBorder transition-colors duration-300">
 
-    <!-- ================= BARRA LATERAL IZQUIERDA (SIDEBAR LIMPIA) ================= -->
+    <!-- SIDEBAR -->
     <aside class="w-full lg:w-20 bg-app-sidebar dark:bg-app-darkCardBg flex lg:flex-col items-center justify-between p-4 lg:py-8 gap-6 shrink-0 transition-colors duration-300">
-      <!-- Logo Principal -->
       <div class="flex flex-row lg:flex-col items-center gap-6">
         <div class="w-10 h-10 rounded-2xl bg-white dark:bg-indigo-600 text-app-sidebar dark:text-white flex items-center justify-center shadow-md">
           <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
         </div>
       </div>
-
-      <!-- Espaciador central limpio (sin botones fantasma) -->
       <div class="hidden lg:block flex-1"></div>
-
-      <!-- BOTÓN SWITCH MODO OSCURO EN SIDEBAR -->
       <div class="flex flex-col items-center gap-3">
         <button onclick="toggleDarkMode()" title="Cambiar Tema Dark/Light" class="w-10 h-10 rounded-full bg-white/20 dark:bg-indigo-500/30 text-white flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
           <i id="theme-icon-sidebar" class="fa-solid fa-moon text-base"></i>
@@ -98,80 +84,56 @@
       </div>
     </aside>
 
-    <!-- ================= CONTENIDO CENTRAL ================= -->
+    <!-- CONTENIDO CENTRAL -->
     <main class="flex-1 bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-6 overflow-y-auto transition-colors duration-300">
 
-      <!-- BARRA DE BÚSQUEDA Y MODO OSCURO SUPERIOR -->
+      <!-- BARRA SUPERIOR -->
       <div class="flex items-center gap-4">
-        <!-- Input Búsqueda Estilo Referencia -->
         <div class="relative flex-1 max-w-2xl">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-app-textMuted dark:text-app-darkTextMuted text-xs"></i>
           <input type="text" id="input-busqueda" oninput="filtrarPorTexto()" placeholder="Buscar estudio (ej: Blur, Arcane, Pixar, Weta)..." 
             class="w-full bg-white dark:bg-app-darkCardBg border-0 dark:border dark:border-app-darkBorder rounded-full pl-10 pr-4 py-3 text-xs text-app-textDark dark:text-app-darkText placeholder-app-textMuted dark:placeholder-app-darkTextMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar shadow-sm font-sans transition-colors">
         </div>
 
-        <!-- Botón Modo Oscuro Header -->
         <button onclick="toggleDarkMode()" class="px-4 py-3 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
           <i id="theme-icon-header" class="fa-solid fa-moon text-app-sidebar dark:text-amber-400"></i>
           <span id="theme-text-header" class="hidden sm:inline">Modo Oscuro</span>
         </button>
       </div>
 
-      <!-- TARJETA PRINCIPAL DESTACADA (HERO BANNER) -->
+      <!-- HERO BANNER -->
       <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[160px] transition-colors duration-300">
         <div class="relative z-10">
-          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Generador de consistencia de personajes 3D y render directo con IA</p>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio (Img2Img)</h2>
+          <p class="text-xs sm:text-sm text-white/80 font-medium">Sube tu foto local, aplica el estilo del estudio seleccionado y transfórmala al instante</p>
         </div>
         
-        <!-- Categorías de Filtro como badges flotantes -->
         <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-4 no-scrollbar" id="categoria-filtros">
-          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-1.5 rounded-full text-xs font-bold bg-white text-app-sidebar shadow-sm transition">
-            Todos
-          </button>
-          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">
-            💀 Adulto & Sci-Fi
-          </button>
-          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">
-            🎨 Híbridos
-          </button>
-          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">
-            🎬 Cine & Familiar
-          </button>
-          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">
-            🎮 Gaming & VFX
-          </button>
+          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-1.5 rounded-full text-xs font-bold bg-white text-app-sidebar shadow-sm transition">Todos</button>
+          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">💀 Adulto & Sci-Fi</button>
+          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎨 Híbridos</button>
+          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎬 Cine & Familiar</button>
+          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎮 Gaming & VFX</button>
         </div>
-
-        <!-- Decoraciones geométricas de fondo -->
         <div class="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-white/10 pointer-events-none"></div>
       </div>
 
-      <!-- PASO 1: SELECCIÓN DE ESTILO Y DETALLES DE PROMPT -->
+      <!-- PASO 1: ESTUDIO -->
       <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <!-- Cabecera Paso 1 -->
           <div class="flex items-center justify-between pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">
-                1
-              </span>
+              <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">1</span>
               <div>
-                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor visual base</p>
+                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado</p>
               </div>
             </div>
-            <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">
-              Pixar 3D
-            </span>
+            <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
           </div>
 
-          <!-- GRID DE ESTILOS DE ESTUDIOS -->
-          <div id="grid-estilos" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-4 max-h-[260px] overflow-y-auto pr-1">
-            <!-- Renderizado vía JS -->
-          </div>
+          <div id="grid-estilos" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-4 max-h-[260px] overflow-y-auto pr-1"></div>
 
-          <!-- DESPLEGABLES DE INFORMACIÓN (ESPAÑOL E INGLÉS) -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
               <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400">
@@ -195,13 +157,12 @@
           </div>
         </div>
 
-        <!-- Botones de Acción Paso 1 (Copiar + Generar con IA) -->
         <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
-          <button onclick="copiarPrompt('step1')" title="Copiar Prompt Paso 1" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+          <button onclick="copiarPrompt('step1')" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
             <i class="fa-regular fa-copy"></i> Copiar Prompt
           </button>
-          <button onclick="generarImagenConIA('step1')" title="Generar Imagen con Colab" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Generar Imagen Directa
+          <button onclick="generarImagenConIA('step1')" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Transformar mi Foto (Estilo Estudio)
           </button>
         </div>
       </section>
@@ -209,41 +170,25 @@
       <!-- PASO 2: POSES, EXPRESIONES Y ÁNGULOS -->
       <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <!-- Cabecera Paso 2 -->
           <div class="flex items-center justify-between pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm">
-                2
-              </span>
+              <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm">2</span>
               <div>
-                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose o Ángulo</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Mantiene la consistencia con la imagen del Paso 1</p>
+                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose o Ángulo Adicional</h3>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma manteniendo la foto base</p>
               </div>
             </div>
-            <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30 truncate max-w-[180px]">
-              Hereda: Pixar 3D
-            </span>
+            <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30 truncate max-w-[180px]">Hereda: Pixar 3D</span>
           </div>
 
-          <!-- TABS CATEGORÍAS PASO 2 -->
           <div class="grid grid-cols-3 gap-2 p-1.5 bg-white dark:bg-slate-900 rounded-2xl border border-[#EAD5C3] dark:border-app-darkBorder mb-4">
-            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm">
-              😊 Expresiones
-            </button>
-            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">
-              📷 Ángulos
-            </button>
-            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">
-              🧍 Poses
-            </button>
+            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm">😊 Expresiones</button>
+            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">📷 Ángulos</button>
+            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">🧍 Poses</button>
           </div>
 
-          <!-- LISTA DE OPCIONES PASO 2 -->
-          <div id="grid-opciones-paso2" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 mb-4 max-h-[180px] overflow-y-auto pr-1">
-            <!-- Renderizado vía JS -->
-          </div>
+          <div id="grid-opciones-paso2" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 mb-4 max-h-[180px] overflow-y-auto pr-1"></div>
 
-          <!-- DESPLEGABLES DE PROMPT PASO 2 -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
               <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-cyan-400">
@@ -267,24 +212,23 @@
           </div>
         </div>
 
-        <!-- Botones de Acción Paso 2 (Copiar + Generar con IA) -->
         <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
-          <button onclick="copiarPrompt('step2')" title="Copiar Prompt Paso 2" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
+          <button onclick="copiarPrompt('step2')" class="px-5 py-2.5 rounded-full bg-slate-200 dark:bg-slate-800 text-app-textDark dark:text-slate-200 hover:bg-slate-300 font-bold text-xs flex items-center gap-2 transition cursor-pointer">
             <i class="fa-regular fa-copy"></i> Copiar Prompt
           </button>
-          <button onclick="generarImagenConIA('step2')" title="Generar Imagen con Colab" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Generar Imagen Directa
+          <button onclick="generarImagenConIA('step2')" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ✨ Transformar con Pose (Img2Img)
           </button>
         </div>
       </section>
 
     </main>
 
-    <!-- ================= PANEL LATERAL DERECHO (CONEXIÓN COLAB + VISUALIZADOR + GUÍA) ================= -->
+    <!-- PANEL LATERAL DERECHO (CONEXIÓN COLAB + FOTO LOCAL + VISUALIZADOR) -->
     <aside class="w-full lg:w-96 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
       <div class="space-y-6 flex flex-col">
         
-        <!-- ENLACE DE CONEXIÓN CON COLAB -->
+        <!-- CONEXIÓN GOOGLE COLAB -->
         <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
@@ -296,106 +240,75 @@
             class="w-full bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-xl px-3 py-2 text-[11px] text-app-textDark dark:text-white placeholder-app-textMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar font-mono">
         </div>
 
-        <!-- VISUALIZADOR DE IMAGEN EN VIVO -->
+        <!-- SUBIR FOTO LOCAL (NUEVO) -->
+        <div class="bg-app-cardBg dark:bg-app-darkCardBg p-4 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-app-textDark dark:text-white flex items-center gap-2">
+              <i class="fa-solid fa-image text-app-sidebar"></i> 1. Sube tu Foto Local
+            </span>
+            <span id="badge-estado-foto" class="text-[10px] font-mono text-app-textMuted font-bold">Requerido</span>
+          </div>
+          <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl cursor-pointer bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition overflow-hidden relative">
+            <div id="upload-placeholder" class="flex flex-col items-center justify-center p-2 text-center">
+              <i class="fa-solid fa-cloud-arrow-up text-app-sidebar text-lg mb-1"></i>
+              <p class="text-[11px] text-app-textDark dark:text-slate-300 font-bold">Haz clic para elegir foto</p>
+              <p class="text-[9px] text-app-textMuted">JPG, PNG o WEBP</p>
+            </div>
+            <img id="preview-foto-local" class="hidden w-full h-full object-cover absolute inset-0">
+            <input type="file" id="input-foto-local" accept="image/*" class="hidden" onchange="cargarFotoLocal(event)">
+          </label>
+        </div>
+
+        <!-- VISUALIZADOR DE RENDER EN VIVO -->
         <div class="flex flex-col gap-2">
           <h4 class="text-xs font-extrabold text-app-textDark dark:text-white flex items-center justify-between">
-            <span>Render en Vivo (IA)</span>
+            <span>2. Resultado Transformado</span>
             <span id="status-render" class="text-[10px] font-mono text-app-textMuted">Listo</span>
           </h4>
 
-          <div id="image-preview-container" class="w-full h-56 bg-app-cardBg dark:bg-app-darkCardBg rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-center relative overflow-hidden shadow-inner">
-            <!-- Placeholder -->
+          <div id="image-preview-container" class="w-full h-48 bg-app-cardBg dark:bg-app-darkCardBg rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-center relative overflow-hidden shadow-inner">
             <div id="placeholder-content" class="text-center p-4 space-y-2">
-              <i class="fa-solid fa-image text-2xl text-app-textMuted dark:text-slate-600"></i>
-              <p class="text-[11px] text-app-textMuted dark:text-slate-400">Haz clic en "✨ Generar" para renderizar con tu GPU.</p>
+              <i class="fa-solid fa-wand-magic text-2xl text-app-textMuted dark:text-slate-600"></i>
+              <p class="text-[11px] text-app-textMuted dark:text-slate-400">Sube tu foto y dale a "✨ Transformar mi Foto".</p>
             </div>
 
-            <!-- Loader -->
             <div id="loader-content" class="hidden absolute inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2">
               <div class="w-8 h-8 border-4 border-app-sidebar border-t-transparent rounded-full animate-spin"></div>
-              <p class="text-xs font-bold text-app-textDark dark:text-white animate-pulse">Renderizando en la nube...</p>
+              <p class="text-xs font-bold text-app-textDark dark:text-white animate-pulse">Procesando Img2Img en GPU...</p>
             </div>
 
-            <!-- Imagen Final -->
-            <img id="output-image" class="hidden w-full h-full object-cover rounded-2xl" alt="Imagen generada por IA">
+            <img id="output-image" class="hidden w-full h-full object-cover rounded-2xl" alt="Imagen transformada por IA">
           </div>
         </div>
 
-        <!-- SECCIÓN: ESTUDIOS DESTACADOS (GUÍA ORIGINAL) -->
-        <div>
-          <h4 class="text-xs font-extrabold text-app-textDark dark:text-white mb-2.5 flex items-center justify-between">
-            <span>Guía de Estudios</span>
-            <span class="text-[10px] font-mono text-app-textMuted dark:text-app-darkTextMuted">INDUSTRY SPEC</span>
-          </h4>
-
-          <div class="space-y-2 text-xs">
-            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-sidebar dark:text-rose-400">Blur Studio</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Love, Death & Robots</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentRose/20 dark:bg-rose-500/20 text-app-sidebar dark:text-rose-300 font-bold text-[10px]">CGI Sci-Fi</span>
-            </div>
-
-            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-cyan-300">Fortiche Production</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Arcane / League of Legends</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 font-bold text-[10px]">Híbrido 2D/3D</span>
-            </div>
-
-            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-indigo-300">Pixar Animation</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Inside Out, Soul</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 font-bold text-[10px]">Cine 3D</span>
-            </div>
-
-            <div class="p-2.5 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-amber-300">Wētā FX / ILM</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Avatar: Way of Water</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-sidebar/20 dark:bg-amber-500/20 text-app-sidebar dark:text-amber-300 font-bold text-[10px]">Hiperrealismo</span>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- FOOTER MINI DENTRO DEL PANEL DERECHO -->
+      <!-- FOOTER MINI -->
       <div class="pt-3 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-1">
-        <p>© AI Prompt Studio — Dark / Warm Light.</p>
-        <div class="flex items-center justify-center gap-3 text-app-textDark dark:text-app-darkText font-medium text-[10px]">
-          <span><i class="fa-solid fa-bolt text-app-accentYellow"></i> Render 1:1</span>
-          <span><i class="fa-solid fa-cube text-app-sidebar dark:text-indigo-400"></i> PBR Shading</span>
-        </div>
+        <p>© AI Prompt Studio — Img2Img Edition.</p>
       </div>
     </aside>
 
   </div>
 
-  <!-- NOTIFICACIÓN TOAST STYLED -->
+  <!-- TOAST -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="bg-app-textDark dark:bg-slate-900 text-white dark:text-slate-100 border dark:border-emerald-500/40 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
       <div class="w-7 h-7 rounded-xl bg-app-accentGreen dark:bg-emerald-500/20 text-white dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
         <i class="fa-solid fa-check"></i>
       </div>
       <div>
-        <h4 class="text-xs font-bold" id="toast-title">Prompt Copiado</h4>
+        <h4 class="text-xs font-bold" id="toast-title">Copiado</h4>
         <p class="text-[11px] text-white/70 dark:text-slate-400" id="toast-msg">Listo en tu portapapeles.</p>
       </div>
     </div>
   </div>
 
-  <!-- ================= LÓGICA JAVASCRIPT COMPLETA ================= -->
   <script>
-    // FUNCIONALIDAD DE MODO OSCURO (TOGGLE DARK MODE)
+    // MODO OSCURO
     function toggleDarkMode() {
       const htmlRoot = document.getElementById('html-root');
       const isDark = htmlRoot.classList.toggle('dark');
-      
       const iconHeader = document.getElementById('theme-icon-header');
       const iconSidebar = document.getElementById('theme-icon-sidebar');
       const textHeader = document.getElementById('theme-text-header');
@@ -411,7 +324,7 @@
       }
     }
 
-    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS Y SERIES (13 ESTILOS)
+    // CATALOGO DE ESTUDIOS (13 ESTILOS)
     const estilosPaso1 = [
       {
         id: "BLUR_LDR",
@@ -420,31 +333,11 @@
         badge: "Blur / Sci-Fi Adult",
         icon: "fa-skull",
         iconColor: "text-app-accentRose dark:text-rose-400",
-        descripcionCorta: "CGI hiperrealista, estética cyberpunk y ciencia ficción madura (LDR / Secret Level).",
-        promptEs: `PASO 1 (Estilo Blur Studio / Love, Death & Robots / Secret Level):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D fotorrealista de ciencia ficción madura estilo Blur Studio basado en la foto del sujeto.
-
-Requisitos:
-- Conservar los rasgos faciales clave, estructura ósea, ojos y tono de piel del sujeto con textura fotorrealista.
-- Piel PBR hiper-detallada con imperfecciones reales, micro-poros, cicatrices sutiles o polvo ambiental.
-- Iluminación cinematográfica oscura estilo Octane Render / Redshift, neones de alto contraste o iluminación dramática de ciencia ficción.
-- Traje / ropa con texturas de alto detalle táctil (fibra de carbono, metal desgastado, tela militar de ciencia ficción).
-- Fondo neutro o entorno cyberpunk oscuro en penumbra con profundidades de campo cinemáticas.`,
-        promptEn: `STEP 1 (Blur Studio / Love Death & Robots / Secret Level Style):
-[Reference Image: Photo of the subject]
-
-A photorealistic gritty 3D adult sci-fi CGI character render of the subject, crafted in the signature Blur Studio style (Love, Death & Robots / Secret Level).
-
-Key Requirements:
-- Faithfully preserve key facial features, facial symmetry, skin tone, and eyes from the reference photo.
-- Ultra-detailed photorealistic PBR skin shader: realistic pores, subtle skin flaws, micro-scratches, subsurface skin glow.
-- Cinematic Octane Render / Redshift lighting: volumetric rim lights, atmospheric dark sci-fi contrast, moody neon key lights.
-- High-grade tactical/sci-fi attire with worn metal textures, carbon fiber weave, and realistic weathering.
-- Atmospheric dark sci-fi studio backdrop with elegant shallow depth of field.`,
-        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio / Love Death & Robots",
-        refPrompt2En: "Blur Studio Love Death & Robots gritty adult CGI sci-fi style"
+        descripcionCorta: "CGI hiperrealista, estética cyberpunk y ciencia ficción madura.",
+        promptEs: "Estilo Blur Studio / Love Death & Robots CGI hiperrealista, piel PBR detallada, iluminación cinematográfica dramática.",
+        promptEn: "Blur Studio style, gritty adult sci-fi CGI character render, highly detailed PBR skin, dramatic cinematic volumetric lighting.",
+        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio",
+        refPrompt2En: "Blur Studio gritty adult CGI sci-fi style"
       },
       {
         id: "FORTICHE_ARCANE",
@@ -453,30 +346,11 @@ Key Requirements:
         badge: "Arcane 2D/3D Hybrid",
         icon: "fa-palette",
         iconColor: "text-app-sidebar dark:text-cyan-400",
-        descripcionCorta: "Texturas pictóricas pintadas a mano sobre geometría 3D (Arcane / League of Legends).",
-        promptEs: `PASO 1 (Estilo Fortiche Production / Arcane):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D con la estética arte-pictórico híbrido 2D/3D de Fortiche Production (Arcane) basado en la foto.
-
-Requisitos:
-- Conservar los rasgos faciales y actitud del sujeto adaptados al estilo característico de Zaun / Piltover.
-- Sombreado 3D con texturas de pinceladas manuales de pintura al óleo (hand-painted digital brushstrokes).
-- Ojos expresivos dibujados con pinceladas estilizadas y sombras con trazos visibles.
-- Iluminación de alto impacto dramático, colores intensos y bordes con pinceladas expresivas.
-- Fondo conceptual de ilustración digital 3D.`,
-        promptEn: `STEP 1 (Fortiche Production / Arcane Style):
-[Reference Image: Photo of the subject]
-
-An iconic 2D/3D hybrid painterly animated character based on the reference photo, rendered in Fortiche Production style (Arcane: League of Legends).
-
-Key Requirements:
-- Preserve subject's core facial identity, face proportions, and hairstyle with stylized Arcane artistic sculpture.
-- Distinctive painterly hand-painted digital textures: visible oil brushstrokes on skin, clothes, and hair geometry.
-- Highly dramatic directional key lighting, vivid painterly shadows, rich color palette, and graphic rim highlights.
-- Stylized cloth with tactile paint textures, elegant concept art background.`,
-        refPrompt2Es: "estilo híbrido 2D/3D de pintura manual Fortiche Arcane",
-        refPrompt2En: "Fortiche Production Arcane hand-painted 2D/3D hybrid style"
+        descripcionCorta: "Texturas pictóricas pintadas a mano sobre geometría 3D.",
+        promptEs: "Estilo Fortiche Production Arcane, texturas pictóricas de pintura al óleo hechas a mano, sombreado 2D/3D expresivo.",
+        promptEn: "Fortiche Production Arcane style, 2D/3D hybrid painterly animated character, hand-painted digital oil brushstrokes, dramatic rim highlights.",
+        refPrompt2Es: "estilo híbrido 2D/3D pintura manual Fortiche Arcane",
+        refPrompt2En: "Fortiche Production Arcane hand-painted style"
       },
       {
         id: "BLUE_EYE_SAMURAI",
@@ -485,30 +359,11 @@ Key Requirements:
         badge: "Ukiyo-e Cel-shade",
         icon: "fa-khanda",
         iconColor: "text-app-accentYellow dark:text-amber-400",
-        descripcionCorta: "Animación 3D Cel-shade inspirada en grabados tradicionales japoneses Ukiyo-e.",
-        promptEs: `PASO 1 (Estilo Samurái de ojos azules / Ukiyo-e 3D):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D cel-shaded estilizado en el arte de Samurái de ojos azules (Blue Eye Samurai) basado en la foto.
-
-Requisitos:
-- Conservar rasgos del sujeto fusionados con la estética de grabado japonés tradicional en madera (Ukiyo-e).
-- Sombreado Cel-Shade 3D refinado con trazos de tinta de caligrafía japonesa en los bordes.
-- Texturas de tela de kimonos o ropajes antiguos de época con sombreado plano y elegante.
-- Iluminación dramática estilo cine de samuráis tradicional.
-- Fondo neutro con textura de papel washi o gradiente atmosférico.`,
-        promptEn: `STEP 1 (Blue Eye Samurai Ukiyo-e 3D Style):
-[Reference Image: Photo of the subject]
-
-A striking stylized 3D cel-shaded character based on the reference photo, rendered in Blue Eye Samurai animation style inspired by traditional Japanese Ukiyo-e woodblock prints.
-
-Key Requirements:
-- Retain recognizable facial likeness of the subject while rendering through Japanese woodblock art aesthetics.
-- Elegant 3D cel-shading with subtle calligraphic ink linework accents along geometry contours.
-- High-contrast dramatic samurai cinema lighting, vivid deep color tones.
-- Traditional textile textures with flat graphic shading, seamless atmospheric background with subtle paper texture.`,
+        descripcionCorta: "Animación 3D Cel-shade inspirada en grabados Ukiyo-e.",
+        promptEs: "Estilo Blue Eye Samurai 3D cel-shaded, grabado tradicional japonés Ukiyo-e, trazos de tinta de caligrafía.",
+        promptEn: "Blue Eye Samurai cel-shaded 3D style, traditional Japanese Ukiyo-e woodblock print aesthetic, calligraphic ink linework accents.",
         refPrompt2Es: "estilo 3D Cel-shade Ukiyo-e Samurái de Ojos Azules",
-        refPrompt2En: "Blue Eye Samurai Ukiyo-e cel-shaded 3D style"
+        refPrompt2En: "Blue Eye Samurai Ukiyo-e cel-shaded style"
       },
       {
         id: "GLITCH_CIRCUS",
@@ -517,30 +372,11 @@ Key Requirements:
         badge: "Glitch Retro 90s CGI",
         icon: "fa-ghost",
         iconColor: "text-app-sidebar dark:text-purple-400",
-        descripcionCorta: "Estética 3D retro estilo juego de los 90 y horror psicológico indie.",
-        promptEs: `PASO 1 (Estilo Glitch Productions / The Amazing Digital Circus):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D caricaturesco y surrealista estilo Glitch Productions (El asombroso circo digital) basado en la foto.
-
-Requisitos:
-- Conservar los elementos clave del sujeto pero simplificados en una figura estilizada de videojuego 3D CGI de finales de los 90.
-- Expresión facial intensa o cómica con ojos grandes y geométricos.
-- Renderizado 3D de juguetes plásticos/polígonos limpios pero con un tono inquietante y colorido.
-- Iluminación de estudio saturada pero con sombras marcadas.
-- Fondo de estudio virtual retro o espacio de prueba 3D.`,
-        promptEn: `STEP 1 (Glitch Productions / The Amazing Digital Circus Style):
-[Reference Image: Photo of the subject]
-
-A stylized retro 90s CGI 3D character based on the reference photo, created in Glitch Productions style (The Amazing Digital Circus).
-
-Key Requirements:
-- Translate subject's facial traits into a simplified, slightly surreal 90s PC game CGI toy-like 3D model.
-- Expressive, geometric eyes with existential/playful cartoon expressions.
-- Clean smooth plastic/toy surface shaders, saturated retro lighting, sharp ambient shadow details.
-- Surreal 3D digital void background or colorful retro studio backdrop.`,
+        descripcionCorta: "Estética 3D retro estilo juego de los 90 y terror indie.",
+        promptEs: "Estilo Glitch Productions Digital Circus, 3D retro de finales de los 90, juguetes plásticos y colores saturados.",
+        promptEn: "Glitch Productions Digital Circus style, stylized retro 90s PC game CGI toy-like 3D model, clean plastic shaders, saturated lighting.",
         refPrompt2Es: "estilo 3D CGI retro 90s Glitch Digital Circus",
-        refPrompt2En: "Glitch Productions Digital Circus retro 90s CGI style"
+        refPrompt2En: "Glitch Productions Digital Circus retro 90s style"
       },
       {
         id: "DIGIC_PICTURES",
@@ -549,29 +385,11 @@ Key Requirements:
         badge: "Digic Dark Cinematic",
         icon: "fa-shield-halved",
         iconColor: "text-app-accentRose dark:text-rose-500",
-        descripcionCorta: "Cinemáticas oscuras y fotorrealistas para juegos (The Witcher / Assassin's Creed).",
-        promptEs: `PASO 1 (Estilo Digic Pictures / Cinemática Fantasía Oscura):
-[Imagen de Referencia: Foto del sujeto]
-
-Un render 3D hiperrealista de fantasía oscura y estética de videojuego AAA estilo Digic Pictures basado en la foto.
-
-Requisitos:
-- Fidelidad 1:1 al rostro del sujeto con arrugas de expresión, cicatrices y tono de piel realista.
-- Sombreado de piel PBR con poros micro, cabello realista y ropa con armaduras/telas detalladas.
-- Iluminación cinematográfica oscura, luces de vela, fuego o neblina atmosférica.
-- Fondo de estudio o atmósfera de fantasía medieval oscura en penumbra.`,
-        promptEn: `STEP 1 (Digic Pictures Dark Cinematic Style):
-[Reference Image: Photo of the subject]
-
-A photorealistic dark fantasy 3D game cinematic render based on the reference photo, created in Digic Pictures studio standards (as seen in The Witcher 3 and Assassin's Creed cinematics).
-
-Key Requirements:
-- 1:1 photorealistic facial likeness, micro skin pore details, realistic facial hair, and realistic iris reflections.
-- Ultra-detailed PBR medieval or dark tactical leather/metal attire with realistic scratches and weathering.
-- Dark atmospheric key lighting: torchlight glow, moody shadows, fog volume, cinematic grading.
-- Deep moody studio environment with narrow depth of field.`,
+        descripcionCorta: "Cinemáticas oscuras y fotorrealistas para juegos AAA.",
+        promptEs: "Estilo Digic Pictures fantasía oscura, cinemática de juego AAA fotorrealista, poros detallados y luz de antorchas.",
+        promptEn: "Digic Pictures dark fantasy cinematic render, 1:1 photorealistic digital double, micro skin pores, atmospheric torchlight.",
         refPrompt2Es: "estilo de cinemática 3D fotorrealista oscura Digic Pictures",
-        refPrompt2En: "Digic Pictures photorealistic dark fantasy game cinematic 3D style"
+        refPrompt2En: "Digic Pictures photorealistic dark fantasy cinematic style"
       },
       {
         id: "PIXAR",
@@ -580,29 +398,9 @@ Key Requirements:
         badge: "Pixar 3D",
         icon: "fa-film",
         iconColor: "text-app-sidebar dark:text-indigo-400",
-        descripcionCorta: "Cartoon tradicional y avanzado (Toy Story, Inside Out, Soul).",
-        promptEs: `PASO 1 (Estilo Pixar Animation Studios):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D con la estética icónica de animación Pixar Animation Studios basado en la foto del sujeto.
-
-Requisitos:
-- Conservar los rasgos faciales distintivos, tono de piel, estructura visual y peinado del sujeto.
-- Expresión facial súper carismática, ojos grandes, expresivos y cristalinos con reflejos de luz de estudio.
-- Renderizado 3D de alta gama con Sub-Surface Scattering (SSS) en la piel.
-- Iluminación cinematográfica suave y cálida.
-- Fondo de estudio pulido con gradiente suave.`,
-        promptEn: `STEP 1 (Pixar Animation Studios Style):
-[Reference Image: Photo of the subject]
-
-A highly charming 3D animated character based on the reference photo, crafted in the signature Pixar Animation Studios feature film style (as seen in Inside Out and Soul).
-
-Key Requirements:
-- Faithfully preserve key facial features, face shape, natural hair texture, and distinct characteristics from the reference photo.
-- Highly expressive visual design: prominent glossy luminous eyes, warm appealing facial proportions.
-- World-class 3D render with soft subsurface scattering (SSS) skin shader, detailed stylized garment materials.
-- Warm cinematic studio lighting, key light highlights, soft volumetric glow.
-- Clean seamless studio backdrop with subtle color gradient blur.`,
+        descripcionCorta: "Cartoon tradicional avanzado (Inside Out, Soul, Toy Story).",
+        promptEs: "Estilo Pixar Animation Studios, personaje 3D carismático, ojos grandes luminosos, Sub-Surface Scattering en piel.",
+        promptEn: "Pixar Animation Studios style, charming 3D animated character, glossy luminous eyes, soft subsurface scattering skin shader, warm studio lighting.",
         refPrompt2Es: "estilo de animación Pixar Studios 3D",
         refPrompt2En: "Pixar Animation Studios feature 3D style"
       },
@@ -613,30 +411,11 @@ Key Requirements:
         badge: "DreamWorks 3D",
         icon: "fa-dragon",
         iconColor: "text-app-accentYellow dark:text-amber-400",
-        descripcionCorta: "Snappy, poses cómicas y caricatura dinámica (Shrek, Kung Fu Panda).",
-        promptEs: `PASO 1 (Estilo DreamWorks Animation):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D dinámico y carismático al estilo distintivo de DreamWorks Animation basado en la foto.
-
-Requisitos:
-- Conservar fielmente el rostro, peinado y esencia de la foto de referencia.
-- Caricatura estilizada con micro-expresiones dinámicas y actitud carismática.
-- Renderizado 3D rico en textura y sombras suaves.
-- Iluminación de alto contraste cinematográfico y colores vibrantes.
-- Fondo neutro estilo concepto de producción 3D.`,
-        promptEn: `STEP 1 (DreamWorks Animation Style):
-[Reference Image: Photo of the subject]
-
-A dynamic and charismatic 3D animated character based on the reference photo, rendered in the distinctive DreamWorks Animation style (Shrek, Puss in Boots: The Last Wish).
-
-Key Requirements:
-- Accurately retain facial identity, key expression cues, skin tone, and hair structure from reference photo.
-- Snappy dynamic character appeal, expressive asymmetrical facial features.
-- Premium 3D cartoon render, rich material tactile textures, sharp highlights.
-- Vibrant cinematic key lighting with energetic color grade.`,
+        descripcionCorta: "Snappy, poses cómicas y caricatura dinámica (Shrek).",
+        promptEs: "Estilo DreamWorks Animation, caricatura dinámica expresiva, texturas ricas y colores vibrantes.",
+        promptEn: "DreamWorks Animation style, dynamic charismatic 3D cartoon character, expressive facial features, premium tactile textures, vibrant lighting.",
         refPrompt2Es: "estilo de caricatura dinámica DreamWorks 3D",
-        refPrompt2En: "dynamic snappy DreamWorks Animation 3D style"
+        refPrompt2En: "dynamic snappy DreamWorks Animation style"
       },
       {
         id: "SONY_SPIDERVERSE",
@@ -645,28 +424,11 @@ Key Requirements:
         badge: "Sony Comic 3D",
         icon: "fa-spider",
         iconColor: "text-app-sidebar dark:text-purple-400",
-        descripcionCorta: "Estilo Híbrido 3D/Comic (Spider-Man: Into the Spider-Verse).",
-        promptEs: `PASO 1 (Estilo Sony Pictures Animation / Spider-Verse):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D estilizado en formato cómic híbrido estilo Sony Pictures Animation (Spider-Verse) basado en la foto.
-
-Requisitos:
-- Conservar los rasgos faciales del sujeto mezclados con líneas de tinta dibujadas a mano.
-- Texturas con tramas de puntos de imprenta (halftone patterns) y desenfoque estilo cómic.
-- Iluminación neo-noir estilizada con colores saturados y bordes acentuados.
-- Fondo conceptual de ilustración 3D.`,
-        promptEn: `STEP 1 (Sony Pictures Animation / Spider-Verse Style):
-[Reference Image: Photo of the subject]
-
-An iconic stylized 3D hybrid comic-book character based on the reference photo, rendered in Sony Pictures Animation style (Spider-Man: Into the Spider-Verse).
-
-Key Requirements:
-- Preserve subject's face geometry while applying stylized 2D ink line accents over 3D model.
-- Comic book aesthetics: subtle halftone dot patterns, hand-drawn hatch marks, chromatic aberration.
-- Bold graphic art direction with high contrast directional light and rim lighting.`,
+        descripcionCorta: "Estilo Híbrido 3D/Comic (Spider-Verse).",
+        promptEs: "Estilo Sony Pictures Animation Spider-Verse, cómic 3D híbrido, tramas de puntos halftone y líneas de tinta.",
+        promptEn: "Sony Pictures Animation Spider-Verse style, 3D hybrid comic book character, halftone dot patterns, hand-drawn ink line accents.",
         refPrompt2Es: "estilo Cómic 3D híbrido Sony Pictures Animation",
-        refPrompt2En: "Sony Pictures Animation Spider-Verse hybrid comic 3D style"
+        refPrompt2En: "Sony Pictures Animation Spider-Verse hybrid style"
       },
       {
         id: "DISNEY_3D",
@@ -675,29 +437,11 @@ Key Requirements:
         badge: "Disney Musical 3D",
         icon: "fa-wand-magic",
         iconColor: "text-app-accentGreen dark:text-cyan-400",
-        descripcionCorta: "Cartoon estilizado y musical clásico (Frozen, Moana, Encanto).",
-        promptEs: `PASO 1 (Estilo Walt Disney Animation Studios):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D con el encanto visual clásico de Walt Disney Animation Studios basado en la foto.
-
-Requisitos:
-- Conservar rasgos clave del rostro, ropa y forma de peinado.
-- Proporciones suavizadas, ojos brillantes y expresividad emotiva.
-- Sombreado 3D de alta precisión con piel aterciopelada.
-- Iluminación poética y cálida.
-- Fondo estilo estudio con gradiente.`,
-        promptEn: `STEP 1 (Walt Disney Animation Studios Style):
-[Reference Image: Photo of the subject]
-
-An enchanting 3D animated character based on the reference photo, crafted in Walt Disney Animation Studios style (Frozen, Moana, Encanto).
-
-Key Requirements:
-- Maintain faithful facial likeness and hairstyle traits from reference image.
-- Soft elegant character design, expressive glossy eyes.
-- Premium 3D surface shaders, soft velvet skin finish, rich detailed cloth weave patterns.`,
+        descripcionCorta: "Cartoon estilizado y musical clásico (Frozen, Moana).",
+        promptEs: "Estilo Walt Disney Animation Studios, encanto musical clásico, proporciones suaves y piel aterciopelada.",
+        promptEn: "Walt Disney Animation Studios style, enchanting 3D animated character, soft elegant design, velvet skin finish, rich cloth details.",
         refPrompt2Es: "estilo clásico Walt Disney 3D Animation",
-        refPrompt2En: "Walt Disney Animation Studios feature 3D style"
+        refPrompt2En: "Walt Disney Animation Studios style"
       },
       {
         id: "ILLUMINATION",
@@ -706,28 +450,11 @@ Key Requirements:
         badge: "Illumination 3D",
         icon: "fa-face-laugh-beam",
         iconColor: "text-app-accentGreen dark:text-emerald-400",
-        descripcionCorta: "Snappy extremo y humorístico (Minions, Super Mario Bros).",
-        promptEs: `PASO 1 (Estilo Illumination Mac Guff):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D caricaturizado estilo Illumination Mac Guff (Super Mario Bros / Minions) basado en la foto.
-
-Requisitos:
-- Conservar rasgos del sujeto simplificados en una silueta limpia.
-- Expresión cómica, ojos grandes y formas geométricas pulidas.
-- Sombreado 3D limpio de alto brillo y colores saturados.
-- Fondo de estudio brillante.`,
-        promptEn: `STEP 1 (Illumination Mac Guff Style):
-[Reference Image: Photo of the subject]
-
-A clean, brightly colored 3D caricatured character based on the reference photo, rendered in Illumination Entertainment style (The Super Mario Bros. Movie).
-
-Key Requirements:
-- Preserve primary facial shape while simplifying geometry into clean appealing cartoon shapes.
-- Playful expression, clean bold cartoon eyes, smooth rounded character design.
-- Crisp ultra-clean 3D render, vibrant saturated lighting.`,
+        descripcionCorta: "Snappy extremo y humorístico (Minions, Mario).",
+        promptEs: "Estilo Illumination Mac Guff, caricatura limpia y brillante, formas geométricas muy pulidas.",
+        promptEn: "Illumination Mac Guff style, clean bright 3D cartoon character, smooth rounded shapes, vibrant saturated studio lighting.",
         refPrompt2Es: "estilo caricatura limpia Illumination 3D",
-        refPrompt2En: "Illumination Mac Guff 3D cartoon style"
+        refPrompt2En: "Illumination Mac Guff 3D style"
       },
       {
         id: "WETA_ILM",
@@ -736,28 +463,11 @@ Key Requirements:
         badge: "Wētā Hiperrealismo",
         icon: "fa-eye",
         iconColor: "text-app-accentRose dark:text-rose-400",
-        descripcionCorta: "Hiperrealismo CGI cinematográfico y Captura de Movimiento (Avatar).",
-        promptEs: `PASO 1 (Estilo Wētā FX / ILM Hiperrealismo):
-[Imagen de Referencia: Foto del sujeto]
-
-Un render 3D hiperrealista CGI de calidad cinematográfica estilo Wētā FX / ILM basado en la foto.
-
-Requisitos:
-- Conservación 1:1 de poros, micro-arrugas, imperfecciones de la piel y ojos fotorrealistas.
-- Sombreado PBR con física SSS avanzada.
-- Simulación física de cabello pelo por pelo.
-- Iluminación cinematográfica de estudio fotográfico real.`,
-        promptEn: `STEP 1 (Wētā FX / ILM Photorealistic CGI Style):
-[Reference Image: Photo of the subject]
-
-A photorealistic 3D cinematic CGI character render of the subject in the reference image, created in Wētā FX / ILM standards (Avatar: The Way of Water).
-
-Key Requirements:
-- 1:1 photorealistic digital double likeness: accurate facial structure, micro-skin pores, realistic iris reflections.
-- Ultra-high fidelity PBR shader with advanced SSS skin glow and physical hair strand simulation.
-- Photorealistic studio key light setup, realistic ray-traced shadows.`,
+        descripcionCorta: "Hiperrealismo CGI cinematográfico y MoCap (Avatar).",
+        promptEs: "Estilo Wētā FX / ILM hiperrealismo cinematográfico, doble digital perfecto y simulación de cabello real.",
+        promptEn: "Wētā FX / ILM photorealistic cinematic CGI style, digital double likeness, advanced SSS skin, physical hair simulation.",
         refPrompt2Es: "estilo Hiperrealismo CGI Wētā FX / ILM",
-        refPrompt2En: "photorealistic CGI Wētā FX / ILM movie style"
+        refPrompt2En: "photorealistic CGI Wētā FX / ILM style"
       },
       {
         id: "SIMS4_ALPHA",
@@ -766,28 +476,11 @@ Key Requirements:
         badge: "Sims 4 Alpha",
         icon: "fa-gamepad",
         iconColor: "text-app-accentGreen dark:text-teal-400",
-        descripcionCorta: "Renderizado 3D en tiempo real tipo videojuego Unreal Engine 5.",
-        promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / UE5):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje 3D ultra detallado de videojuego basado en la foto, estilo Alpha Sims 4 Custom Content y Unreal Engine 5.
-
-Requisitos:
-- Conservar estructura facial y vestimenta exacta.
-- Piel suave PBR, pestañas 3D definidas y brillo en ojos.
-- Cabello Alpha en capas estilizadas.
-- Iluminación de estudio en tiempo real.`,
-        promptEn: `STEP 1 (Sims 4 Alpha CC / Unreal Engine 5 Style):
-[Reference Image: Photo of the subject]
-
-A high-detail 3D video game character model of the subject in the reference photo, rendered in Alpha Sims 4 CC style using Unreal Engine 5 real-time aesthetics.
-
-Key Requirements:
-- Perfectly preserve facial structure, expression, exact clothing, and hairstyle.
-- Real-time 3D game character shader, smooth PBR skin, crisp 3D eyelashes, glossy eyes.
-- Hyper-detailed alpha hair strands, soft 3D game portrait lighting setup.`,
+        descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.",
+        promptEs: "Estilo Sims 4 Alpha CC y Unreal Engine 5, personaje de videojuego ultra detallado, cabello alpha y piel suave.",
+        promptEn: "Alpha Sims 4 CC and Unreal Engine 5 style, high-detail video game character, PBR smooth skin, alpha hair strands.",
         refPrompt2Es: "estilo Alpha Sims 4 CC / Unreal Engine 5",
-        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 game style"
+        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 style"
       },
       {
         id: "ANIME_3D_CG",
@@ -796,168 +489,76 @@ Key Requirements:
         badge: "Anime 3D CG",
         icon: "fa-bolt",
         iconColor: "text-app-accentYellow dark:text-sky-400",
-        descripcionCorta: "Anime 3D CG de alta gama (Genshin Impact / Studio Orange).",
-        promptEs: `PASO 1 (Estilo Anime 3D CG):
-[Imagen de Referencia: Foto del sujeto]
-
-Un personaje de anime 3D CG de alta gama (estilo Genshin Impact / Studio Orange) basado en la foto.
-
-Requisitos:
-- Rostro Cel-shaded 3D refinado con ojos expresivos tipo anime.
-- Cabello anime esculpido en mechones 3D definidos.
-- Sombreado híbrido cel-shade.
-- Fondo de estudio estilo figura coleccionable.`,
-        promptEn: `STEP 1 (Anime 3D CG / Genshin Style):
-[Reference Image: Photo of the subject]
-
-A high-end 3D anime CG character based on the reference photo, rendered in Genshin Impact / Studio Orange aesthetic.
-
-Key Requirements:
-- Crisp 3D anime facial features, clean line art accents, stylized luminous anime eyes.
-- Sculpted 3D anime hair geometry with sharp specular highlights.
-- Hybrid cel-shaded textures, seamless studio lighting backdrop.`,
+        descripcionCorta: "Anime 3D CG de alta gama (Genshin Impact).",
+        promptEs: "Estilo Anime 3D CG de alta gama Genshin Impact y Studio Orange, sombreado cel-shaded refinado y ojos de anime.",
+        promptEn: "High-end 3D anime CG character style, Genshin Impact aesthetic, cel-shaded features, sculpted 3D anime hair.",
         refPrompt2Es: "estilo 3D Anime CG Genshin Impact",
-        refPrompt2En: "high-end 3D Anime CG Genshin style"
+        refPrompt2En: "high-end 3D Anime CG style"
       }
     ];
 
-    // DATOS DE EXPRESIONES, ÁNGULOS Y POSES
     const opcionesPaso2 = {
       expresiones: [
-        {
-          es: "Risa grande con boca abierta",
-          descEs: "Expresión eufórica de carcajada abierta, transmite alegría contagiosa.",
-          en: "expressive big open-mouth laugh, joyful ecstatic facial expression, smiling eyes"
-        },
-        {
-          es: "Sorpresa e incredulidad",
-          descEs: "Ojos muy abiertos, cejas levantadas y boca ligeramente entreabierta.",
-          en: "wide amazed eyes, raised eyebrows, surprised astonished expression"
-        },
-        {
-          es: "Cantando con pasión",
-          descEs: "Boca abierta en gesto de canto, rostro muy emotivo e interpretativo.",
-          en: "mouth open singing passionately, highly expressive musical posture and face"
-        },
-        {
-          es: "Pensativo con mano en barbilla",
-          descEs: "Mirada reflexiva de lado con la mano cerca de la barbilla.",
-          en: "thoughtful inquisitive expression, index finger near chin, looking slightly away"
-        },
-        {
-          es: "Gran sonrisa entusiasta",
-          descEs: "Sonrisa amplia mostrando dientes con mirada enérgica y positiva.",
-          en: "wide excited grin showing teeth, highly energetic positive facial posture"
-        },
-        {
-          es: "Guiño confidencial y divertido",
-          descEs: "Un ojo guiñado con una ligera sonrisa complice.",
-          en: "playful wink with one eye closed, cheeky confident smirk"
-        }
+        { es: "Risa grande con boca abierta", en: "expressive big open-mouth laugh, joyful ecstatic facial expression" },
+        { es: "Sorpresa e incredulidad", en: "wide amazed eyes, raised eyebrows, surprised astonished expression" },
+        { es: "Cantando con pasión", en: "mouth open singing passionately, highly expressive musical face" },
+        { es: "Pensativo con mano en barbilla", en: "thoughtful inquisitive expression, index finger near chin" },
+        { es: "Gran sonrisa entusiasta", en: "wide excited grin showing teeth, positive facial posture" },
+        { es: "Guiño confidencial y divertido", en: "playful wink with one eye closed, cheeky confident smirk" }
       ],
       angulos: [
-        {
-          es: "Vista frontal neutral",
-          descEs: "Primer plano directo mirando a cámara con hombros nivelados.",
-          en: "close-up portrait, front view facing camera directly, eye-level camera shot"
-        },
-        {
-          es: "Vista 3/4 hacia la izquierda",
-          descEs: "Rostro girado 45 grados a la izquierda, ángulo clásico de retrato.",
-          en: "close-up portrait, three-quarter 3/4 angle view facing left, elegant studio framing"
-        },
-        {
-          es: "Vista 3/4 hacia la derecha",
-          descEs: "Rostro girado 45 grados a la derecha, resalta estructura lateral.",
-          en: "close-up portrait, three-quarter 3/4 angle view facing right, studio lighting"
-        },
-        {
-          es: "Perfil izquierdo completo (90°)",
-          descEs: "Silueta de perfil izquierdo estricto a 90 grados.",
-          en: "close-up portrait, sharp full left side profile view 90 degrees"
-        },
-        {
-          es: "Perfil derecho completo (90°)",
-          descEs: "Silueta de perfil derecho estricto a 90 grados.",
-          en: "close-up portrait, sharp full right side profile view 90 degrees"
-        },
-        {
-          es: "Ángulo contrapicado (Cámara abajo)",
-          descEs: "Cámara apuntando desde abajo hacia arriba, postura imponente.",
-          en: "low-angle shot looking up at subject, heroic camera angle, close-up composition"
-        }
+        { es: "Vista frontal neutral", en: "close-up portrait, front view facing camera directly" },
+        { es: "Vista 3/4 hacia la izquierda", en: "close-up portrait, three-quarter 3/4 angle view facing left" },
+        { es: "Vista 3/4 hacia la derecha", en: "close-up portrait, three-quarter 3/4 angle view facing right" },
+        { es: "Perfil izquierdo completo (90°)", en: "close-up portrait, sharp full left side profile view 90 degrees" },
+        { es: "Perfil derecho completo (90°)", en: "close-up portrait, sharp full right side profile view 90 degrees" },
+        { es: "Ángulo contrapicado (Cámara abajo)", en: "low-angle shot looking up at subject, heroic camera angle" }
       ],
       poses: [
-        {
-          es: "De pie vista frontal completa",
-          descEs: "Plano entero de cuerpo completo de pie en postura neutral.",
-          en: "full body shot, standing upright front view, full figure visible from head to toe"
-        },
-        {
-          es: "De pie de espaldas mirando atrás",
-          descEs: "Cuerpo de espaldas con la cabeza girada mirando sobre el hombro.",
-          en: "full body shot, standing facing backwards, turning head over shoulder towards camera"
-        },
-        {
-          es: "Saludando alegre con la mano",
-          descEs: "Plano entero levantando la mano amistosamente para saludar.",
-          en: "full body shot, friendly waving hand pose, cheerful posture, standing position"
-        },
-        {
-          es: "Saltando en el aire (Dinámico)",
-          descEs: "Pose de salto en medio del aire llena de energía y movimiento.",
-          en: "full body shot, dynamic mid-air jumping action pose, energetic composition"
-        },
-        {
-          es: "Sentado con piernas cruzadas",
-          descEs: "Personaje sentado en el suelo con piernas cruzadas de manera relajada.",
-          en: "full body shot, sitting cross-legged on floor comfortably, relaxed pose"
-        },
-        {
-          es: "Caminando hacia adelante",
-          descEs: "Plano en movimiento caminando en dirección a la cámara.",
-          en: "full body shot, walking forward towards camera pose, natural stride movement"
-        }
+        { es: "De pie vista frontal completa", en: "full body shot, standing upright front view" },
+        { es: "De pie de espaldas mirando atrás", en: "full body shot, standing facing backwards, turning head over shoulder" },
+        { es: "Saludando alegre con la mano", en: "full body shot, friendly waving hand pose, cheerful posture" },
+        { es: "Saltando en el aire (Dinámico)", en: "full body shot, dynamic mid-air jumping action pose" },
+        { es: "Sentado con piernas cruzadas", en: "full body shot, sitting cross-legged on floor comfortably" },
+        { es: "Caminando hacia adelante", en: "full body shot, walking forward towards camera pose" }
       ]
     };
 
-    // ESTADO DE LA APLICACIÓN
-    let estiloSeleccionado = estilosPaso1[0];
+    let estiloSeleccionado = estilosPaso1[5]; // Pixar por defecto
     let tabPaso2Actual = 'expresiones';
     let opcionPaso2Seleccionada = opcionesPaso2.expresiones[0];
     let filtroCategoriaActual = 'todos';
     let textoBusqueda = '';
+    let archivoFotoLocal = null; // Almacena el archivo de la foto local
 
-    // GENERADORES DINÁMICOS DE PROMPTS
+    // CARGAR FOTO LOCAL DESDE EL INPUT FILE
+    function cargarFotoLocal(event) {
+      const file = event.target.files[0];
+      if (file) {
+        archivoFotoLocal = file;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('preview-foto-local');
+          const placeholder = document.getElementById('upload-placeholder');
+          preview.src = e.target.result;
+          preview.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+          document.getElementById('badge-estado-foto').innerText = "Cargada ✓";
+          document.getElementById('badge-estado-foto').className = "text-[10px] font-mono text-emerald-500 font-bold";
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
     function getPrompt2Es(opcionObj) {
-      return `PASO 2 (Manteniendo personaje de Paso 1):
-[Imagen de Referencia: Imagen generada previamente en Paso 1]
-
-Render 3D con consistencia 1:1 estricta del personaje en rostro, peinado, ropa y tono de piel usando (${estiloSeleccionado.refPrompt2Es}).
-
-Acción / Expresión / Pose Especificada:
--> ${opcionObj.es}
-
-Requisitos Clave de Consistencia:
-- Mantener la identidad facial 1:1 exacta de la imagen del Paso 1.
-- Renderizado 3D de estudio, iluminación idéntica y fondo neutro coherente.`;
+      return `PASO 2 (Transformación con pose/expresión):
+Aplicar sobre la foto subida: ${opcionObj.es} manteniendo el estilo (${estiloSeleccionado.refPrompt2Es}).`;
     }
 
     function getPrompt2En(opcionObj) {
-      return `STEP 2 (Character Consistency Render):
-[Reference Image: 3D character image generated in Step 1]
-
-A consistent 3D character render maintaining strict 1:1 identical facial structure, hairstyle, skin tone, and outfit in (${estiloSeleccionado.refPrompt2En}).
-
-Shot / Action / Pose Specification:
--> ${opcionObj.en}
-
-Key Consistency Requirements:
-- Character Identity Match: Replicate exact face geometry, eyes, hair color, and clothing from reference Step 1 image.
-- Render Quality: High-end 3D character render matching ${estiloSeleccionado.nombre} visual style, lighting setup, and seamless background.`;
+      return `${estiloSeleccionado.promptEn}, ${opcionObj.en}`;
     }
 
-    // INICIALIZACIÓN
     window.onload = function() {
       renderEstilos();
       actualizarUI_Paso1();
@@ -965,7 +566,6 @@ Key Consistency Requirements:
       actualizarUI_Paso2();
     };
 
-    // FILTRADO
     function filtrarPorTexto() {
       textoBusqueda = document.getElementById('input-busqueda').value.toLowerCase().trim();
       renderEstilos();
@@ -977,7 +577,6 @@ Key Consistency Requirements:
         btn.classList.remove('bg-white', 'text-app-sidebar');
         btn.classList.add('bg-white/20', 'text-white');
       });
-
       const btnActivo = document.getElementById(`filter-${cat}`);
       if(btnActivo) {
         btnActivo.classList.remove('bg-white/20', 'text-white');
@@ -986,25 +585,18 @@ Key Consistency Requirements:
       renderEstilos();
     }
 
-    // RENDERIZAR LISTA DE ESTILOS
     function renderEstilos() {
       const contenedor = document.getElementById('grid-estilos');
       contenedor.innerHTML = '';
 
       const filtrados = estilosPaso1.filter(item => {
         const coincideCategoria = (filtroCategoriaActual === 'todos') || (item.categoria === filtroCategoriaActual);
-        const coincideTexto = !textoBusqueda || 
-          item.nombre.toLowerCase().includes(textoBusqueda) || 
-          item.descripcionCorta.toLowerCase().includes(textoBusqueda);
+        const coincideTexto = !textoBusqueda || item.nombre.toLowerCase().includes(textoBusqueda) || item.descripcionCorta.toLowerCase().includes(textoBusqueda);
         return coincideCategoria && coincideTexto;
       });
 
       if (filtrados.length === 0) {
-        contenedor.innerHTML = `
-          <div class="col-span-full py-6 text-center text-app-textMuted dark:text-app-darkTextMuted text-xs">
-            No se encontraron estudios.
-          </div>
-        `;
+        contenedor.innerHTML = `<div class="col-span-full py-6 text-center text-app-textMuted text-xs">No se encontraron estudios.</div>`;
         return;
       }
 
@@ -1035,7 +627,6 @@ Key Consistency Requirements:
           </div>
           <p class="text-[10px] ${esActivo ? 'text-white/80' : 'text-app-textMuted dark:text-slate-400'} line-clamp-2 font-normal">${estilo.descripcionCorta}</p>
         `;
-
         contenedor.appendChild(btn);
       });
     }
@@ -1049,8 +640,7 @@ Key Consistency Requirements:
 
     function cambiarTabPaso2(tabKey) {
       tabPaso2Actual = tabKey;
-      const tabs = ['expresiones', 'angulos', 'poses'];
-      tabs.forEach(t => {
+      ['expresiones', 'angulos', 'poses'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
         if(t === tabKey) {
           btn.className = "py-2 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm";
@@ -1058,7 +648,6 @@ Key Consistency Requirements:
           btn.className = "py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white";
         }
       });
-
       opcionPaso2Seleccionada = opcionesPaso2[tabKey][0];
       renderOpcionesPaso2();
       actualizarUI_Paso2();
@@ -1084,11 +673,7 @@ Key Consistency Requirements:
             : 'bg-white dark:bg-slate-900 border-[#EAD5C3] dark:border-app-darkBorder text-app-textDark dark:text-slate-200 hover:bg-[#FFF2E6] dark:hover:bg-slate-800'
         }`;
 
-        btn.innerHTML = `
-          <span class="truncate">${item.es}</span>
-          ${esActivo ? '<i class="fa-solid fa-check text-white dark:text-slate-950 text-xs"></i>' : ''}
-        `;
-
+        btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs"></i>' : ''}`;
         contenedor.appendChild(btn);
       });
     }
@@ -1099,12 +684,17 @@ Key Consistency Requirements:
       document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
     }
 
-    // --- CONEXIÓN CON COLAB Y GENERACIÓN DIRECTA (CORREGIDO) ---
+    // --- CONEXIÓN CON COLAB Y ENVÍO DE FOTO LOCAL (IMG2IMG) ---
     async function generarImagenConIA(paso) {
       const urlColab = document.getElementById('input-colab-url').value.trim();
       if (!urlColab) {
-        alert("⚠️ Por favor, pega primero tu enlace de Gradio (.gradio.live) de Google Colab en el panel lateral derecho.");
+        alert("⚠️ Por favor, pega primero tu enlace de Gradio (.gradio.live) de Google Colab.");
         document.getElementById('input-colab-url').focus();
+        return;
+      }
+
+      if (!archivoFotoLocal) {
+        alert("⚠️ Por favor, sube una foto local primero en el panel derecho.");
         return;
       }
 
@@ -1118,12 +708,12 @@ Key Consistency Requirements:
       placeholder.classList.add('hidden');
       outputImg.classList.add('hidden');
       loader.classList.remove('hidden');
-      statusRender.innerText = "Renderizando...";
+      statusRender.innerText = "Transformando...";
 
       try {
         const app = await window.gradioClient(urlColab);
-        // LLAMADA CORREGIDA A GRADIO API: app.predict(0, [prompt])
-        const result = await app.predict(0, [promptAUsar]);
+        // Gradio espera el orden de inputs de Python: [imagenLocal, prompt]
+        const result = await app.predict(0, [archivoFotoLocal, promptAUsar]);
         
         const imageUrl = result.data[0].url || result.data[0].path || result.data[0];
         
@@ -1131,71 +721,19 @@ Key Consistency Requirements:
         outputImg.classList.remove('hidden');
         loader.classList.add('hidden');
         statusRender.innerText = "¡Completado!";
-        mostrarToast("Imagen Generada", "Render exitoso con GPU Colab.");
+        mostrarToast("Transformación Exitosa", "Foto convertida al estilo del estudio.");
       } catch (err) {
         console.error(err);
         loader.classList.add('hidden');
         placeholder.classList.remove('hidden');
         statusRender.innerText = "Error";
-        alert("❌ Error al conectar con Colab. Verifica que el enlace sea correcto y el servidor siga activo.");
+        alert("❌ Error al conectar con Colab. Asegúrate de haber actualizado el código de Colab a Img2Img.");
       }
     }
 
-    // COPIADO Y NOTIFICACIÓN
     function copiarPrompt(paso) {
-      const textoACopiar = paso === 'step1' 
-        ? estiloSeleccionado.promptEn 
-        : getPrompt2En(opcionPaso2Seleccionada);
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(textoACopiar).then(() => {
-          mostrarToastPaso(paso);
-        }).catch(() => {
-          copiarFallback(textoACopiar, paso);
-        });
-      } else {
-        copiarFallback(textoACopiar, paso);
-      }
-    }
-
-    function copiarFallback(texto, paso) {
-      const area = document.createElement('textarea');
-      area.value = texto;
-      area.style.position = 'fixed';
-      area.style.left = '-9999px';
-      document.body.appendChild(area);
-      area.select();
-      try {
-        document.execCommand('copy');
-        mostrarToastPaso(paso);
-      } catch (err) {
-        console.error('Error al copiar', err);
-      }
-      document.body.removeChild(area);
-    }
-
-    let toastTimeout;
-    function mostrarToastPaso(paso) {
-      const toast = document.getElementById('toast');
-      const toastTitle = document.getElementById('toast-title');
-      const toastMsg = document.getElementById('toast-msg');
-
-      if (paso === 'step1') {
-        toastTitle.innerText = `Paso 1 Copiado (${estiloSeleccionado.badge})`;
-        toastMsg.innerText = `Listo para Midjourney / Flux / DALL-E.`;
-      } else {
-        toastTitle.innerText = `Paso 2 Copiado (${opcionPaso2Seleccionada.es})`;
-        toastMsg.innerText = `Consistencia de personaje lista.`;
-      }
-
-      toast.classList.remove('translate-y-10', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-10', 'opacity-0');
-      }, 3000);
+      const textoACopiar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
+      navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles."));
     }
 
     function mostrarToast(titulo, msg) {
