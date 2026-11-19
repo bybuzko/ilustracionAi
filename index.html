@@ -99,7 +99,7 @@
               <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">1</span>
               <div>
                 <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado detallado</p>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado manteniendo la foto, pose y encuadre originales</p>
               </div>
             </div>
             <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
@@ -108,8 +108,22 @@
           <!-- GRILLA HORIZONTAL SIN SCROLL -->
           <div id="grid-estilos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mb-4"></div>
 
+          <!-- NOTA OPCIONAL PARA REFUERZO PUNTUAL DE ESCENA -->
+          <div class="mb-4">
+            <label for="nota-escena-paso1" class="block text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400 mb-1.5">
+              Refuerzo opcional de escena / pose (opcional, solo si querés enfatizar algo de tu foto)
+            </label>
+            <input
+              id="nota-escena-paso1"
+              type="text"
+              oninput="actualizarUI_Paso1()"
+              placeholder="Ej: dos personas en selfie frente al espejo, mantener ambos rostros y poses intactos..."
+              class="w-full px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder text-xs text-app-textDark dark:text-slate-200 placeholder:text-app-textMuted/60 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-app-sidebar/40 dark:focus:ring-indigo-500/40 transition"
+            >
+          </div>
+
           <!-- DESPLEGABLE ÚNICO: PROMPT + TRADUCCIÓN INTERNA -->
-          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
+          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group" open>
             <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400">
               <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt</span>
               <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
@@ -225,38 +239,62 @@
         id: "BLUR_LDR",
         nombre: "Blur Studio (Love, Death & Robots)",
         categoria: "adult",
-        badge: "Blur / Sci-Fi Adult",
+        badge: "Blur / Sci-Fi VFX",
         icon: "fa-skull",
         iconColor: "text-app-accentRose dark:text-rose-400",
-        descripcionCorta: "CGI hiperrealista, estética cyberpunk y ciencia ficción madura.",
+        descripcionCorta: "Doble digital CGI hiperrealista universal: respeta cualquier foto, pose y encuadre.",
         promptEs: `PASO 1 (Estilo Blur Studio / Love, Death & Robots / Secret Level):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D fotorrealista de ciencia ficción madura estilo Blur Studio basado en la foto del sujeto.
+Un render de dobles digitales CGI hiperrealista y ultra-detallado de los sujetos y elementos exactos presentes en la foto de referencia, conservando intactas su pose, composición, encuadre y distribución espacial original, creado en el estilo cinematográfico crudo y de ciencia ficción adulta característico de Blur Studio (Love, Death & Robots / Secret Level).
 
-Requisitos:
-- Conservar los rasgos faciales clave, estructura ósea, ojos y tono de piel del sujeto con textura fotorrealista.
-- Piel PBR hiper-detallada con imperfecciones reales, micro-poros, cicatrices sutiles o polvo ambiental.
-- Iluminación cinematográfica oscura estilo Octane Render / Redshift, neones de alto contraste o iluminación dramática de ciencia ficción.
-- Traje / ropa con texturas de alto detalle táctil (fibra de carbono, metal desgastado, tela militar de ciencia ficción).
-- Fondo neutro o entorno cyberpunk oscuro en penumbra con profundidades de campo cinemáticas.`,
-        promptEn: `STEP 1 (Blur Studio / Love Death & Robots / Secret Level Style):
-[Reference Image: Photo of the subject]
+Bloqueo Universal de Pose, Encuadre y Escena:
+- Respetar estrictamente la cantidad de personas, sujetos u objetos que aparecen en la foto de referencia y sus posiciones relativas exactas; no añadir, eliminar ni reorganizar figuras.
+- No alterar el encuadre de cámara, distancia focal percibida, ángulos corporales, inclinación de cabeza, dirección de la mirada, gestos ni posturas de ninguna persona de la foto original.
+- Conservar el entorno y fondo espacial de la foto de referencia en su estructura y profundidad, re-iluminándolo y etalonándolo al estilo Blur Studio sin sustituirlo por escenarios o utilería inventados que contradigan la toma.
 
-A photorealistic gritty 3D adult sci-fi CGI character render of the subject, crafted in the signature Blur Studio style (Love, Death & Robots / Secret Level).
+Bloqueo de Identidad y Fotogrametría:
+- Conservar estrictamente la estructura craneal exacta, geometría facial, asimetría facial natural, edad, tono de piel, forma de los ojos, cejas, nariz, labios y expresiones de cada persona de la foto de referencia sin suavizado digital, intercambio de rostros ni embellecimiento genérico.
+- Mantener el peinado, raya, largo y volumen exactos de cada sujeto, traducidos a un sistema de cabello cinematográfico por hebras XGen / Ornatrix con cabellos finos sueltos (flyaway hairs).
+- Conservar fielmente la vestimenta, accesorios y objetos sostenidos o presentes en la escena original.
 
-Key Requirements:
-- Faithfully preserve key facial features, facial symmetry, skin tone, and eyes from the reference photo.
-- Ultra-detailed photorealistic PBR skin shader: realistic pores, subtle skin flaws, micro-scratches, subsurface skin glow.
-- Cinematic Octane Render / Redshift lighting: volumetric rim lights, atmospheric dark sci-fi contrast, moody neon key lights.
-- High-grade tactical/sci-fi attire with worn metal textures, carbon fiber weave, and realistic weathering.
-- Atmospheric dark sci-fi studio backdrop with elegant shallow depth of field.`,
-        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio (Love, Death & Robots)",
-        refPrompt2En: "Blur Studio (Love, Death & Robots / Secret Level) photorealistic gritty adult CGI sci-fi style",
-        renderSpecsEs: `- Motor & Shaders: Piel PBR fotorrealista con micro-poros, imperfecciones reales y brillo subcutáneo (SSS).
-- Materiales & Iluminación: Iluminación cinematográfica oscura tipo Octane Render / Redshift, luces de borde volumétricas y alto contraste.`,
-        renderSpecsEn: `- Engine & Shaders: Ultra-detailed photorealistic PBR skin shader with realistic micro-pores, subtle skin flaws, and subsurface glow.
-- Materials & Lighting: Cinematic Octane Render / Redshift dark sci-fi lighting, volumetric rim lights, tactile worn fabric/metal textures, and shallow depth of field.`
+Realismo de Piel, Grooming y Materiales:
+- Shader de piel VFX de largometraje (detalle de desplazamiento TexturingXYZ / ZBrush): poros visibles, líneas finas, imperfecciones sutiles de la piel, brillo natural de grasa cutánea, Subsurface Scattering (SSS) profundo y vello fino (peach fuzz) captando la luz.
+- Shaders oculares húmedos hiperrealistas con estrías intrincadas en el iris, menisco lagrimal y reflejos corneales nítidos.
+- Traducir la ropa, accesorios y superficies de la escena a materiales cinematográficos pesados y táctiles con micro-tejidos realistas, grano de tela o cuero, costuras sutiles, desgaste natural y rugosidad física coherente.
+
+Cinematografía, Iluminación y Etalonaje de Color:
+- Iluminación cinematográfica claroscuro de alto contraste renderizada en Redshift / V-Ray con flujo de color ACEScg: luz principal fría de acero o en tonos verde azulado y ámbar (teal-and-amber) combinada con luces de borde volumétricas nítidas que perfilan el cabello y los contornos sin alterar la geometría ni la pose.
+- Capturado con lente virtual anamórfico de cine de 50mm, profundidad de campo reducida, halación óptica sutil, grano fino de película de 35mm, fotograma de producción VFX 8k.`,
+        promptEn: `STEP 1 (Blur Studio / Love, Death & Robots / Secret Level Style):
+[Reference Image: Original input photo]
+
+An ultra-detailed, hyper-realistic CGI digital double render of the exact people, subjects, and elements shown in the reference photo, keeping their exact poses, framing, camera composition, and spatial layout intact, crafted in the signature gritty, adult sci-fi cinematic style of Blur Studio (Love, Death & Robots / Secret Level).
+
+Universal Pose, Framing & Scene Lock:
+- Strictly preserve the exact number of people, subjects, and objects in the reference photo and their exact relative positions; do not add, remove, or rearrange figures.
+- Do NOT alter the camera framing, body angles, limb positions, head tilts, gaze direction, facial expressions, or poses of anyone in the reference photo.
+- Keep the background environment and spatial layout consistent with the reference photo, re-lighting and color-grading it in the Blur Studio aesthetic rather than replacing it with unrelated sci-fi rooms or invented props that break the scene.
+
+Identity & Photogrammetry Lock:
+- Strictly preserve every subject's exact cranial structure, facial geometry, natural facial asymmetry, age, skin tone, eye shape, eyebrows, nose, lips, and expressions from the reference photo without digital smoothing, face-swapping, or generic beautification.
+- Retain each subject's exact hairstyle, parting, length, and volume, translated into strand-based XGen/Ornatrix cinematic hair grooming with fine stray flyaway hairs.
+- Faithfully retain all clothing, accessories, and held or nearby objects from the original photo.
+
+Skin, Grooming & Material Realism:
+- Feature-film VFX skin shader (TexturingXYZ / ZBrush displacement detail): visible pores, fine wrinkles, subtle skin blemishes, natural oil sheen, deep Subsurface Scattering (SSS), and fine vellus hair (peach fuzz) catching the light.
+- Hyper-realistic wet ocular shaders with intricate iris striations, tear meniscus, and crisp corneal reflections.
+- Translate garments, accessories, and scene surfaces into heavy, tactile cinematic materials featuring realistic fabric micro-weaves, worn grain, subtle seam stitching, natural wear, and physically accurate roughness.
+
+Cinematography, Lighting & Color Grading:
+- High-contrast chiaroscuro film lighting rendered in Redshift / V-Ray with ACEScg color pipeline: moody teal-and-amber or cool steel key light paired with crisp volumetric rim lights carving out hair strands and contours without altering pose or geometry.
+- Shot on a virtual 50mm anamorphic cinema lens, shallow depth of field, subtle optical halation, fine 35mm film grain, 8k VFX production still.`,
+        refPrompt2Es: "doble digital CGI hiperrealista de ciencia ficción adulta estilo Blur Studio (Love, Death & Robots / Secret Level) respetando estrictamente identidad, pose y encuadre de la foto",
+        refPrompt2En: "Blur Studio (Love, Death & Robots / Secret Level) hyper-realistic gritty adult sci-fi CGI digital double style strictly preserving photo identity, pose, and framing",
+        renderSpecsEs: `- Motor & Shaders: Doble digital VFX con desplazamiento TexturingXYZ / ZBrush, poros visibles, brillo cutáneo natural, SSS profundo, vello fino (peach fuzz), shaders oculares húmedos con menisco lagrimal y cabello por hebras XGen / Ornatrix.
+- Materiales, Iluminación & Cámara: Materiales táctiles con micro-tejidos, costuras y desgaste natural, iluminación claroscuro en Redshift / V-Ray (pipeline ACEScg) con luces de borde volumétricas nítidas, fondo coherente con la toma original, lente virtual anamórfico de 50mm, halación óptica, grano de 35mm y calidad VFX 8k.`,
+        renderSpecsEn: `- Engine & Shaders: Feature-film VFX digital double with TexturingXYZ / ZBrush displacement skin shader, visible pores, natural oil sheen, deep SSS, fine vellus hair (peach fuzz), wet ocular shaders with tear meniscus, and strand-based XGen/Ornatrix hair grooming.
+- Materials, Lighting & Camera: Tactile materials with fabric micro-weaves, stitching, and natural wear, high-contrast chiaroscuro Redshift / V-Ray lighting (ACEScg color pipeline) with crisp volumetric rim lights, background consistent with original framing, virtual 50mm anamorphic lens, subtle optical halation, 35mm film grain, and 8k VFX production quality.`
       },
       {
         id: "FORTICHE_ARCANE",
@@ -740,6 +778,19 @@ Key Requirements:
     let idiomaPaso1 = 'en';
     let idiomaPaso2 = 'en';
 
+    function getPrompt1ConNota(idioma) {
+      const base = idioma === 'en' ? estiloSeleccionado.promptEn : estiloSeleccionado.promptEs;
+      const inputNota = document.getElementById('nota-escena-paso1');
+      const nota = inputNota ? inputNota.value.trim() : '';
+
+      if (!nota) return base;
+
+      if (idioma === 'en') {
+        return `${base}\n\nAdditional Scene / Pose Note:\n- ${nota}`;
+      }
+      return `${base}\n\nNota Adicional de Escena / Pose:\n- ${nota}`;
+    }
+
     function getPrompt2Es(opcionObj) {
       if (opcionObj.id === "TURNAROUND_3_VIEWS") {
         return `PASO 2 — HOJA DE DISEÑO DE PERSONAJE 3 VISTAS (Estilo ${estiloSeleccionado.nombre}):
@@ -840,11 +891,11 @@ ${estiloSeleccionado.renderSpecsEn}
       const btn1 = document.getElementById('btn-idioma-step1');
 
       if (idiomaPaso1 === 'en') {
-        display1.innerText = estiloSeleccionado.promptEn;
+        display1.innerText = getPrompt1ConNota('en');
         label1.innerText = "Prompt en Inglés (Listo para IA)";
         btn1.innerHTML = `<i class="fa-solid fa-language"></i> Explicación en español`;
       } else {
-        display1.innerText = estiloSeleccionado.promptEs;
+        display1.innerText = getPrompt1ConNota('es');
         label1.innerText = "Explicación en Español (Traducción)";
         btn1.innerHTML = `<i class="fa-solid fa-code"></i> Ver prompt en inglés`;
       }
@@ -979,7 +1030,7 @@ ${estiloSeleccionado.renderSpecsEn}
     }
 
     function copiarPrompt(paso) {
-      const textoACopiar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
+      const textoACopiar = paso === 'step1' ? getPrompt1ConNota(idiomaPaso1) : getPrompt2En(opcionPaso2Seleccionada);
       navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles en inglés con todo su detalle."));
     }
 
