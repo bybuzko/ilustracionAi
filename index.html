@@ -59,55 +59,34 @@
   </style>
 </head>
 
-<body class="min-h-screen bg-app-bg dark:bg-app-darkBg text-app-textDark dark:text-app-darkText flex items-center justify-center p-3 sm:p-6 selection:bg-[#DC6A48] selection:text-white transition-colors duration-300">
+<body class="min-h-screen bg-app-bg dark:bg-app-darkBg text-app-textDark dark:text-app-darkText flex justify-center p-3 sm:p-6 selection:bg-[#DC6A48] selection:text-white transition-colors duration-300">
 
-  <div class="w-full max-w-[1440px] bg-white dark:bg-app-darkSidebar rounded-[40px] shadow-2xl flex flex-col lg:flex-row overflow-hidden border border-[#EAD5C3] dark:border-app-darkBorder transition-colors duration-300">
+  <div class="w-full max-w-[1320px] bg-white dark:bg-app-darkSidebar rounded-[40px] shadow-2xl overflow-hidden border border-[#EAD5C3] dark:border-app-darkBorder transition-colors duration-300">
 
-    <!-- SIDEBAR -->
-    <aside class="w-full lg:w-20 bg-app-sidebar dark:bg-app-darkCardBg flex lg:flex-col items-center justify-between p-4 lg:py-8 gap-6 shrink-0 transition-colors duration-300">
-      <div class="flex flex-row lg:flex-col items-center gap-6">
-        <div class="w-10 h-10 rounded-2xl bg-white dark:bg-indigo-600 text-app-sidebar dark:text-white flex items-center justify-center shadow-md">
-          <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
-        </div>
-      </div>
-      <div class="hidden lg:block flex-1"></div>
-      <div class="flex flex-col items-center gap-3">
-        <button onclick="toggleDarkMode()" title="Cambiar Tema Dark/Light" class="w-10 h-10 rounded-full bg-white/20 dark:bg-indigo-500/30 text-white flex items-center justify-center hover:bg-white/30 transition cursor-pointer">
-          <i id="theme-icon-sidebar" class="fa-solid fa-moon text-base"></i>
-        </button>
-      </div>
-    </aside>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="w-full bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-6 transition-colors duration-300">
 
-    <!-- CONTENIDO CENTRAL -->
-    <main class="flex-1 bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-6 overflow-y-auto transition-colors duration-300">
-
-      <!-- BARRA SUPERIOR -->
-      <div class="flex items-center gap-4">
-        <div class="relative flex-1 max-w-2xl">
-          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-app-textMuted dark:text-app-darkTextMuted text-xs"></i>
-          <input type="text" id="input-busqueda" oninput="filtrarPorTexto()" placeholder="Buscar estudio (ej: Blur, Arcane, Pixar, Weta)..." 
-            class="w-full bg-white dark:bg-app-darkCardBg border-0 dark:border dark:border-app-darkBorder rounded-full pl-10 pr-4 py-3 text-xs text-app-textDark dark:text-app-darkText placeholder-app-textMuted dark:placeholder-app-darkTextMuted focus:outline-none focus:ring-2 focus:ring-app-sidebar shadow-sm font-sans transition-colors">
-        </div>
-
-        <button onclick="toggleDarkMode()" class="px-4 py-3 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
+      <!-- BARRA SUPERIOR (SOLO BOTÓN DE TEMA) -->
+      <div class="flex items-center justify-end">
+        <button onclick="toggleDarkMode()" class="px-4 py-2.5 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
           <i id="theme-icon-header" class="fa-solid fa-moon text-app-sidebar dark:text-amber-400"></i>
-          <span id="theme-text-header" class="hidden sm:inline">Modo Oscuro</span>
+          <span id="theme-text-header">Modo Oscuro</span>
         </button>
       </div>
 
       <!-- HERO BANNER -->
-      <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[160px] transition-colors duration-300">
+      <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[150px] transition-colors duration-300">
         <div class="relative z-10">
           <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio Pro</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Biblioteca de consistencia de personajes 3D y motores de renderizado industrial</p>
+          <p class="text-xs sm:text-sm text-white/80 font-medium">Biblioteca de consistencia de personajes 3D, hojas de diseño y motores de renderizado industrial</p>
         </div>
         
         <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-4 no-scrollbar" id="categoria-filtros">
-          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-1.5 rounded-full text-xs font-bold bg-white text-app-sidebar shadow-sm transition">Todos</button>
-          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">💀 Adulto & Sci-Fi</button>
-          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎨 Híbridos</button>
-          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎬 Cine & Familiar</button>
-          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition">🎮 Gaming & VFX</button>
+          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-1.5 rounded-full text-xs font-bold bg-white text-app-sidebar shadow-sm transition cursor-pointer">Todos</button>
+          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">💀 Adulto & Sci-Fi</button>
+          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎨 Híbridos</button>
+          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎬 Cine & Familiar</button>
+          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎮 Gaming & VFX</button>
         </div>
         <div class="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-white/10 pointer-events-none"></div>
       </div>
@@ -115,9 +94,9 @@
       <!-- PASO 1: ESTUDIO -->
       <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <div class="flex items-center justify-between pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">1</span>
+              <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">1</span>
               <div>
                 <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
                 <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado detallado</p>
@@ -126,29 +105,25 @@
             <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
           </div>
 
-          <div id="grid-estilos" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 mb-4 max-h-[260px] overflow-y-auto pr-1"></div>
+          <!-- GRILLA HORIZONTAL SIN SCROLL -->
+          <div id="grid-estilos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mb-4"></div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
-              <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-language"></i> Explicación (Español)</span>
-                <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line" id="explicacion-es-paso1">Cargando...</p>
+          <!-- DESPLEGABLE ÚNICO: PROMPT + TRADUCCIÓN INTERNA -->
+          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
+            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt</span>
+              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="p-4 pt-3 border-t border-[#EAD5C3]/50 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span id="label-idioma-paso1" class="text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400">Prompt en Inglés (Listo para IA)</span>
+                <button type="button" onclick="toggleIdiomaPrompt('step1')" id="btn-idioma-step1" class="px-3 py-1.5 rounded-full bg-app-cardBg dark:bg-slate-800 border border-[#EAD5C3] dark:border-slate-700 text-app-sidebar dark:text-indigo-300 hover:bg-[#FFF2E6] dark:hover:bg-slate-700 text-[11px] font-bold flex items-center gap-1.5 transition cursor-pointer">
+                  <i class="fa-solid fa-language"></i> Explicación en español
+                </button>
               </div>
-            </details>
-
-            <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
-              <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400 font-mono">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt Detallado (Inglés)</span>
-                <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <div class="font-mono text-[11px] text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line max-h-32 overflow-y-auto select-all" id="display-prompt-step1"></div>
-              </div>
-            </details>
-          </div>
+              <div class="font-mono text-xs text-app-textDark dark:text-slate-200 leading-relaxed whitespace-pre-line select-all" id="display-prompt-step1"></div>
+            </div>
+          </details>
         </div>
 
         <div class="mt-4 flex justify-end">
@@ -158,49 +133,49 @@
         </div>
       </section>
 
-      <!-- PASO 2: POSES, EXPRESIONES Y ÁNGULOS -->
+      <!-- PASO 2: POSES, EXPRESIONES, ÁNGULOS Y CHARACTER DESIGN -->
       <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <div class="flex items-center justify-between pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm">2</span>
+              <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">2</span>
               <div>
-                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose o Ángulo Adicional</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma manteniendo la consistencia</p>
+                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose, Ángulo o Character Design</h3>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma o genera una hoja de personaje heredando el motor y shaders del Paso 1</p>
               </div>
             </div>
-            <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30 truncate max-w-[180px]">Hereda: Pixar 3D</span>
+            <div class="flex items-center gap-2">
+              <span id="badge-opcion-activa-nombre" class="px-3 py-1 text-xs font-bold rounded-full bg-white dark:bg-slate-900 text-app-textDark dark:text-slate-300 border border-[#EAD5C3] dark:border-slate-700">Risa grande</span>
+              <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30">Hereda: Pixar 3D</span>
+            </div>
           </div>
 
-          <div class="grid grid-cols-3 gap-2 p-1.5 bg-white dark:bg-slate-900 rounded-2xl border border-[#EAD5C3] dark:border-app-darkBorder mb-4">
-            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm">😊 Expresiones</button>
-            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">📷 Ángulos</button>
-            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white">🧍 Poses</button>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-white dark:bg-slate-900 rounded-2xl border border-[#EAD5C3] dark:border-app-darkBorder mb-4">
+            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm cursor-pointer">😊 Expresiones</button>
+            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">📷 Ángulos</button>
+            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">🧍 Poses</button>
+            <button onclick="cambiarTabPaso2('character_design')" id="tab-character_design" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">📐 Character Design</button>
           </div>
 
-          <div id="grid-opciones-paso2" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2.5 mb-4 max-h-[180px] overflow-y-auto pr-1"></div>
+          <!-- GRILLA OPCIONES PASO 2 SIN SCROLL -->
+          <div id="grid-opciones-paso2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-4"></div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
-              <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-cyan-400">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-camera"></i> Acción Seleccionada</span>
-                <span class="text-[11px] text-app-textMuted dark:text-slate-400 font-normal" id="badge-opcion-activa-nombre">Vista Frontal</span>
-              </summary>
-              <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <p class="text-xs text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line" id="explicacion-es-paso2">Cargando...</p>
+          <!-- DESPLEGABLE ÚNICO: PROMPT + TRADUCCIÓN INTERNA -->
+          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
+            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-cyan-400">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt</span>
+              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="p-4 pt-3 border-t border-[#EAD5C3]/50 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span id="label-idioma-paso2" class="text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400">Prompt en Inglés (Listo para IA)</span>
+                <button type="button" onclick="toggleIdiomaPrompt('step2')" id="btn-idioma-step2" class="px-3 py-1.5 rounded-full bg-app-cardBg dark:bg-slate-800 border border-[#EAD5C3] dark:border-slate-700 text-app-sidebar dark:text-cyan-300 hover:bg-[#FFF2E6] dark:hover:bg-slate-700 text-[11px] font-bold flex items-center gap-1.5 transition cursor-pointer">
+                  <i class="fa-solid fa-language"></i> Explicación en español
+                </button>
               </div>
-            </details>
-
-            <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
-              <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-cyan-400 font-mono">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt Paso 2 (Inglés)</span>
-                <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
-              </summary>
-              <div class="p-3.5 pt-0 border-t border-[#EAD5C3]/50 dark:border-slate-800">
-                <div class="font-mono text-[11px] text-app-textDark dark:text-slate-300 leading-relaxed whitespace-pre-line max-h-32 overflow-y-auto select-all" id="display-prompt-step2"></div>
-              </div>
-            </details>
-          </div>
+              <div class="font-mono text-xs text-app-textDark dark:text-slate-200 leading-relaxed whitespace-pre-line select-all" id="display-prompt-step2"></div>
+            </div>
+          </details>
         </div>
 
         <div class="mt-4 flex justify-end">
@@ -211,74 +186,6 @@
       </section>
 
     </main>
-
-    <!-- PANEL LATERAL DERECHO (GUÍA DE ESTUDIOS LIMPIA) -->
-    <aside class="w-full lg:w-80 bg-app-panelBg dark:bg-app-darkPanelBg p-6 border-t lg:border-t-0 lg:border-l border-[#EAD5C3] dark:border-app-darkBorder flex flex-col justify-between shrink-0 gap-6 transition-colors duration-300">
-      <div class="space-y-6">
-        <!-- PERFIL -->
-        <div class="flex items-center gap-3 bg-app-cardBg dark:bg-app-darkCardBg p-3.5 rounded-3xl border border-[#EAD5C3] dark:border-app-darkBorder">
-          <div class="w-12 h-12 rounded-2xl bg-app-accentYellow/30 dark:bg-indigo-600/30 text-app-sidebar dark:text-indigo-400 flex items-center justify-center font-extrabold text-xl">
-            <i class="fa-solid fa-user-astronaut"></i>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="text-sm font-bold text-app-textDark dark:text-white truncate">Creador Studio</h4>
-            <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted truncate">Plan Prompt Master</p>
-          </div>
-          <span class="px-2.5 py-1 rounded-full bg-app-sidebar dark:bg-indigo-600 text-white text-[10px] font-bold">PRO</span>
-        </div>
-
-        <!-- GUÍA DE ESTUDIOS -->
-        <div>
-          <h4 class="text-sm font-extrabold text-app-textDark dark:text-white mb-3 flex items-center justify-between">
-            <span>Guía de Estudios</span>
-            <span class="text-[10px] font-mono text-app-textMuted dark:text-app-darkTextMuted">INDUSTRY SPEC</span>
-          </h4>
-
-          <div class="space-y-2.5 text-xs">
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-sidebar dark:text-rose-400">Blur Studio</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Love, Death & Robots</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentRose/20 dark:bg-rose-500/20 text-app-sidebar dark:text-rose-300 font-bold text-[10px]">CGI Sci-Fi</span>
-            </div>
-
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-cyan-300">Fortiche Production</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Arcane / League of Legends</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 font-bold text-[10px]">Híbrido 2D/3D</span>
-            </div>
-
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-indigo-300">Pixar Animation</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Inside Out, Soul</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 font-bold text-[10px]">Cine 3D</span>
-            </div>
-
-            <div class="p-3 rounded-2xl bg-app-cardBg dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder flex items-center justify-between">
-              <div>
-                <p class="font-bold text-app-textDark dark:text-amber-300">Wētā FX / ILM</p>
-                <p class="text-[10px] text-app-textMuted dark:text-app-darkTextMuted">Avatar: Way of Water</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-md bg-app-sidebar/20 dark:bg-amber-500/20 text-app-sidebar dark:text-amber-300 font-bold text-[10px]">Hiperrealismo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FOOTER MINI -->
-      <div class="pt-4 border-t border-[#EAD5C3] dark:border-app-darkBorder text-center text-[11px] text-app-textMuted dark:text-app-darkTextMuted space-y-2">
-        <p>© AI Prompt Studio — Biblioteca Pro.</p>
-        <div class="flex items-center justify-center gap-3 text-app-textDark dark:text-app-darkText font-medium">
-          <span><i class="fa-solid fa-bolt text-app-accentYellow"></i> Copia & Pega</span>
-          <span><i class="fa-solid fa-cube text-app-sidebar dark:text-indigo-400"></i> PBR Shading</span>
-        </div>
-      </div>
-    </aside>
 
   </div>
 
@@ -301,21 +208,18 @@
       const htmlRoot = document.getElementById('html-root');
       const isDark = htmlRoot.classList.toggle('dark');
       const iconHeader = document.getElementById('theme-icon-header');
-      const iconSidebar = document.getElementById('theme-icon-sidebar');
       const textHeader = document.getElementById('theme-text-header');
 
       if (isDark) {
         if(iconHeader) iconHeader.className = "fa-solid fa-sun text-amber-400";
-        if(iconSidebar) iconSidebar.className = "fa-solid fa-sun text-amber-400";
         if(textHeader) textHeader.innerText = "Modo Claro";
       } else {
         if(iconHeader) iconHeader.className = "fa-solid fa-moon text-app-sidebar";
-        if(iconSidebar) iconSidebar.className = "fa-solid fa-moon text-white";
         if(textHeader) textHeader.innerText = "Modo Oscuro";
       }
     }
 
-    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS (CON TODO EL DETALLE ORIGINAL)
+    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS CON ESPECIFICACIONES TÉCNICAS PARA PASO 2
     const estilosPaso1 = [
       {
         id: "BLUR_LDR",
@@ -347,8 +251,12 @@ Key Requirements:
 - Cinematic Octane Render / Redshift lighting: volumetric rim lights, atmospheric dark sci-fi contrast, moody neon key lights.
 - High-grade tactical/sci-fi attire with worn metal textures, carbon fiber weave, and realistic weathering.
 - Atmospheric dark sci-fi studio backdrop with elegant shallow depth of field.`,
-        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio / Love Death & Robots",
-        refPrompt2En: "Blur Studio Love Death & Robots gritty adult CGI sci-fi style"
+        refPrompt2Es: "estilo CGI fotorrealista de ciencia ficción madura Blur Studio (Love, Death & Robots)",
+        refPrompt2En: "Blur Studio (Love, Death & Robots / Secret Level) photorealistic gritty adult CGI sci-fi style",
+        renderSpecsEs: `- Motor & Shaders: Piel PBR fotorrealista con micro-poros, imperfecciones reales y brillo subcutáneo (SSS).
+- Materiales & Iluminación: Iluminación cinematográfica oscura tipo Octane Render / Redshift, luces de borde volumétricas y alto contraste.`,
+        renderSpecsEn: `- Engine & Shaders: Ultra-detailed photorealistic PBR skin shader with realistic micro-pores, subtle skin flaws, and subsurface glow.
+- Materials & Lighting: Cinematic Octane Render / Redshift dark sci-fi lighting, volumetric rim lights, tactile worn fabric/metal textures, and shallow depth of field.`
       },
       {
         id: "FORTICHE_ARCANE",
@@ -379,8 +287,12 @@ Key Requirements:
 - Distinctive painterly hand-painted digital textures: visible oil brushstrokes on skin, clothes, and hair geometry.
 - Highly dramatic directional key lighting, vivid painterly shadows, rich color palette, and graphic rim highlights.
 - Stylized cloth with tactile paint textures, elegant concept art background.`,
-        refPrompt2Es: "estilo híbrido 2D/3D de pintura manual Fortiche Arcane",
-        refPrompt2En: "Fortiche Production Arcane hand-painted 2D/3D hybrid style"
+        refPrompt2Es: "estilo híbrido 2D/3D de pintura manual Fortiche Production (Arcane)",
+        refPrompt2En: "Fortiche Production (Arcane) 2D/3D hybrid painterly animated style",
+        renderSpecsEs: `- Motor & Shaders: Esculpido 3D estilizado de Arcane con texturas pictóricas de pinceladas al óleo pintadas a mano sobre piel, cabello y ropa.
+- Iluminación & Acabado: Luz direccional dramática de alto contraste, sombras pictóricas intensas y luces de borde gráficas.`,
+        renderSpecsEn: `- Engine & Shaders: Stylized Arcane 3D sculpture with distinctive hand-painted digital oil brushstroke textures across skin, hair, and garments.
+- Lighting & Finish: Dramatic directional key lighting, vivid painterly shadows, rich color grading, and graphic rim highlights.`
       },
       {
         id: "BLUE_EYE_SAMURAI",
@@ -411,8 +323,12 @@ Key Requirements:
 - Elegant 3D cel-shading with subtle calligraphic ink linework accents along geometry contours.
 - High-contrast dramatic samurai cinema lighting, vivid deep color tones.
 - Traditional textile textures with flat graphic shading, seamless atmospheric background with subtle paper texture.`,
-        refPrompt2Es: "estilo 3D Cel-shade Ukiyo-e Samurái de Ojos Azules",
-        refPrompt2En: "Blue Eye Samurai Ukiyo-e cel-shaded 3D style"
+        refPrompt2Es: "estilo 3D Cel-shade Ukiyo-e Samurái de Ojos Azules (Blue Eye Samurai)",
+        refPrompt2En: "Blue Eye Samurai stylized Ukiyo-e woodblock 3D cel-shaded style",
+        renderSpecsEs: `- Motor & Shaders: Sombreado Cel-Shade 3D refinado con estética de grabado japonés Ukiyo-e y trazos sutiles de tinta caligráfica en los contornos.
+- Iluminación & Acabado: Iluminación dramática de cine tradicional japonés con sombreado gráfico plano y textura sutil de papel washi.`,
+        renderSpecsEn: `- Engine & Shaders: Refined 3D cel-shading inspired by traditional Japanese Ukiyo-e woodblock prints with subtle calligraphic ink linework accents along geometry contours.
+- Lighting & Finish: High-contrast dramatic samurai cinema lighting, flat graphic textile shading, and subtle washi paper texture.`
       },
       {
         id: "GLITCH_CIRCUS",
@@ -443,8 +359,12 @@ Key Requirements:
 - Expressive, geometric eyes with existential/playful cartoon expressions.
 - Clean smooth plastic/toy surface shaders, saturated retro lighting, sharp ambient shadow details.
 - Surreal 3D digital void background or colorful retro studio backdrop.`,
-        refPrompt2Es: "estilo 3D CGI retro 90s Glitch Digital Circus",
-        refPrompt2En: "Glitch Productions Digital Circus retro 90s CGI style"
+        refPrompt2Es: "estilo 3D CGI retro 90s Glitch Productions (The Amazing Digital Circus)",
+        refPrompt2En: "Glitch Productions (The Amazing Digital Circus) stylized retro 90s CGI 3D style",
+        renderSpecsEs: `- Motor & Shaders: Modelo 3D estilo CGI retro de finales de los 90 con superficies plásticas lisas tipo juguete y geometría limpia.
+- Iluminación & Acabado: Iluminación saturada de estudio virtual retro con sombras marcadas y colores vibrantes.`,
+        renderSpecsEn: `- Engine & Shaders: Surreal late-90s PC game CGI toy-like 3D model with clean smooth plastic/vinyl surface shaders and geometric eyes.
+- Lighting & Finish: Saturated retro studio lighting with crisp ambient shadows and vibrant color palette.`
       },
       {
         id: "DIGIC_PICTURES",
@@ -474,8 +394,12 @@ Key Requirements:
 - Ultra-detailed PBR medieval or dark tactical leather/metal attire with realistic scratches and weathering.
 - Dark atmospheric key lighting: torchlight glow, moody shadows, fog volume, cinematic grading.
 - Deep moody studio environment with narrow depth of field.`,
-        refPrompt2Es: "estilo de cinemática 3D fotorrealista oscura Digic Pictures",
-        refPrompt2En: "Digic Pictures photorealistic dark fantasy game cinematic 3D style"
+        refPrompt2Es: "estilo de cinemática 3D fotorrealista oscura Digic Pictures (AAA Dark Fantasy)",
+        refPrompt2En: "Digic Pictures photorealistic AAA dark fantasy game cinematic 3D style",
+        renderSpecsEs: `- Motor & Shaders: Renderizado CGI cinematográfico AAA con piel PBR ultra-detallada, micro-poros, vello facial realista y reflejos naturales en el iris.
+- Materiales & Iluminación: Ropa/armadura con desgaste realista, iluminación atmosférica oscura, sombras profundas y neblina volumétrica.`,
+        renderSpecsEn: `- Engine & Shaders: AAA game cinematic CGI render with ultra-detailed PBR skin, micro-pores, realistic hair strands, and natural iris reflections.
+- Materials & Lighting: Weathered tactical/medieval textures, dark atmospheric key lighting, moody shadows, subtle fog volume, and cinematic color grading.`
       },
       {
         id: "PIXAR",
@@ -507,8 +431,12 @@ Key Requirements:
 - World-class 3D render with soft subsurface scattering (SSS) skin shader, detailed stylized garment materials.
 - Warm cinematic studio lighting, key light highlights, soft volumetric glow.
 - Clean seamless studio backdrop with subtle color gradient blur.`,
-        refPrompt2Es: "estilo de animación Pixar Studios 3D",
-        refPrompt2En: "Pixar Animation Studios feature 3D style"
+        refPrompt2Es: "estilo de animación cinematográfica Pixar Animation Studios 3D",
+        refPrompt2En: "Pixar Animation Studios feature film 3D style (Inside Out / Soul aesthetic)",
+        renderSpecsEs: `- Motor & Shaders: Renderizado Pixar RenderMan con Subsurface Scattering (SSS) suave en la piel, ojos grandes cristalinos y tejidos estilizados con micro-trama.
+- Iluminación & Acabado: Iluminación cinematográfica suave y cálida de estudio con brillo volumétrico sutil.`,
+        renderSpecsEn: `- Engine & Shaders: Feature-film RenderMan 3D quality with soft Subsurface Scattering (SSS) skin shader, prominent glossy luminous eyes, and tactile stylized fabric weaves.
+- Lighting & Finish: Warm cinematic studio key lighting, soft rim highlights, and gentle volumetric glow.`
       },
       {
         id: "DREAMWORKS",
@@ -539,8 +467,12 @@ Key Requirements:
 - Snappy dynamic character appeal, expressive asymmetrical facial features.
 - Premium 3D cartoon render, rich material tactile textures, sharp highlights.
 - Vibrant cinematic key lighting with energetic color grade.`,
-        refPrompt2Es: "estilo de caricatura dinámica DreamWorks 3D",
-        refPrompt2En: "dynamic snappy DreamWorks Animation 3D style"
+        refPrompt2Es: "estilo de animación dinámica DreamWorks Animation 3D",
+        refPrompt2En: "DreamWorks Animation dynamic snappy 3D feature style",
+        renderSpecsEs: `- Motor & Shaders: Caricatura 3D estilizada con proporciones expresivas, micro-expresiones dinámicas y texturas táctiles ricas.
+- Iluminación & Acabado: Iluminación cinematográfica vibrante de alto contraste con brillos definidos.`,
+        renderSpecsEn: `- Engine & Shaders: Snappy stylized 3D character appeal with expressive asymmetrical facial sculpting and rich tactile material textures.
+- Lighting & Finish: Vibrant high-contrast cinematic key lighting, sharp specular highlights, and energetic color grading.`
       },
       {
         id: "SONY_SPIDERVERSE",
@@ -569,8 +501,12 @@ Key Requirements:
 - Preserve subject's face geometry while applying stylized 2D ink line accents over 3D model.
 - Comic book aesthetics: subtle halftone dot patterns, hand-drawn hatch marks, chromatic aberration.
 - Bold graphic art direction with high contrast directional light and rim lighting.`,
-        refPrompt2Es: "estilo Cómic 3D híbrido Sony Pictures Animation",
-        refPrompt2En: "Sony Pictures Animation Spider-Verse hybrid comic 3D style"
+        refPrompt2Es: "estilo Cómic 3D híbrido Sony Pictures Animation (Spider-Verse)",
+        refPrompt2En: "Sony Pictures Animation (Spider-Verse) stylized 3D hybrid comic-book style",
+        renderSpecsEs: `- Motor & Shaders: Modelo 3D híbrido con líneas de tinta 2D dibujadas a mano, tramas de semitonos (halftone dots) y sombreado tipo cómic.
+- Iluminación & Acabado: Dirección de arte gráfica audaz, luz direccional de alto contraste, luces de borde cromáticas y sutil aberración cromática.`,
+        renderSpecsEn: `- Engine & Shaders: Stylized 3D hybrid model with hand-drawn 2D ink line accents, halftone dot patterns, and comic-book cross-hatching.
+- Lighting & Finish: Bold graphic art direction, high-contrast directional lighting, vibrant rim lights, and subtle chromatic aberration.`
       },
       {
         id: "DISNEY_3D",
@@ -600,8 +536,12 @@ Key Requirements:
 - Maintain faithful facial likeness and hairstyle traits from reference image.
 - Soft elegant character design, expressive glossy eyes.
 - Premium 3D surface shaders, soft velvet skin finish, rich detailed cloth weave patterns.`,
-        refPrompt2Es: "estilo clásico Walt Disney 3D Animation",
-        refPrompt2En: "Walt Disney Animation Studios feature 3D style"
+        refPrompt2Es: "estilo cinematográfico Walt Disney Animation Studios 3D",
+        refPrompt2En: "Walt Disney Animation Studios feature 3D style (Frozen / Encanto aesthetic)",
+        renderSpecsEs: `- Motor & Shaders: Diseño 3D elegante y suavizado con piel aterciopelada (SSS), ojos expresivos brillantes y tejidos detallados.
+- Iluminación & Acabado: Iluminación de estudio poética, cálida y envolvente.`,
+        renderSpecsEn: `- Engine & Shaders: Soft elegant 3D character sculpting, expressive glossy eyes, soft velvet SSS skin finish, and detailed cloth weave patterns.
+- Lighting & Finish: Warm, poetic studio lighting with soft diffused highlights.`
       },
       {
         id: "ILLUMINATION",
@@ -630,8 +570,12 @@ Key Requirements:
 - Preserve primary facial shape while simplifying geometry into clean appealing cartoon shapes.
 - Playful expression, clean bold cartoon eyes, smooth rounded character design.
 - Crisp ultra-clean 3D render, vibrant saturated lighting.`,
-        refPrompt2Es: "estilo caricatura limpia Illumination 3D",
-        refPrompt2En: "Illumination Mac Guff 3D cartoon style"
+        refPrompt2Es: "estilo caricatura limpia Illumination Mac Guff 3D",
+        refPrompt2En: "Illumination Entertainment / Mac Guff clean 3D cartoon style",
+        renderSpecsEs: `- Motor & Shaders: Geometría cartoon limpia y redondeada con superficies pulidas, ojos expresivos grandes y materiales saturados.
+- Iluminación & Acabado: Iluminación brillante de estudio con colores vivos y sombras suaves.`,
+        renderSpecsEn: `- Engine & Shaders: Crisp ultra-clean 3D cartoon render with smooth rounded geometry, bold expressive eyes, and vibrant surface shaders.
+- Lighting & Finish: Bright saturated studio lighting with clean soft shadows.`
       },
       {
         id: "WETA_ILM",
@@ -660,38 +604,63 @@ Key Requirements:
 - 1:1 photorealistic digital double likeness: accurate facial structure, micro-skin pores, realistic iris reflections.
 - Ultra-high fidelity PBR shader with advanced SSS skin glow and physical hair strand simulation.
 - Photorealistic studio key light setup, realistic ray-traced shadows.`,
-        refPrompt2Es: "estilo Hiperrealismo CGI Wētā FX / ILM",
-        refPrompt2En: "photorealistic CGI Wētā FX / ILM style"
+        refPrompt2Es: "estilo Hiperrealismo CGI cinematográfico Wētā FX / ILM",
+        refPrompt2En: "Wētā FX / ILM photorealistic cinematic digital double CGI style",
+        renderSpecsEs: `- Motor & Shaders: Doble digital fotorrealista con PBR de ultra alta fidelidad, física SSS avanzada en piel, micro-poros y simulación física pelo por pelo.
+- Iluminación & Acabado: Iluminación fotográfica real de estudio con trazado de rayos (ray-traced shadows).`,
+        renderSpecsEn: `- Engine & Shaders: Ultra-high fidelity photorealistic digital double PBR shader with advanced SSS skin glow, micro-pores, realistic iris reflections, and physical strand-by-strand hair simulation.
+- Lighting & Finish: Photorealistic studio key light setup with realistic ray-traced shadows.`
       },
       {
         id: "SIMS4_ALPHA",
         nombre: "Sims 4 Alpha CC (UE5)",
         categoria: "realism",
-        badge: "Sims 4 Alpha",
+        badge: "Sims 4 Alpha / UE5.5",
         icon: "fa-gamepad",
         iconColor: "text-app-accentGreen dark:text-teal-400",
-        descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.",
-        promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / UE5):
+        descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.5 (Lumen).",
+        promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / Unreal Engine 5):
 [Imagen de Referencia: Foto del sujeto]
 
-Un personaje 3D ultra detallado de videojuego basado en la foto, estilo Alpha Sims 4 Custom Content y Unreal Engine 5.
+Un retrato de personaje de videojuego 3D high-poly del sujeto exacto de la foto de referencia, renderizado en estética Sims 4 Alpha CC de alta gama dentro de Unreal Engine 5.5 (renderizado en tiempo real con Lumen).
 
-Requisitos:
-- Conservar estructura facial y vestimenta exacta.
-- Piel suave PBR, pestañas 3D definidas y brillo en ojos.
-- Cabello Alpha en capas estilizadas.
-- Iluminación de estudio en tiempo real.`,
+Bloqueo de Identidad y Geometría:
+- Mantener estrictamente la geometría facial exacta, proporciones craneales, distancia interpupilar, tono de piel y expresión natural de la imagen de referencia sin embellecimiento genérico.
+- Conservar el peinado exacto, línea del cabello y cada detalle de la vestimenta original, incluyendo pliegues de tela, costuras y accesorios.
+
+Materiales, Shaders y Cabello:
+- Shader de piel PBR estilizado-realista con Subsurface Scattering (SSS) sutil, micro-textura fina de piel y brillos especulares suaves.
+- Pestañas individuales 3D nítidas, reflejos corneales brillantes con destellos naturales (catchlights) y profundidad detallada en el iris.
+- Tarjetas de cabello Alpha (Alpha hair cards) de alta densidad con mechones finos semitransparentes en capas y brillo anisotrópico.
+- Texturas de tela en alta resolución con mapas normales realistas y detalle de costuras.
+
+Iluminación y Configuración de Cámara:
+- Iluminación de estudio CAS (Create-A-Sim) de tres puntos: luz principal suave difusa, luz de relleno delicada y una luz de borde fría sutil para separar la silueta y las hebras del cabello del fondo.
+- Lente virtual de retrato de 85mm, profundidad de campo reducida, fondo de estudio neutro limpio, oclusión ambiental nítida, renderizado en tiempo real con anti-aliasing y claridad de texturas 8k.`,
         promptEn: `STEP 1 (Sims 4 Alpha CC / Unreal Engine 5 Style):
 [Reference Image: Photo of the subject]
 
-A high-detail 3D video game character model of the subject in the reference photo, rendered in Alpha Sims 4 CC style using Unreal Engine 5 real-time aesthetics.
+A high-poly 3D video game character portrait of the exact subject in the reference photo, rendered in high-end Sims 4 Alpha CC aesthetic inside Unreal Engine 5.5 (Lumen real-time rendering).
 
-Key Requirements:
-- Perfectly preserve facial structure, expression, exact clothing, and hairstyle.
-- Real-time 3D game character shader, smooth PBR skin, crisp 3D eyelashes, glossy eyes.
-- Hyper-detailed alpha hair strands, soft 3D game portrait lighting setup.`,
-        refPrompt2Es: "estilo Alpha Sims 4 CC / Unreal Engine 5",
-        refPrompt2En: "Alpha Sims 4 CC and Unreal Engine 5 style"
+Identity & Geometry Lock:
+- Strictly maintain the subject's exact facial geometry, cranial proportions, interpupillary distance, skin tone, and natural expression from the reference image without generic beautification.
+- Preserve the exact hairstyle, hairline, and every detail of the original outfit, including fabric folds, seams, and accessories.
+
+Materials, Shaders & Hair:
+- Stylized-realistic PBR skin shader with subtle Subsurface Scattering (SSS), fine micro-skin texture, and soft specular highlights.
+- Crisp 3D individual eyelashes, glossy corneal reflections with natural catchlights, and detailed iris depth.
+- High-density Alpha hair cards with layered, semi-transparent wispy strands and anisotropic sheen.
+- High-resolution fabric textures with realistic normal maps and stitching detail.
+
+Lighting & Camera Setup:
+- Studio CAS (Create-A-Sim) three-point lighting setup: soft diffused key light, gentle fill light, and a subtle cool rim light to separate the silhouette and hair strands from the background.
+- Virtual 85mm portrait lens, shallow depth of field, clean neutral studio backdrop, crisp ambient occlusion, anti-aliased real-time viewport render, 8k texture clarity.`,
+        refPrompt2Es: "estilo Sims 4 Alpha CC de alta gama en Unreal Engine 5.5 (renderizado en tiempo real con Lumen)",
+        refPrompt2En: "high-end Sims 4 Alpha CC aesthetic inside Unreal Engine 5.5 (Lumen real-time rendering)",
+        renderSpecsEs: `- Motor & Shaders: Unreal Engine 5.5 (Lumen), piel PBR estilizada-realista con SSS sutil, pestañas 3D individuales, reflejos corneales con catchlights y tarjetas de cabello Alpha (Alpha hair cards) en capas con brillo anisotrópico.
+- Iluminación & Cámara: Iluminación de estudio CAS de tres puntos (luz principal difusa, relleno suave y rim light frío sutil), lente virtual de 85mm, oclusión ambiental nítida y claridad 8k.`,
+        renderSpecsEn: `- Engine & Shaders: Unreal Engine 5.5 (Lumen real-time rendering), stylized-realistic PBR skin shader with subtle SSS, crisp 3D individual eyelashes, glossy corneal catchlights, and high-density layered Alpha hair cards with anisotropic sheen.
+- Lighting & Camera: Studio CAS (Create-A-Sim) three-point lighting (soft diffused key, gentle fill, subtle cool rim light), virtual 85mm lens, crisp ambient occlusion, and 8k texture clarity.`
       },
       {
         id: "ANIME_3D_CG",
@@ -720,8 +689,12 @@ Key Requirements:
 - Crisp 3D anime facial features, clean line art accents, stylized luminous anime eyes.
 - Sculpted 3D anime hair geometry with sharp specular highlights.
 - Hybrid cel-shaded textures, seamless studio lighting backdrop.`,
-        refPrompt2Es: "estilo 3D Anime CG Genshin Impact",
-        refPrompt2En: "high-end 3D Anime CG style"
+        refPrompt2Es: "estilo Anime 3D CG de alta gama (Genshin Impact / Studio Orange)",
+        refPrompt2En: "high-end 3D Anime CG style (Genshin Impact / Studio Orange aesthetic)",
+        renderSpecsEs: `- Motor & Shaders: Sombreado híbrido cel-shade 3D con líneas de contorno limpias, ojos luminosos estilo anime y mechones de cabello esculpidos con brillos especulares nítidos.
+- Iluminación & Acabado: Iluminación de estudio limpia estilo figura coleccionable de alta gama.`,
+        renderSpecsEn: `- Engine & Shaders: Hybrid 3D cel-shaded textures with clean line art accents, stylized luminous anime eyes, and sculpted 3D hair geometry with sharp specular highlights.
+- Lighting & Finish: Clean studio backdrop lighting with collectible figure render polish.`
       }
     ];
 
@@ -749,6 +722,14 @@ Key Requirements:
         { es: "Saltando en el aire (Dinámico)", descEs: "Pose de salto en medio del aire llena de energía y movimiento.", en: "full body shot, dynamic mid-air jumping action pose, energetic composition" },
         { es: "Sentado con piernas cruzadas", descEs: "Personaje sentado en el suelo con piernas cruzadas de manera relajada.", en: "full body shot, sitting cross-legged on floor comfortably, relaxed pose" },
         { es: "Caminando hacia adelante", descEs: "Plano en movimiento caminando en dirección a la cámara.", en: "full body shot, walking forward towards camera pose, natural stride movement" }
+      ],
+      character_design: [
+        {
+          id: "TURNAROUND_3_VIEWS",
+          es: "Hoja de Personaje 3 Vistas (Frente, Lateral, Espalda - Pose T)",
+          descEs: "Hoja técnica de diseño de personaje en 3 vistas (Frente, Lateral 90°, Espalda 180°) en Pose T simétrica.",
+          en: "3-view character turnaround sheet (Front, Side 90°, Back 180° views) in symmetrical T-pose"
+        }
       ]
     };
 
@@ -756,59 +737,135 @@ Key Requirements:
     let tabPaso2Actual = 'expresiones';
     let opcionPaso2Seleccionada = opcionesPaso2.expresiones[0];
     let filtroCategoriaActual = 'todos';
-    let textoBusqueda = '';
+    let idiomaPaso1 = 'en';
+    let idiomaPaso2 = 'en';
 
     function getPrompt2Es(opcionObj) {
-      return `PASO 2 (Manteniendo personaje de Paso 1):
+      if (opcionObj.id === "TURNAROUND_3_VIEWS") {
+        return `PASO 2 — HOJA DE DISEÑO DE PERSONAJE 3 VISTAS (Estilo ${estiloSeleccionado.nombre}):
 [Imagen de Referencia: Imagen generada previamente en Paso 1]
 
-Render 3D con consistencia 1:1 estricta del personaje en rostro, peinado, ropa y tono de piel usando (${estiloSeleccionado.refPrompt2Es}).
+CARACTERÍSTICA PRINCIPAL:
+Diseño de personaje 3D de alta fidelidad en hoja técnica de tres vistas (Frente, Lateral, Espalda) manteniendo estrictamente la estética de (${estiloSeleccionado.refPrompt2Es}).
 
-Acción / Expresión / Pose Especificada:
+Bloqueo de Identidad y Vestimenta (Consistencia 1:1 con Paso 1):
+- Conservar con precisión milimétrica la estructura facial, proporciones, tono de piel, peinado exacto y cada detalle del vestuario y accesorios del personaje del Paso 1.
+
+Especificaciones Técnicas de Renderizado (${estiloSeleccionado.nombre}):
+${estiloSeleccionado.renderSpecsEs}
+
+Distribución de la Hoja de Personaje (Pose T Simétrica):
+El personaje debe aparecer en una única imagen técnica sobre un fondo de estudio neutro y limpio en pose T simétrica:
+1. Vista Frontal: El personaje de frente mirando directamente a cámara.
+2. Vista Lateral: El personaje girado 90 grados hacia su derecha.
+3. Vista Posterior: El personaje girado 180 grados mostrando la espalda completa.`;
+      }
+
+      return `PASO 2 — VARIACIÓN DE TOMA (Estilo ${estiloSeleccionado.nombre}):
+[Imagen de Referencia: Imagen generada previamente en Paso 1]
+
+Render 3D de consistencia estricta 1:1 del mismo personaje del Paso 1, conservando íntegramente el estilo y motor de (${estiloSeleccionado.refPrompt2Es}).
+
+Nueva Acción / Expresión / Ángulo / Pose:
 -> ${opcionObj.es}
 
-Requisitos Clave de Consistencia:
-- Mantener la identidad facial 1:1 exacta de la imagen del Paso 1.
-- Renderizado 3D de estudio, iluminación idéntica y fondo neutro coherente.`;
+Bloqueo de Identidad (Consistencia 1:1 con Paso 1):
+- Replicar exactamente la geometría facial, proporciones, ojos, tono de piel, peinado, ropa y accesorios del personaje generado en el Paso 1 sin alterar su diseño.
+
+Especificaciones Técnicas de Renderizado (${estiloSeleccionado.nombre}):
+${estiloSeleccionado.renderSpecsEs}
+- Mantener la misma dirección de arte, iluminación de estudio y fondo neutro coherente del Paso 1.`;
     }
 
     function getPrompt2En(opcionObj) {
-      return `STEP 2 (Character Consistency Render):
+      if (opcionObj.id === "TURNAROUND_3_VIEWS") {
+        return `STEP 2 — 3-VIEW CHARACTER TURNAROUND SHEET (${estiloSeleccionado.nombre} Style):
 [Reference Image: 3D character image generated in Step 1]
 
-A consistent 3D character render maintaining strict 1:1 identical facial structure, hairstyle, skin tone, and outfit in (${estiloSeleccionado.refPrompt2En}).
+MAIN FEATURE:
+High-fidelity 3D character design turnaround sheet displaying three views (Front, Side, Back), strictly rendered in (${estiloSeleccionado.refPrompt2En}).
 
-Shot / Action / Pose Specification:
+Identity & Outfit Lock (1:1 Match with Step 1):
+- Preserve with millimeter precision the exact facial structure, cranial proportions, skin tone, hairstyle, and every detail of the outfit and accessories from the Step 1 reference character.
+
+Render & Studio Specifications (${estiloSeleccionado.nombre}):
+${estiloSeleccionado.renderSpecsEn}
+
+3-View Character Sheet Layout (Symmetrical T-Pose):
+The character must appear in a single technical turnaround sheet in a symmetrical T-pose against a clean, neutral studio background:
+1. Front View: The character facing forward looking directly at the camera.
+2. Side View: The character rotated 90 degrees to their right.
+3. Back View: The character rotated 180 degrees showing the full back.`;
+      }
+
+      return `STEP 2 — CHARACTER CONSISTENCY SHOT (${estiloSeleccionado.nombre} Style):
+[Reference Image: 3D character image generated in Step 1]
+
+A strict 1:1 consistent 3D character render of the exact character from Step 1, fully preserving the visual style and rendering pipeline of (${estiloSeleccionado.refPrompt2En}).
+
+New Shot / Expression / Angle / Pose:
 -> ${opcionObj.en}
 
-Key Consistency Requirements:
-- Character Identity Match: Replicate exact face geometry, eyes, hair color, and clothing from reference Step 1 image.
-- Render Quality: High-end 3D character render matching ${estiloSeleccionado.nombre} visual style, lighting setup, and seamless background.`;
+Identity & Outfit Lock (1:1 Match with Step 1):
+- Replicate the exact facial geometry, proportions, eyes, skin tone, hairstyle, clothing folds, and accessories from the Step 1 character without generic alteration.
+
+Render & Studio Specifications (${estiloSeleccionado.nombre}):
+${estiloSeleccionado.renderSpecsEn}
+- Maintain identical art direction, studio lighting setup, and seamless neutral background matching Step 1.`;
     }
 
     window.onload = function() {
       renderEstilos();
-      aktualizarUI_Paso1();
+      actualizarUI_Paso1();
       renderOpcionesPaso2();
-      aktualizarUI_Paso2();
+      actualizarUI_Paso2();
     };
 
-    function aktualizarUI_Paso1() {
+    function toggleIdiomaPrompt(paso) {
+      if (paso === 'step1') {
+        idiomaPaso1 = idiomaPaso1 === 'en' ? 'es' : 'en';
+        actualizarUI_Paso1();
+      } else {
+        idiomaPaso2 = idiomaPaso2 === 'en' ? 'es' : 'en';
+        actualizarUI_Paso2();
+      }
+    }
+
+    function actualizarUI_Paso1() {
       document.getElementById('badge-estilo-activo').innerText = estiloSeleccionado.badge;
       document.getElementById('badge-herencia-estilo').innerText = `Hereda: ${estiloSeleccionado.badge}`;
-      document.getElementById('explicacion-es-paso1').innerText = estiloSeleccionado.promptEs;
-      document.getElementById('display-prompt-step1').innerText = estiloSeleccionado.promptEn;
+      
+      const display1 = document.getElementById('display-prompt-step1');
+      const label1 = document.getElementById('label-idioma-paso1');
+      const btn1 = document.getElementById('btn-idioma-step1');
+
+      if (idiomaPaso1 === 'en') {
+        display1.innerText = estiloSeleccionado.promptEn;
+        label1.innerText = "Prompt en Inglés (Listo para IA)";
+        btn1.innerHTML = `<i class="fa-solid fa-language"></i> Explicación en español`;
+      } else {
+        display1.innerText = estiloSeleccionado.promptEs;
+        label1.innerText = "Explicación en Español (Traducción)";
+        btn1.innerHTML = `<i class="fa-solid fa-code"></i> Ver prompt en inglés`;
+      }
     }
 
-    function aktualizarUI_Paso2() {
+    function actualizarUI_Paso2() {
       document.getElementById('badge-opcion-activa-nombre').innerText = opcionPaso2Seleccionada.es;
-      document.getElementById('explicacion-es-paso2').innerText = getPrompt2Es(opcionPaso2Seleccionada);
-      document.getElementById('display-prompt-step2').innerText = getPrompt2En(opcionPaso2Seleccionada);
-    }
+      
+      const display2 = document.getElementById('display-prompt-step2');
+      const label2 = document.getElementById('label-idioma-paso2');
+      const btn2 = document.getElementById('btn-idioma-step2');
 
-    function filtrarPorTexto() {
-      textoBusqueda = document.getElementById('input-busqueda').value.toLowerCase().trim();
-      renderEstilos();
+      if (idiomaPaso2 === 'en') {
+        display2.innerText = getPrompt2En(opcionPaso2Seleccionada);
+        label2.innerText = "Prompt en Inglés (Listo para IA)";
+        btn2.innerHTML = `<i class="fa-solid fa-language"></i> Explicación en español`;
+      } else {
+        display2.innerText = getPrompt2Es(opcionPaso2Seleccionada);
+        label2.innerText = "Explicación en Español (Traducción)";
+        btn2.innerHTML = `<i class="fa-solid fa-code"></i> Ver prompt en inglés`;
+      }
     }
 
     function filtrarEstilos(cat) {
@@ -830,15 +887,8 @@ Key Consistency Requirements:
       contenedor.innerHTML = '';
 
       const filtrados = estilosPaso1.filter(item => {
-        const coincideCategoria = (filtroCategoriaActual === 'todos') || (item.categoria === filtroCategoriaActual);
-        const coincideTexto = !textoBusqueda || item.nombre.toLowerCase().includes(textoBusqueda) || item.descripcionCorta.toLowerCase().includes(textoBusqueda);
-        return coincideCategoria && coincideTexto;
+        return (filtroCategoriaActual === 'todos') || (item.categoria === filtroCategoriaActual);
       });
-
-      if (filtrados.length === 0) {
-        contenedor.innerHTML = `<div class="col-span-full py-6 text-center text-app-textMuted text-xs">No se encontraron estudios.</div>`;
-        return;
-      }
 
       filtrados.forEach(estilo => {
         const esActivo = estilo.id === estiloSeleccionado.id;
@@ -847,25 +897,25 @@ Key Consistency Requirements:
         btn.onclick = () => {
           estiloSeleccionado = estilo;
           renderEstilos();
-          aktualizarUI_Paso1();
-          aktualizarUI_Paso2();
+          actualizarUI_Paso1();
+          actualizarUI_Paso2();
         };
 
-        btn.className = `p-3 rounded-2xl text-xs font-semibold text-left border transition-all duration-150 flex flex-col justify-between gap-1 cursor-pointer ${
+        btn.className = `p-3.5 rounded-2xl text-xs font-semibold text-left border transition-all duration-150 flex flex-col justify-between gap-1.5 cursor-pointer ${
           esActivo 
             ? 'bg-app-sidebar dark:bg-indigo-600 text-white border-app-sidebar dark:border-indigo-500 shadow-sm' 
             : 'bg-white dark:bg-slate-900 border-[#EAD5C3] dark:border-app-darkBorder text-app-textDark dark:text-slate-200 hover:bg-[#FFF2E6] dark:hover:bg-slate-800'
         }`;
 
         btn.innerHTML = `
-          <div class="flex items-center justify-between w-full">
-            <span class="font-bold flex items-center gap-2 ${esActivo ? 'text-white' : 'text-app-textDark dark:text-slate-200'}">
-              <i class="fa-solid ${estilo.icon} ${esActivo ? 'text-white' : estilo.iconColor}"></i>
-              ${estilo.nombre}
+          <div class="flex items-start justify-between gap-2 w-full">
+            <span class="font-bold flex items-center gap-2 leading-snug ${esActivo ? 'text-white' : 'text-app-textDark dark:text-slate-200'}">
+              <i class="fa-solid ${estilo.icon} shrink-0 ${esActivo ? 'text-white' : estilo.iconColor}"></i>
+              <span>${estilo.nombre}</span>
             </span>
-            ${esActivo ? '<i class="fa-solid fa-circle-check text-white text-xs"></i>' : ''}
+            ${esActivo ? '<i class="fa-solid fa-circle-check text-white text-xs shrink-0 mt-0.5"></i>' : ''}
           </div>
-          <p class="text-[10px] ${esActivo ? 'text-white/80' : 'text-app-textMuted dark:text-slate-400'} line-clamp-2 font-normal">${estilo.descripcionCorta}</p>
+          <p class="text-[11px] ${esActivo ? 'text-white/85' : 'text-app-textMuted dark:text-slate-400'} leading-snug font-normal">${estilo.descripcionCorta}</p>
         `;
         contenedor.appendChild(btn);
       });
@@ -873,22 +923,28 @@ Key Consistency Requirements:
 
     function cambiarTabPaso2(tabKey) {
       tabPaso2Actual = tabKey;
-      ['expresiones', 'angulos', 'poses'].forEach(t => {
+      ['expresiones', 'angulos', 'poses', 'character_design'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
         if(t === tabKey) {
-          btn.className = "py-2 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm";
+          btn.className = "py-2 px-3 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm cursor-pointer";
         } else {
-          btn.className = "py-2 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white";
+          btn.className = "py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer";
         }
       });
       opcionPaso2Seleccionada = opcionesPaso2[tabKey][0];
       renderOpcionesPaso2();
-      aktualizarUI_Paso2();
+      actualizarUI_Paso2();
     }
 
     function renderOpcionesPaso2() {
       const contenedor = document.getElementById('grid-opciones-paso2');
       contenedor.innerHTML = '';
+
+      if (tabPaso2Actual === 'character_design') {
+        contenedor.className = "grid grid-cols-1 gap-2.5 mb-4";
+      } else {
+        contenedor.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-4";
+      }
 
       opcionesPaso2[tabPaso2Actual].forEach(item => {
         const esActivo = item.es === opcionPaso2Seleccionada.es;
@@ -897,23 +953,34 @@ Key Consistency Requirements:
         btn.onclick = () => {
           opcionPaso2Seleccionada = item;
           renderOpcionesPaso2();
-          aktualizarUI_Paso2();
+          actualizarUI_Paso2();
         };
 
-        btn.className = `p-2.5 rounded-2xl text-xs font-medium text-left border transition-all flex items-center justify-between gap-2 cursor-pointer ${
+        btn.className = `p-3 rounded-2xl text-xs font-medium text-left border transition-all flex items-center justify-between gap-2 cursor-pointer ${
           esActivo 
             ? 'bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 border-app-accentGreen dark:border-cyan-400 font-bold shadow-sm' 
             : 'bg-white dark:bg-slate-900 border-[#EAD5C3] dark:border-app-darkBorder text-app-textDark dark:text-slate-200 hover:bg-[#FFF2E6] dark:hover:bg-slate-800'
         }`;
 
-        btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs"></i>' : ''}`;
+        if (item.id === "TURNAROUND_3_VIEWS") {
+          btn.innerHTML = `
+            <div class="flex flex-col gap-1">
+              <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-person-rays"></i> ${item.es}</span>
+              <span class="text-[11px] font-normal opacity-90">${item.descEs}</span>
+            </div>
+            ${esActivo ? '<i class="fa-solid fa-check text-sm shrink-0"></i>' : ''}
+          `;
+        } else {
+          btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs shrink-0"></i>' : ''}`;
+        }
+
         contenedor.appendChild(btn);
       });
     }
 
     function copiarPrompt(paso) {
       const textoACopiar = paso === 'step1' ? estiloSeleccionado.promptEn : getPrompt2En(opcionPaso2Seleccionada);
-      navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles con todo su detalle."));
+      navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles en inglés con todo su detalle."));
     }
 
     function mostrarToast(titulo, msg) {
