@@ -99,7 +99,7 @@
               <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">1</span>
               <div>
                 <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
-                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Selecciona el motor de renderizado manteniendo la foto, pose y encuadre originales</p>
+                <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Convierte tu foto al estilo elegido respetando encuadre, pose, ropa y sujetos sin recortar</p>
               </div>
             </div>
             <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
@@ -233,7 +233,7 @@
       }
     }
 
-    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS CON ESPECIFICACIONES TÉCNICAS PARA PASO 2
+    // CATALOGO COMPLETO EXTENDIDO DE ESTUDIOS CON FIDELIDAD TOTAL A LA FOTO EN PASO 1 (SIN RECORTAR A RETRATO)
     const estilosPaso1 = [
       {
         id: "BLUR_LDR",
@@ -242,21 +242,21 @@
         badge: "Blur / Sci-Fi VFX",
         icon: "fa-skull",
         iconColor: "text-app-accentRose dark:text-rose-400",
-        descripcionCorta: "Doble digital CGI hiperrealista universal: respeta cualquier foto, pose y encuadre.",
+        descripcionCorta: "Doble digital CGI hiperrealista: respeta encuadre completo, pose y sujetos.",
         promptEs: `PASO 1 (Estilo Blur Studio / Love, Death & Robots / Secret Level):
 [Imagen de Referencia: Foto original de entrada]
 
-Un render de dobles digitales CGI hiperrealista y ultra-detallado de los sujetos y elementos exactos presentes en la foto de referencia, conservando intactas su pose, composición, encuadre y distribución espacial original, creado en el estilo cinematográfico crudo y de ciencia ficción adulta característico de Blur Studio (Love, Death & Robots / Secret Level).
+Una conversión CGI 3D hiperrealista de dobles digitales de la escena completa y de los sujetos exactos presentes en la foto de referencia, manteniendo intactos el encuadre original, la distancia de cámara, la pose y la composición sin recortar, creado en el estilo cinematográfico crudo y de ciencia ficción adulta característico de Blur Studio (Love, Death & Robots / Secret Level).
 
 Bloqueo Universal de Pose, Encuadre y Escena:
 - Respetar estrictamente la cantidad de personas, sujetos u objetos que aparecen en la foto de referencia y sus posiciones relativas exactas; no añadir, eliminar ni reorganizar figuras.
-- No alterar el encuadre de cámara, distancia focal percibida, ángulos corporales, inclinación de cabeza, dirección de la mirada, gestos ni posturas de ninguna persona de la foto original.
+- Mantener exactamente el mismo encuadre de cámara (cuerpo entero, plano medio o plano general según la foto), ángulos corporales, inclinación de cabeza, dirección de la mirada, gestos y posturas originales sin hacer zoom ni recortar.
 - Conservar el entorno y fondo espacial de la foto de referencia en su estructura y profundidad, re-iluminándolo y etalonándolo al estilo Blur Studio sin sustituirlo por escenarios o utilería inventados que contradigan la toma.
 
 Bloqueo de Identidad y Fotogrametría:
 - Conservar estrictamente la estructura craneal exacta, geometría facial, asimetría facial natural, edad, tono de piel, forma de los ojos, cejas, nariz, labios y expresiones de cada persona de la foto de referencia sin suavizado digital, intercambio de rostros ni embellecimiento genérico.
 - Mantener el peinado, raya, largo y volumen exactos de cada sujeto, traducidos a un sistema de cabello cinematográfico por hebras XGen / Ornatrix con cabellos finos sueltos (flyaway hairs).
-- Conservar fielmente la vestimenta, accesorios y objetos sostenidos o presentes en la escena original.
+- Conservar fielmente toda la vestimenta, calzado, accesorios y objetos sostenidos o presentes en la escena original.
 
 Realismo de Piel, Grooming y Materiales:
 - Shader de piel VFX de largometraje (detalle de desplazamiento TexturingXYZ / ZBrush): poros visibles, líneas finas, imperfecciones sutiles de la piel, brillo natural de grasa cutánea, Subsurface Scattering (SSS) profundo y vello fino (peach fuzz) captando la luz.
@@ -265,21 +265,21 @@ Realismo de Piel, Grooming y Materiales:
 
 Cinematografía, Iluminación y Etalonaje de Color:
 - Iluminación cinematográfica claroscuro de alto contraste renderizada en Redshift / V-Ray con flujo de color ACEScg: luz principal fría de acero o en tonos verde azulado y ámbar (teal-and-amber) combinada con luces de borde volumétricas nítidas que perfilan el cabello y los contornos sin alterar la geometría ni la pose.
-- Capturado con lente virtual anamórfico de cine de 50mm, profundidad de campo reducida, halación óptica sutil, grano fino de película de 35mm, fotograma de producción VFX 8k.`,
+- Óptica cinematográfica anamórfica virtual respetando el campo de visión exacto de la foto original, profundidad de campo natural, halación óptica sutil, grano fino de película de 35mm, fotograma de producción VFX 8k.`,
         promptEn: `STEP 1 (Blur Studio / Love, Death & Robots / Secret Level Style):
 [Reference Image: Original input photo]
 
-An ultra-detailed, hyper-realistic CGI digital double render of the exact people, subjects, and elements shown in the reference photo, keeping their exact poses, framing, camera composition, and spatial layout intact, crafted in the signature gritty, adult sci-fi cinematic style of Blur Studio (Love, Death & Robots / Secret Level).
+An ultra-detailed, hyper-realistic CGI digital double 3D render of the exact people, subjects, and full scene shown in the reference photo, strictly preserving the exact camera framing, distance, body poses, and spatial layout without cropping, crafted in the signature gritty, adult sci-fi cinematic style of Blur Studio (Love, Death & Robots / Secret Level).
 
 Universal Pose, Framing & Scene Lock:
 - Strictly preserve the exact number of people, subjects, and objects in the reference photo and their exact relative positions; do not add, remove, or rearrange figures.
-- Do NOT alter the camera framing, body angles, limb positions, head tilts, gaze direction, facial expressions, or poses of anyone in the reference photo.
+- Maintain the exact camera framing (whether full-body, medium shot, or wide framing), field of view, body angles, limb positions, head tilts, gaze direction, facial expressions, and poses of everyone in the reference photo without zooming in or cropping.
 - Keep the background environment and spatial layout consistent with the reference photo, re-lighting and color-grading it in the Blur Studio aesthetic rather than replacing it with unrelated sci-fi rooms or invented props that break the scene.
 
 Identity & Photogrammetry Lock:
 - Strictly preserve every subject's exact cranial structure, facial geometry, natural facial asymmetry, age, skin tone, eye shape, eyebrows, nose, lips, and expressions from the reference photo without digital smoothing, face-swapping, or generic beautification.
 - Retain each subject's exact hairstyle, parting, length, and volume, translated into strand-based XGen/Ornatrix cinematic hair grooming with fine stray flyaway hairs.
-- Faithfully retain all clothing, accessories, and held or nearby objects from the original photo.
+- Faithfully retain all clothing, footwear, accessories, and held or nearby objects from the original photo.
 
 Skin, Grooming & Material Realism:
 - Feature-film VFX skin shader (TexturingXYZ / ZBrush displacement detail): visible pores, fine wrinkles, subtle skin blemishes, natural oil sheen, deep Subsurface Scattering (SSS), and fine vellus hair (peach fuzz) catching the light.
@@ -288,13 +288,13 @@ Skin, Grooming & Material Realism:
 
 Cinematography, Lighting & Color Grading:
 - High-contrast chiaroscuro film lighting rendered in Redshift / V-Ray with ACEScg color pipeline: moody teal-and-amber or cool steel key light paired with crisp volumetric rim lights carving out hair strands and contours without altering pose or geometry.
-- Shot on a virtual 50mm anamorphic cinema lens, shallow depth of field, subtle optical halation, fine 35mm film grain, 8k VFX production still.`,
-        refPrompt2Es: "doble digital CGI hiperrealista de ciencia ficción adulta estilo Blur Studio (Love, Death & Robots / Secret Level) respetando estrictamente identidad, pose y encuadre de la foto",
-        refPrompt2En: "Blur Studio (Love, Death & Robots / Secret Level) hyper-realistic gritty adult sci-fi CGI digital double style strictly preserving photo identity, pose, and framing",
+- Virtual anamorphic cinema optics matching the exact field of view of the reference photo, natural depth of field, subtle optical halation, fine 35mm film grain, 8k VFX production still.`,
+        refPrompt2Es: "doble digital CGI hiperrealista de ciencia ficción adulta estilo Blur Studio (Love, Death & Robots / Secret Level) respetando estrictamente identidad y estilo del Paso 1",
+        refPrompt2En: "Blur Studio (Love, Death & Robots / Secret Level) hyper-realistic gritty adult sci-fi CGI digital double style strictly preserving Step 1 identity and visual fidelity",
         renderSpecsEs: `- Motor & Shaders: Doble digital VFX con desplazamiento TexturingXYZ / ZBrush, poros visibles, brillo cutáneo natural, SSS profundo, vello fino (peach fuzz), shaders oculares húmedos con menisco lagrimal y cabello por hebras XGen / Ornatrix.
-- Materiales, Iluminación & Cámara: Materiales táctiles con micro-tejidos, costuras y desgaste natural, iluminación claroscuro en Redshift / V-Ray (pipeline ACEScg) con luces de borde volumétricas nítidas, fondo coherente con la toma original, lente virtual anamórfico de 50mm, halación óptica, grano de 35mm y calidad VFX 8k.`,
+- Materiales, Iluminación & Cámara: Materiales táctiles con micro-tejidos, costuras y desgaste natural, iluminación claroscuro en Redshift / V-Ray (pipeline ACEScg) con luces de borde volumétricas nítidas, halación óptica sutil, grano de 35mm y calidad VFX 8k.`,
         renderSpecsEn: `- Engine & Shaders: Feature-film VFX digital double with TexturingXYZ / ZBrush displacement skin shader, visible pores, natural oil sheen, deep SSS, fine vellus hair (peach fuzz), wet ocular shaders with tear meniscus, and strand-based XGen/Ornatrix hair grooming.
-- Materials, Lighting & Camera: Tactile materials with fabric micro-weaves, stitching, and natural wear, high-contrast chiaroscuro Redshift / V-Ray lighting (ACEScg color pipeline) with crisp volumetric rim lights, background consistent with original framing, virtual 50mm anamorphic lens, subtle optical halation, 35mm film grain, and 8k VFX production quality.`
+- Materials, Lighting & Camera: Tactile materials with fabric micro-weaves, stitching, and natural wear, high-contrast chiaroscuro Redshift / V-Ray lighting (ACEScg color pipeline) with crisp volumetric rim lights, subtle optical halation, 35mm film grain, and 8k VFX production quality.`
       },
       {
         id: "FORTICHE_ARCANE",
@@ -305,26 +305,31 @@ Cinematography, Lighting & Color Grading:
         iconColor: "text-app-sidebar dark:text-cyan-400",
         descripcionCorta: "Texturas pictóricas pintadas a mano sobre geometría 3D.",
         promptEs: `PASO 1 (Estilo Fortiche Production / Arcane):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D con la estética arte-pictórico híbrido 2D/3D de Fortiche Production (Arcane) basado en la foto.
+Una escena y personajes 3D con la estética arte-pictórico híbrido 2D/3D de Fortiche Production (Arcane) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar los rasgos faciales y actitud del sujeto adaptados al estilo característico de Zaun / Piltover.
-- Sombreado 3D con texturas de pinceladas manuales de pintura al óleo (hand-painted digital brushstrokes).
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Mantener exactamente el encuadre original de la foto (sin recortar a primer plano), la cantidad de personas, sus poses, proporciones, vestimenta completa y posiciones espaciales.
+- Conservar los rasgos faciales, peinado y expresión de cada sujeto adaptados al esculpido artístico característico de Zaun / Piltover.
+
+Acabado Técnico (Fortiche / Arcane):
+- Sombreado 3D con texturas de pinceladas manuales de pintura al óleo (hand-painted digital brushstrokes) en piel, cabello, ropa y entorno.
 - Ojos expresivos dibujados con pinceladas estilizadas y sombras con trazos visibles.
-- Iluminación de alto impacto dramático, colores intensos y bordes con pinceladas expresivas.
-- Fondo conceptual de ilustración digital 3D.`,
+- Iluminación de alto impacto dramático, colores intensos, bordes con luces de contorno gráficas y fondo coherente con la foto original pintado en estilo conceptual 3D.`,
         promptEn: `STEP 1 (Fortiche Production / Arcane Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-An iconic 2D/3D hybrid painterly animated character based on the reference photo, rendered in Fortiche Production style (Arcane: League of Legends).
+An iconic 2D/3D hybrid painterly animated scene and characters faithfully based on the reference photo, rendered in Fortiche Production style (Arcane: League of Legends).
 
-Key Requirements:
-- Preserve subject's core facial identity, face proportions, and hairstyle with stylized Arcane artistic sculpture.
-- Distinctive painterly hand-painted digital textures: visible oil brushstrokes on skin, clothes, and hair geometry.
+Pose, Framing & Likeness Lock:
+- Strictly preserve the exact camera framing of the reference photo (do not crop into a close-up), the exact number of people, body poses, proportions, full outfits, and spatial layout.
+- Preserve each subject's core facial identity, expression, face proportions, and hairstyle with stylized Arcane artistic sculpture.
+
+Technical Finish (Fortiche / Arcane):
+- Distinctive painterly hand-painted digital textures: visible oil brushstrokes on skin, clothes, hair geometry, and environment.
 - Highly dramatic directional key lighting, vivid painterly shadows, rich color palette, and graphic rim highlights.
-- Stylized cloth with tactile paint textures, elegant concept art background.`,
+- Stylized cloth with tactile paint textures, keeping the original background composition translated into painterly 3D concept art.`,
         refPrompt2Es: "estilo híbrido 2D/3D de pintura manual Fortiche Production (Arcane)",
         refPrompt2En: "Fortiche Production (Arcane) 2D/3D hybrid painterly animated style",
         renderSpecsEs: `- Motor & Shaders: Esculpido 3D estilizado de Arcane con texturas pictóricas de pinceladas al óleo pintadas a mano sobre piel, cabello y ropa.
@@ -341,26 +346,29 @@ Key Requirements:
         iconColor: "text-app-accentYellow dark:text-amber-400",
         descripcionCorta: "Animación 3D Cel-shade inspirada en grabados Ukiyo-e.",
         promptEs: `PASO 1 (Estilo Samurái de ojos azules / Ukiyo-e 3D):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D cel-shaded estilizado en el arte de Samurái de ojos azules (Blue Eye Samurai) basado en la foto.
+Una escena y personajes 3D cel-shaded estilizados en el arte de Samurái de ojos azules (Blue Eye Samurai) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar rasgos del sujeto fusionados con la estética de grabado japonés tradicional en madera (Ukiyo-e).
-- Sombreado Cel-Shade 3D refinado con trazos de tinta de caligrafía japonesa en los bordes.
-- Texturas de tela de kimonos o ropajes antiguos de época con sombreado plano y elegante.
-- Iluminación dramática estilo cine de samuráis tradicional.
-- Fondo neutro con textura de papel washi o gradiente atmosférico.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, vestimenta y distribución espacial.
+- Conservar los rasgos faciales y peinados de la foto fusionados con la estética de grabado japonés tradicional en madera (Ukiyo-e).
+
+Acabado Técnico (Ukiyo-e 3D):
+- Sombreado Cel-Shade 3D refinado con trazos sutiles de tinta de caligrafía japonesa en los contornos.
+- Texturas de tela con sombreado gráfico plano y elegante, iluminación dramática estilo cine tradicional japonés y textura sutil de papel washi manteniendo el fondo de la foto original.`,
         promptEn: `STEP 1 (Blue Eye Samurai Ukiyo-e 3D Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A striking stylized 3D cel-shaded character based on the reference photo, rendered in Blue Eye Samurai animation style inspired by traditional Japanese Ukiyo-e woodblock prints.
+A striking stylized 3D cel-shaded scene and characters faithfully based on the reference photo, rendered in Blue Eye Samurai animation style inspired by traditional Japanese Ukiyo-e woodblock prints.
 
-Key Requirements:
-- Retain recognizable facial likeness of the subject while rendering through Japanese woodblock art aesthetics.
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (without cropping), exact number of subjects, poses, gestures, outfits, and spatial composition.
+- Retain recognizable facial likeness and hairstyles of the subjects while rendering through Japanese woodblock art aesthetics.
+
+Technical Finish (Ukiyo-e 3D):
 - Elegant 3D cel-shading with subtle calligraphic ink linework accents along geometry contours.
-- High-contrast dramatic samurai cinema lighting, vivid deep color tones.
-- Traditional textile textures with flat graphic shading, seamless atmospheric background with subtle paper texture.`,
+- High-contrast dramatic samurai cinema lighting, vivid deep color tones, flat graphic textile shading, and subtle washi paper texture preserving the original scene backdrop.`,
         refPrompt2Es: "estilo 3D Cel-shade Ukiyo-e Samurái de Ojos Azules (Blue Eye Samurai)",
         refPrompt2En: "Blue Eye Samurai stylized Ukiyo-e woodblock 3D cel-shaded style",
         renderSpecsEs: `- Motor & Shaders: Sombreado Cel-Shade 3D refinado con estética de grabado japonés Ukiyo-e y trazos sutiles de tinta caligráfica en los contornos.
@@ -377,26 +385,29 @@ Key Requirements:
         iconColor: "text-app-sidebar dark:text-purple-400",
         descripcionCorta: "Estética 3D retro estilo juego de los 90 y terror indie.",
         promptEs: `PASO 1 (Estilo Glitch Productions / The Amazing Digital Circus):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D caricaturesco y surrealista estilo Glitch Productions (El asombroso circo digital) basado en la foto.
+Una escena y personajes 3D estilizados en formato CGI retro estilo Glitch Productions (El asombroso circo digital) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar los elementos clave del sujeto pero simplificados en una figura estilizada de videojuego 3D CGI de finales de los 90.
-- Expresión facial intensa o cómica con ojos grandes y geométricos.
-- Renderizado 3D de juguetes plásticos/polígonos limpios pero con un tono inquietante y colorido.
-- Iluminación de estudio saturada pero con sombras marcadas.
-- Fondo de estudio virtual retro o espacio de prueba 3D.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Mantener exactamente el encuadre completo de la foto original (sin recortar), cantidad de personas, poses, vestimenta y posiciones relativas.
+- Conservar los elementos clave del rostro, peinado y expresión de cada sujeto traducidos a modelos 3D estilizados de videojuego CGI de finales de los 90.
+
+Acabado Técnico (Glitch Retro 90s CGI):
+- Ojos expresivos y geométricos manteniendo la expresión de la foto.
+- Renderizado 3D con superficies plásticas lisas tipo juguete, iluminación saturada de estudio virtual retro con sombras marcadas y entorno original adaptado a estética CGI 90s.`,
         promptEn: `STEP 1 (Glitch Productions / The Amazing Digital Circus Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A stylized retro 90s CGI 3D character based on the reference photo, created in Glitch Productions style (The Amazing Digital Circus).
+A stylized retro 90s CGI 3D scene and characters faithfully based on the reference photo, created in Glitch Productions style (The Amazing Digital Circus).
 
-Key Requirements:
-- Translate subject's facial traits into a simplified, slightly surreal 90s PC game CGI toy-like 3D model.
-- Expressive, geometric eyes with existential/playful cartoon expressions.
-- Clean smooth plastic/toy surface shaders, saturated retro lighting, sharp ambient shadow details.
-- Surreal 3D digital void background or colorful retro studio backdrop.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (do not crop), exact number of subjects, body poses, outfits, and spatial layout.
+- Translate each subject's facial traits, hairstyle, and expression into simplified, slightly surreal 90s PC game CGI toy-like 3D models.
+
+Technical Finish (Glitch Retro 90s CGI):
+- Expressive, geometric eyes matching the subjects' expressions.
+- Clean smooth plastic/toy surface shaders, saturated retro lighting, sharp ambient shadow details, and original background adapted to a colorful 90s 3D CGI aesthetic.`,
         refPrompt2Es: "estilo 3D CGI retro 90s Glitch Productions (The Amazing Digital Circus)",
         refPrompt2En: "Glitch Productions (The Amazing Digital Circus) stylized retro 90s CGI 3D style",
         renderSpecsEs: `- Motor & Shaders: Modelo 3D estilo CGI retro de finales de los 90 con superficies plásticas lisas tipo juguete y geometría limpia.
@@ -413,25 +424,29 @@ Key Requirements:
         iconColor: "text-app-accentRose dark:text-rose-500",
         descripcionCorta: "Cinemáticas oscuras y fotorrealistas para juegos AAA.",
         promptEs: `PASO 1 (Estilo Digic Pictures / Cinemática Fantasía Oscura):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un render 3D hiperrealista de fantasía oscura y estética de videojuego AAA estilo Digic Pictures basado en la foto.
+Un render 3D hiperrealista de estética cinematográfica AAA estilo Digic Pictures basado fielmente en la escena completa de la foto de referencia.
 
-Requisitos:
-- Fidelidad 1:1 al rostro del sujeto con arrugas de expresión, cicatrices y tono de piel realista.
-- Sombreado de piel PBR con poros micro, cabello realista y ropa con armaduras/telas detalladas.
-- Iluminación cinematográfica oscura, luces de vela, fuego o neblina atmosférica.
-- Fondo de estudio o atmósfera de fantasía medieval oscura en penumbra.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar estrictamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, vestimenta original y distribución espacial.
+- Fidelidad 1:1 a los rostros de la referencia con micro-poros, líneas de expresión, tono de piel realista y cabello natural.
+
+Acabado Técnico (Digic Pictures):
+- Sombreado de piel PBR ultra-detallado con reflejos realistas en el iris y simulación de cabello por hebras.
+- Ropa y objetos de la foto traducidos con texturas táctiles desgastadas de alta resolución, iluminación cinematográfica oscura con luces cálidas/frías dramáticas y atmósfera sutil manteniendo la estructura del fondo original.`,
         promptEn: `STEP 1 (Digic Pictures Dark Cinematic Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A photorealistic dark fantasy 3D game cinematic render based on the reference photo, created in Digic Pictures studio standards (as seen in The Witcher 3 and Assassin's Creed cinematics).
+A photorealistic 3D AAA game cinematic render faithfully based on the full scene in the reference photo, created in Digic Pictures studio standards (as seen in The Witcher 3 and Assassin's Creed cinematics).
 
-Key Requirements:
-- 1:1 photorealistic facial likeness, micro skin pore details, realistic facial hair, and realistic iris reflections.
-- Ultra-detailed PBR medieval or dark tactical leather/metal attire with realistic scratches and weathering.
-- Dark atmospheric key lighting: torchlight glow, moody shadows, fog volume, cinematic grading.
-- Deep moody studio environment with narrow depth of field.`,
+Pose, Framing & Likeness Lock:
+- Strictly preserve the exact camera framing of the reference photo (no cropping), exact number of people, poses, gestures, original outfits, and spatial arrangement.
+- 1:1 photorealistic facial likeness for every subject, preserving micro skin pore details, natural facial lines, skin tone, and realistic iris reflections.
+
+Technical Finish (Digic Pictures):
+- Ultra-detailed PBR skin and garment shaders with realistic fabric grain, stitching, and subtle weathering.
+- Dark atmospheric key lighting with moody shadows, subtle volumetric atmosphere, and cinematic color grading consistent with the original scene layout.`,
         refPrompt2Es: "estilo de cinemática 3D fotorrealista oscura Digic Pictures (AAA Dark Fantasy)",
         refPrompt2En: "Digic Pictures photorealistic AAA dark fantasy game cinematic 3D style",
         renderSpecsEs: `- Motor & Shaders: Renderizado CGI cinematográfico AAA con piel PBR ultra-detallada, micro-poros, vello facial realista y reflejos naturales en el iris.
@@ -448,27 +463,30 @@ Key Requirements:
         iconColor: "text-app-sidebar dark:text-indigo-400",
         descripcionCorta: "Cartoon tradicional avanzado (Inside Out, Soul, Toy Story).",
         promptEs: `PASO 1 (Estilo Pixar Animation Studios):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D con la estética icónica de animación Pixar Animation Studios basado en la foto del sujeto.
+Una escena y personajes 3D con la estética icónica de animación Pixar Animation Studios basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar los rasgos faciales distintivos, tono de piel, estructura visual y peinado del sujeto.
-- Expresión facial súper carismática, ojos grandes, expresivos y cristalinos con reflejos de luz de estudio.
-- Renderizado 3D de alta gama con Sub-Surface Scattering (SSS) en la piel.
-- Iluminación cinematográfica suave y cálida.
-- Fondo de estudio pulido con gradiente suave.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Mantener exactamente el encuadre original de la foto (cuerpo entero, plano medio o plano general sin recortar), la cantidad de personas, poses, gestos, vestimenta completa y composición espacial.
+- Conservar los rasgos faciales distintivos, tono de piel, expresión y peinado de cada sujeto adaptados al diseño estilizado de Pixar.
+
+Acabado Técnico (Pixar 3D):
+- Ojos expresivos y cristalinos con reflejos de luz de estudio, manteniendo la dirección de mirada original.
+- Renderizado 3D de alta gama con Subsurface Scattering (SSS) suave en la piel y texturas de tela táctiles estilizadas.
+- Iluminación cinematográfica suave y cálida manteniendo la estructura del fondo original.`,
         promptEn: `STEP 1 (Pixar Animation Studios Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A highly charming 3D animated character based on the reference photo, crafted in the signature Pixar Animation Studios feature film style (as seen in Inside Out and Soul).
+A highly charming 3D animated scene and characters faithfully based on the reference photo, crafted in the signature Pixar Animation Studios feature film style (as seen in Inside Out and Soul).
 
-Key Requirements:
-- Faithfully preserve key facial features, face shape, natural hair texture, and distinct characteristics from the reference photo.
-- Highly expressive visual design: prominent glossy luminous eyes, warm appealing facial proportions.
-- World-class 3D render with soft subsurface scattering (SSS) skin shader, detailed stylized garment materials.
-- Warm cinematic studio lighting, key light highlights, soft volumetric glow.
-- Clean seamless studio backdrop with subtle color gradient blur.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (whether full-body, medium, or wide shot without cropping), exact number of people, body poses, gestures, full outfits, and spatial composition.
+- Faithfully preserve key facial features, expressions, skin tones, face shapes, and natural hair textures from the reference photo.
+
+Technical Finish (Pixar 3D):
+- Highly expressive visual design with prominent glossy luminous eyes and warm appealing facial proportions matching the original gaze.
+- World-class 3D render with soft subsurface scattering (SSS) skin shader, detailed stylized garment materials, warm cinematic studio lighting, and background structure consistent with the reference photo.`,
         refPrompt2Es: "estilo de animación cinematográfica Pixar Animation Studios 3D",
         refPrompt2En: "Pixar Animation Studios feature film 3D style (Inside Out / Soul aesthetic)",
         renderSpecsEs: `- Motor & Shaders: Renderizado Pixar RenderMan con Subsurface Scattering (SSS) suave en la piel, ojos grandes cristalinos y tejidos estilizados con micro-trama.
@@ -485,26 +503,29 @@ Key Requirements:
         iconColor: "text-app-accentYellow dark:text-amber-400",
         descripcionCorta: "Snappy, poses cómicas y caricatura dinámica (Shrek).",
         promptEs: `PASO 1 (Estilo DreamWorks Animation):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D dinámico y carismático al estilo distintivo de DreamWorks Animation basado en la foto.
+Una escena y personajes 3D dinámicos y carismáticos al estilo distintivo de DreamWorks Animation basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar fielmente el rostro, peinado y esencia de la foto de referencia.
-- Caricatura estilizada con micro-expresiones dinámicas y actitud carismática.
-- Renderizado 3D rico en textura y sombras suaves.
-- Iluminación de alto contraste cinematográfico y colores vibrantes.
-- Fondo neutro estilo concepto de producción 3D.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, ropa y distribución espacial.
+- Conservar fielmente los rostros, peinados y expresiones de la foto de referencia con esculpido estilizado DreamWorks.
+
+Acabado Técnico (DreamWorks 3D):
+- Caricatura 3D estilizada con micro-expresiones expresivas, texturas táctiles ricas en ropa y cabello, y sombras suaves.
+- Iluminación cinematográfica vibrante de alto contraste y colores vivos manteniendo el entorno de la foto original.`,
         promptEn: `STEP 1 (DreamWorks Animation Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A dynamic and charismatic 3D animated character based on the reference photo, rendered in the distinctive DreamWorks Animation style (Shrek, Puss in Boots: The Last Wish).
+A dynamic and charismatic 3D animated scene and characters faithfully based on the reference photo, rendered in the distinctive DreamWorks Animation style (Shrek, Puss in Boots: The Last Wish).
 
-Key Requirements:
-- Accurately retain facial identity, key expression cues, skin tone, and hair structure from reference photo.
-- Snappy dynamic character appeal, expressive asymmetrical facial features.
-- Premium 3D cartoon render, rich material tactile textures, sharp highlights.
-- Vibrant cinematic key lighting with energetic color grade.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (no cropping), exact number of subjects, body poses, gestures, outfits, and spatial layout.
+- Accurately retain facial identity, key expression cues, skin tone, and hair structure from the reference photo.
+
+Technical Finish (DreamWorks 3D):
+- Snappy stylized character appeal with expressive facial sculpting, rich material tactile textures, and sharp highlights.
+- Vibrant cinematic key lighting with energetic color grading while keeping the background composition consistent with the original photo.`,
         refPrompt2Es: "estilo de animación dinámica DreamWorks Animation 3D",
         refPrompt2En: "DreamWorks Animation dynamic snappy 3D feature style",
         renderSpecsEs: `- Motor & Shaders: Caricatura 3D estilizada con proporciones expresivas, micro-expresiones dinámicas y texturas táctiles ricas.
@@ -521,24 +542,29 @@ Key Requirements:
         iconColor: "text-app-sidebar dark:text-purple-400",
         descripcionCorta: "Estilo Híbrido 3D/Comic (Spider-Verse).",
         promptEs: `PASO 1 (Estilo Sony Pictures Animation / Spider-Verse):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D estilizado en formato cómic híbrido estilo Sony Pictures Animation (Spider-Verse) basado en la foto.
+Una escena y personajes 3D estilizados en formato cómic híbrido estilo Sony Pictures Animation (Spider-Verse) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar los rasgos faciales del sujeto mezclados con líneas de tinta dibujadas a mano.
-- Texturas con tramas de puntos de imprenta (halftone patterns) y desenfoque estilo cómic.
-- Iluminación neo-noir estilizada con colores saturados y bordes acentuados.
-- Fondo conceptual de ilustración 3D.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Mantener exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, ropa y composición espacial.
+- Conservar los rasgos faciales, expresiones y peinados de los sujetos mezclados con líneas de tinta dibujadas a mano sobre geometría 3D.
+
+Acabado Técnico (Sony Spider-Verse):
+- Estética de cómic híbrido: tramas de puntos de imprenta (halftone patterns), achurados dibujados a mano y sutil aberración cromática.
+- Iluminación gráfica audaz de alto contraste, luces de borde cromáticas y fondo de la foto original estilizado como arte conceptual de cómic 3D.`,
         promptEn: `STEP 1 (Sony Pictures Animation / Spider-Verse Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-An iconic stylized 3D hybrid comic-book character based on the reference photo, rendered in Sony Pictures Animation style (Spider-Man: Into the Spider-Verse).
+An iconic stylized 3D hybrid comic-book scene and characters faithfully based on the reference photo, rendered in Sony Pictures Animation style (Spider-Man: Into the Spider-Verse).
 
-Key Requirements:
-- Preserve subject's face geometry while applying stylized 2D ink line accents over 3D model.
-- Comic book aesthetics: subtle halftone dot patterns, hand-drawn hatch marks, chromatic aberration.
-- Bold graphic art direction with high contrast directional light and rim lighting.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (do not crop), exact number of subjects, poses, gestures, outfits, and spatial layout.
+- Preserve each subject's face geometry, expression, and hairstyle while applying stylized 2D ink line accents over 3D models.
+
+Technical Finish (Sony Spider-Verse):
+- Comic book aesthetics: subtle halftone dot patterns, hand-drawn hatch marks, and subtle chromatic aberration.
+- Bold graphic art direction with high-contrast directional light, vibrant rim lighting, and original background stylized into 3D comic illustration.`,
         refPrompt2Es: "estilo Cómic 3D híbrido Sony Pictures Animation (Spider-Verse)",
         refPrompt2En: "Sony Pictures Animation (Spider-Verse) stylized 3D hybrid comic-book style",
         renderSpecsEs: `- Motor & Shaders: Modelo 3D híbrido con líneas de tinta 2D dibujadas a mano, tramas de semitonos (halftone dots) y sombreado tipo cómic.
@@ -555,25 +581,29 @@ Key Requirements:
         iconColor: "text-app-accentGreen dark:text-cyan-400",
         descripcionCorta: "Cartoon estilizado y musical clásico (Frozen, Moana).",
         promptEs: `PASO 1 (Estilo Walt Disney Animation Studios):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D con el encanto visual clásico de Walt Disney Animation Studios basado en la foto.
+Una escena y personajes 3D con el encanto visual clásico de Walt Disney Animation Studios basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar rasgos clave del rostro, ropa y forma de peinado.
-- Proporciones suavizadas, ojos brillantes y expresividad emotiva.
-- Sombreado 3D de alta precisión con piel aterciopelada.
-- Iluminación poética y cálida.
-- Fondo estilo estudio con gradiente.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, vestimenta y posiciones espaciales.
+- Conservar rasgos clave de cada rostro, expresión, tono de piel y forma de peinado.
+
+Acabado Técnico (Disney 3D):
+- Proporciones estilizadas elegantes, ojos brillantes y expresivos manteniendo la mirada original.
+- Sombreado 3D de alta precisión con piel aterciopelada (SSS), tejidos detallados e iluminación poética y cálida coherente con la escena original.`,
         promptEn: `STEP 1 (Walt Disney Animation Studios Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-An enchanting 3D animated character based on the reference photo, crafted in Walt Disney Animation Studios style (Frozen, Moana, Encanto).
+An enchanting 3D animated scene and characters faithfully based on the reference photo, crafted in Walt Disney Animation Studios style (Frozen, Moana, Encanto).
 
-Key Requirements:
-- Maintain faithful facial likeness and hairstyle traits from reference image.
-- Soft elegant character design, expressive glossy eyes.
-- Premium 3D surface shaders, soft velvet skin finish, rich detailed cloth weave patterns.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (no cropping), exact number of subjects, poses, gestures, outfits, and spatial composition.
+- Maintain faithful facial likeness, expressions, and hairstyle traits from the reference image.
+
+Technical Finish (Disney 3D):
+- Soft elegant character design with expressive glossy eyes matching the original gaze.
+- Premium 3D surface shaders, soft velvet skin finish, rich detailed cloth weave patterns, and warm poetic lighting consistent with the original scene.`,
         refPrompt2Es: "estilo cinematográfico Walt Disney Animation Studios 3D",
         refPrompt2En: "Walt Disney Animation Studios feature 3D style (Frozen / Encanto aesthetic)",
         renderSpecsEs: `- Motor & Shaders: Diseño 3D elegante y suavizado con piel aterciopelada (SSS), ojos expresivos brillantes y tejidos detallados.
@@ -590,24 +620,28 @@ Key Requirements:
         iconColor: "text-app-accentGreen dark:text-emerald-400",
         descripcionCorta: "Snappy extremo y humorístico (Minions, Mario).",
         promptEs: `PASO 1 (Estilo Illumination Mac Guff):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje 3D caricaturizado estilo Illumination Mac Guff (Super Mario Bros / Minions) basado en la foto.
+Una escena y personajes 3D caricaturizados estilo Illumination Mac Guff (Super Mario Bros / Minions) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Conservar rasgos del sujeto simplificados en una silueta limpia.
-- Expresión cómica, ojos grandes y formas geométricas pulidas.
-- Sombreado 3D limpio de alto brillo y colores saturados.
-- Fondo de estudio brillante.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Mantener exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, ropa y distribución espacial.
+- Conservar rasgos faciales, peinados y expresiones de los sujetos simplificados en siluetas cartoon limpias y atractivas.
+
+Acabado Técnico (Illumination 3D):
+- Ojos grandes y expresivos, formas geométricas pulidas y redondeadas.
+- Sombreado 3D ultra-limpio de alto brillo, colores saturados e iluminación brillante coherente con la escena original.`,
         promptEn: `STEP 1 (Illumination Mac Guff Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A clean, brightly colored 3D caricatured character based on the reference photo, rendered in Illumination Entertainment style (The Super Mario Bros. Movie).
+A clean, brightly colored 3D caricatured scene and characters faithfully based on the reference photo, rendered in Illumination Entertainment style (The Super Mario Bros. Movie).
 
-Key Requirements:
-- Preserve primary facial shape while simplifying geometry into clean appealing cartoon shapes.
-- Playful expression, clean bold cartoon eyes, smooth rounded character design.
-- Crisp ultra-clean 3D render, vibrant saturated lighting.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (no cropping), exact number of subjects, poses, gestures, outfits, and spatial layout.
+- Preserve primary facial shapes, expressions, and hairstyles while simplifying geometry into clean appealing cartoon shapes.
+
+Technical Finish (Illumination 3D):
+- Expressive bold cartoon eyes, smooth rounded character design, crisp ultra-clean 3D render, and vibrant saturated lighting consistent with the original scene.`,
         refPrompt2Es: "estilo caricatura limpia Illumination Mac Guff 3D",
         refPrompt2En: "Illumination Entertainment / Mac Guff clean 3D cartoon style",
         renderSpecsEs: `- Motor & Shaders: Geometría cartoon limpia y redondeada con superficies pulidas, ojos expresivos grandes y materiales saturados.
@@ -624,24 +658,29 @@ Key Requirements:
         iconColor: "text-app-accentRose dark:text-rose-400",
         descripcionCorta: "Hiperrealismo CGI cinematográfico y MoCap (Avatar).",
         promptEs: `PASO 1 (Estilo Wētā FX / ILM Hiperrealismo):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un render 3D hiperrealista CGI de calidad cinematográfica estilo Wētā FX / ILM basado en la foto.
+Un render 3D hiperrealista CGI de calidad cinematográfica estilo Wētā FX / ILM basado fielmente en la escena completa de la foto de referencia.
 
-Requisitos:
-- Conservación 1:1 de poros, micro-arrugas, imperfecciones de la piel y ojos fotorrealistas.
-- Sombreado PBR con física SSS avanzada.
-- Simulación física de cabello pelo por pelo.
-- Iluminación cinematográfica de estudio fotográfico real.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar estrictamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, vestimenta completa y posiciones espaciales.
+- Conservación 1:1 de estructura facial, poros, micro-arrugas, imperfecciones naturales de la piel, expresiones y ojos fotorrealistas de cada sujeto.
+
+Acabado Técnico (Wētā FX / ILM):
+- Sombreado PBR de ultra alta fidelidad con física Subsurface Scattering (SSS) avanzada y simulación física de cabello pelo por pelo.
+- Texturas táctiles realistas en ropa y objetos, iluminación cinematográfica fotorrealista con sombras trazadas por rayos (ray-traced shadows) y entorno coherente con la toma original.`,
         promptEn: `STEP 1 (Wētā FX / ILM Photorealistic CGI Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A photorealistic 3D cinematic CGI character render of the subject in the reference image, created in Wētā FX / ILM standards (Avatar: The Way of Water).
+A photorealistic 3D cinematic CGI render faithfully based on the full scene in the reference photo, created in Wētā FX / ILM standards (Avatar: The Way of Water).
 
-Key Requirements:
-- 1:1 photorealistic digital double likeness: accurate facial structure, micro-skin pores, realistic iris reflections.
-- Ultra-high fidelity PBR shader with advanced SSS skin glow and physical hair strand simulation.
-- Photorealistic studio key light setup, realistic ray-traced shadows.`,
+Pose, Framing & Likeness Lock:
+- Strictly preserve the exact camera framing of the reference photo (no cropping), exact number of people, poses, gestures, full outfits, and spatial arrangement.
+- 1:1 photorealistic digital double likeness for every subject: accurate facial structure, expressions, micro-skin pores, and realistic iris reflections.
+
+Technical Finish (Wētā FX / ILM):
+- Ultra-high fidelity PBR shader with advanced SSS skin glow, physical hair strand simulation, and realistic fabric/material textures.
+- Photorealistic cinematic lighting with realistic ray-traced shadows and background layout consistent with the original photo.`,
         refPrompt2Es: "estilo Hiperrealismo CGI cinematográfico Wētā FX / ILM",
         refPrompt2En: "Wētā FX / ILM photorealistic cinematic digital double CGI style",
         renderSpecsEs: `- Motor & Shaders: Doble digital fotorrealista con PBR de ultra alta fidelidad, física SSS avanzada en piel, micro-poros y simulación física pelo por pelo.
@@ -658,13 +697,14 @@ Key Requirements:
         iconColor: "text-app-accentGreen dark:text-teal-400",
         descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.5 (Lumen).",
         promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / Unreal Engine 5):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un retrato de personaje de videojuego 3D high-poly del sujeto exacto de la foto de referencia, renderizado en estética Sims 4 Alpha CC de alta gama dentro de Unreal Engine 5.5 (renderizado en tiempo real con Lumen).
+Un render 3D high-poly de la escena completa y de los sujetos exactos de la foto de referencia, en estética Sims 4 Alpha CC de alta gama dentro de Unreal Engine 5.5 (renderizado en tiempo real con Lumen), manteniendo intactos el encuadre y la pose original sin recortar.
 
-Bloqueo de Identidad y Geometría:
-- Mantener estrictamente la geometría facial exacta, proporciones craneales, distancia interpupilar, tono de piel y expresión natural de la imagen de referencia sin embellecimiento genérico.
-- Conservar el peinado exacto, línea del cabello y cada detalle de la vestimenta original, incluyendo pliegues de tela, costuras y accesorios.
+Bloqueo de Pose, Encuadre e Identidad:
+- Respetar estrictamente el encuadre completo de la foto original (cuerpo entero, plano medio o plano general sin hacer zoom ni recortar), la cantidad de personas, sus poses, gestos y posiciones espaciales.
+- Mantener estrictamente la geometría facial exacta, proporciones craneales, distancia interpupilar, tono de piel y expresión natural de cada sujeto sin embellecimiento genérico.
+- Conservar el peinado exacto, línea del cabello y cada detalle de la vestimenta original, incluyendo pliegues de tela, costuras, calzado y accesorios.
 
 Materiales, Shaders y Cabello:
 - Shader de piel PBR estilizado-realista con Subsurface Scattering (SSS) sutil, micro-textura fina de piel y brillos especulares suaves.
@@ -673,16 +713,17 @@ Materiales, Shaders y Cabello:
 - Texturas de tela en alta resolución con mapas normales realistas y detalle de costuras.
 
 Iluminación y Configuración de Cámara:
-- Iluminación de estudio CAS (Create-A-Sim) de tres puntos: luz principal suave difusa, luz de relleno delicada y una luz de borde fría sutil para separar la silueta y las hebras del cabello del fondo.
-- Lente virtual de retrato de 85mm, profundidad de campo reducida, fondo de estudio neutro limpio, oclusión ambiental nítida, renderizado en tiempo real con anti-aliasing y claridad de texturas 8k.`,
+- Iluminación tipo CAS (Create-A-Sim) de tres puntos: luz principal suave difusa, luz de relleno delicada y una luz de borde fría sutil para separar las siluetas y las hebras del cabello del fondo.
+- Óptica virtual respetando el campo de visión exacto de la foto original, oclusión ambiental nítida, entorno coherente con la toma original, renderizado en tiempo real con anti-aliasing y claridad de texturas 8k.`,
         promptEn: `STEP 1 (Sims 4 Alpha CC / Unreal Engine 5 Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A high-poly 3D video game character portrait of the exact subject in the reference photo, rendered in high-end Sims 4 Alpha CC aesthetic inside Unreal Engine 5.5 (Lumen real-time rendering).
+A high-poly 3D video game character render of the exact subjects and full scene in the reference photo, rendered in high-end Sims 4 Alpha CC aesthetic inside Unreal Engine 5.5 (Lumen real-time rendering), strictly preserving the original camera framing and poses without cropping.
 
-Identity & Geometry Lock:
-- Strictly maintain the subject's exact facial geometry, cranial proportions, interpupillary distance, skin tone, and natural expression from the reference image without generic beautification.
-- Preserve the exact hairstyle, hairline, and every detail of the original outfit, including fabric folds, seams, and accessories.
+Pose, Framing & Identity Lock:
+- Strictly keep the exact camera framing of the reference photo (whether full-body, medium, or wide shot without zooming in or cropping), the exact number of people, body poses, gestures, and spatial layout.
+- Strictly maintain each subject's exact facial geometry, cranial proportions, interpupillary distance, skin tone, and natural expression from the reference image without generic beautification.
+- Preserve the exact hairstyles, hairlines, and every detail of the original outfits, including fabric folds, seams, footwear, and accessories.
 
 Materials, Shaders & Hair:
 - Stylized-realistic PBR skin shader with subtle Subsurface Scattering (SSS), fine micro-skin texture, and soft specular highlights.
@@ -691,14 +732,14 @@ Materials, Shaders & Hair:
 - High-resolution fabric textures with realistic normal maps and stitching detail.
 
 Lighting & Camera Setup:
-- Studio CAS (Create-A-Sim) three-point lighting setup: soft diffused key light, gentle fill light, and a subtle cool rim light to separate the silhouette and hair strands from the background.
-- Virtual 85mm portrait lens, shallow depth of field, clean neutral studio backdrop, crisp ambient occlusion, anti-aliased real-time viewport render, 8k texture clarity.`,
+- CAS (Create-A-Sim) three-point lighting setup: soft diffused key light, gentle fill light, and a subtle cool rim light to separate silhouettes and hair strands from the background.
+- Virtual camera matching the exact field of view of the reference photo, crisp ambient occlusion, background layout consistent with the original scene, anti-aliased real-time viewport render, 8k texture clarity.`,
         refPrompt2Es: "estilo Sims 4 Alpha CC de alta gama en Unreal Engine 5.5 (renderizado en tiempo real con Lumen)",
         refPrompt2En: "high-end Sims 4 Alpha CC aesthetic inside Unreal Engine 5.5 (Lumen real-time rendering)",
         renderSpecsEs: `- Motor & Shaders: Unreal Engine 5.5 (Lumen), piel PBR estilizada-realista con SSS sutil, pestañas 3D individuales, reflejos corneales con catchlights y tarjetas de cabello Alpha (Alpha hair cards) en capas con brillo anisotrópico.
-- Iluminación & Cámara: Iluminación de estudio CAS de tres puntos (luz principal difusa, relleno suave y rim light frío sutil), lente virtual de 85mm, oclusión ambiental nítida y claridad 8k.`,
+- Iluminación & Cámara: Iluminación de estudio CAS de tres puntos (luz principal difusa, relleno suave y rim light frío sutil), oclusión ambiental nítida y claridad 8k.`,
         renderSpecsEn: `- Engine & Shaders: Unreal Engine 5.5 (Lumen real-time rendering), stylized-realistic PBR skin shader with subtle SSS, crisp 3D individual eyelashes, glossy corneal catchlights, and high-density layered Alpha hair cards with anisotropic sheen.
-- Lighting & Camera: Studio CAS (Create-A-Sim) three-point lighting (soft diffused key, gentle fill, subtle cool rim light), virtual 85mm lens, crisp ambient occlusion, and 8k texture clarity.`
+- Lighting & Camera: Studio CAS (Create-A-Sim) three-point lighting (soft diffused key, gentle fill, subtle cool rim light), crisp ambient occlusion, and 8k texture clarity.`
       },
       {
         id: "ANIME_3D_CG",
@@ -709,24 +750,28 @@ Lighting & Camera Setup:
         iconColor: "text-app-accentYellow dark:text-sky-400",
         descripcionCorta: "Anime 3D CG de alta gama (Genshin Impact).",
         promptEs: `PASO 1 (Estilo Anime 3D CG):
-[Imagen de Referencia: Foto del sujeto]
+[Imagen de Referencia: Foto original de entrada]
 
-Un personaje de anime 3D CG de alta gama (estilo Genshin Impact / Studio Orange) basado en la foto.
+Una escena y personajes de anime 3D CG de alta gama (estilo Genshin Impact / Studio Orange) basados fielmente en la foto de referencia.
 
-Requisitos:
-- Rostro Cel-shaded 3D refinado con ojos expresivos tipo anime.
-- Cabello anime esculpido en mechones 3D definidos.
-- Sombreado híbrido cel-shade.
-- Fondo de estudio estilo figura coleccionable.`,
+Bloqueo de Pose, Encuadre y Fidelidad:
+- Respetar exactamente el encuadre completo de la foto original (sin recortar), cantidad de sujetos, poses, gestos, vestimenta y distribución espacial.
+- Conservar rasgos faciales, expresiones y peinados de los sujetos traducidos a rostro Cel-shaded 3D refinado con ojos expresivos tipo anime.
+
+Acabado Técnico (Anime 3D CG):
+- Cabello anime esculpido en mechones 3D definidos con brillos especulares nítidos.
+- Sombreado híbrido cel-shade con líneas de contorno limpias e iluminación coherente con la escena original.`,
         promptEn: `STEP 1 (Anime 3D CG / Genshin Style):
-[Reference Image: Photo of the subject]
+[Reference Image: Original input photo]
 
-A high-end 3D anime CG character based on the reference photo, rendered in Genshin Impact / Studio Orange aesthetic.
+A high-end 3D anime CG scene and characters faithfully based on the reference photo, rendered in Genshin Impact / Studio Orange aesthetic.
 
-Key Requirements:
-- Crisp 3D anime facial features, clean line art accents, stylized luminous anime eyes.
-- Sculpted 3D anime hair geometry with sharp specular highlights.
-- Hybrid cel-shaded textures, seamless studio lighting backdrop.`,
+Pose, Framing & Likeness Lock:
+- Strictly keep the exact camera framing of the reference photo (no cropping), exact number of subjects, poses, gestures, outfits, and spatial layout.
+- Preserve facial traits, expressions, and hairstyles translated into crisp 3D anime features with clean line art accents and stylized luminous anime eyes.
+
+Technical Finish (Anime 3D CG):
+- Sculpted 3D anime hair geometry with sharp specular highlights, hybrid cel-shaded textures, and lighting/background layout consistent with the original scene.`,
         refPrompt2Es: "estilo Anime 3D CG de alta gama (Genshin Impact / Studio Orange)",
         refPrompt2En: "high-end 3D Anime CG style (Genshin Impact / Studio Orange aesthetic)",
         renderSpecsEs: `- Motor & Shaders: Sombreado híbrido cel-shade 3D con líneas de contorno limpias, ojos luminosos estilo anime y mechones de cabello esculpidos con brillos especulares nítidos.
@@ -746,12 +791,12 @@ Key Requirements:
         { es: "Guiño confidencial y divertido", descEs: "Un ojo guiñado con una ligera sonrisa complice.", en: "playful wink with one eye closed, cheeky confident smirk" }
       ],
       angulos: [
-        { es: "Vista frontal neutral", descEs: "Primer plano directo mirando a cámara con hombros nivelados.", en: "close-up portrait, front view facing camera directly, eye-level camera shot" },
-        { es: "Vista 3/4 hacia la izquierda", descEs: "Rostro girado 45 grados a la izquierda, ángulo clásico de retrato.", en: "close-up portrait, three-quarter 3/4 angle view facing left, elegant studio framing" },
-        { es: "Vista 3/4 hacia la derecha", descEs: "Rostro girado 45 grados a la derecha, resalta estructura lateral.", en: "close-up portrait, three-quarter 3/4 angle view facing right, studio lighting" },
-        { es: "Perfil izquierdo completo (90°)", descEs: "Silueta de perfil izquierdo estricto a 90 grados.", en: "close-up portrait, sharp full left side profile view 90 degrees" },
-        { es: "Perfil derecho completo (90°)", descEs: "Silueta de perfil derecho estricto a 90 grados.", en: "close-up portrait, sharp full right side profile view 90 degrees" },
-        { es: "Ángulo contrapicado (Cámara abajo)", descEs: "Cámara apuntando desde abajo hacia arriba, postura imponente.", en: "low-angle shot looking up at subject, heroic camera angle, close-up composition" }
+        { es: "Vista frontal neutral", descEs: "Primer plano directo mirando a cámara con hombros nivelados.", en: "close-up shot, front view facing camera directly, eye-level camera angle" },
+        { es: "Vista 3/4 hacia la izquierda", descEs: "Rostro girado 45 grados a la izquierda, ángulo clásico.", en: "medium close-up shot, three-quarter 3/4 angle view facing left, elegant studio framing" },
+        { es: "Vista 3/4 hacia la derecha", descEs: "Rostro girado 45 grados a la derecha, resalta estructura lateral.", en: "medium close-up shot, three-quarter 3/4 angle view facing right, studio lighting" },
+        { es: "Perfil izquierdo completo (90°)", descEs: "Silueta de perfil izquierdo estricto a 90 grados.", en: "medium close-up shot, sharp full left side profile view 90 degrees" },
+        { es: "Perfil derecho completo (90°)", descEs: "Silueta de perfil derecho estricto a 90 grados.", en: "medium close-up shot, sharp full right side profile view 90 degrees" },
+        { es: "Ángulo contrapicado (Cámara abajo)", descEs: "Cámara apuntando desde abajo hacia arriba, postura imponente.", en: "low-angle shot looking up at subject, heroic camera angle" }
       ],
       poses: [
         { es: "De pie vista frontal completa", descEs: "Plano entero de cuerpo completo de pie en postura neutral.", en: "full body shot, standing upright front view, full figure visible from head to toe" },
@@ -797,16 +842,16 @@ Key Requirements:
 [Imagen de Referencia: Imagen generada previamente en Paso 1]
 
 CARACTERÍSTICA PRINCIPAL:
-Diseño de personaje 3D de alta fidelidad en hoja técnica de tres vistas (Frente, Lateral, Espalda) manteniendo estrictamente la estética de (${estiloSeleccionado.refPrompt2Es}).
+Diseño de personaje 3D de alta fidelidad de cuerpo completo en hoja técnica de tres vistas (Frente, Lateral, Espalda) manteniendo estrictamente la estética de (${estiloSeleccionado.refPrompt2Es}).
 
 Bloqueo de Identidad y Vestimenta (Consistencia 1:1 con Paso 1):
-- Conservar con precisión milimétrica la estructura facial, proporciones, tono de piel, peinado exacto y cada detalle del vestuario y accesorios del personaje del Paso 1.
+- Conservar con precisión milimétrica la estructura facial, proporciones corporales, tono de piel, peinado exacto y cada detalle del vestuario, calzado y accesorios del personaje del Paso 1.
 
 Especificaciones Técnicas de Renderizado (${estiloSeleccionado.nombre}):
 ${estiloSeleccionado.renderSpecsEs}
 
 Distribución de la Hoja de Personaje (Pose T Simétrica):
-El personaje debe aparecer en una única imagen técnica sobre un fondo de estudio neutro y limpio en pose T simétrica:
+El personaje debe aparecer de cuerpo completo de pies a cabeza en una única imagen técnica sobre un fondo de estudio neutro y limpio en pose T simétrica:
 1. Vista Frontal: El personaje de frente mirando directamente a cámara.
 2. Vista Lateral: El personaje girado 90 grados hacia su derecha.
 3. Vista Posterior: El personaje girado 180 grados mostrando la espalda completa.`;
@@ -821,7 +866,7 @@ Nueva Acción / Expresión / Ángulo / Pose:
 -> ${opcionObj.es}
 
 Bloqueo de Identidad (Consistencia 1:1 con Paso 1):
-- Replicar exactamente la geometría facial, proporciones, ojos, tono de piel, peinado, ropa y accesorios del personaje generado en el Paso 1 sin alterar su diseño.
+- Replicar exactamente la geometría facial, proporciones corporales, ojos, tono de piel, peinado, ropa, calzado y accesorios del personaje generado en el Paso 1 sin alterar su diseño.
 
 Especificaciones Técnicas de Renderizado (${estiloSeleccionado.nombre}):
 ${estiloSeleccionado.renderSpecsEs}
@@ -834,16 +879,16 @@ ${estiloSeleccionado.renderSpecsEs}
 [Reference Image: 3D character image generated in Step 1]
 
 MAIN FEATURE:
-High-fidelity 3D character design turnaround sheet displaying three views (Front, Side, Back), strictly rendered in (${estiloSeleccionado.refPrompt2En}).
+Full-body high-fidelity 3D character design turnaround sheet displaying three views (Front, Side, Back), strictly rendered in (${estiloSeleccionado.refPrompt2En}).
 
 Identity & Outfit Lock (1:1 Match with Step 1):
-- Preserve with millimeter precision the exact facial structure, cranial proportions, skin tone, hairstyle, and every detail of the outfit and accessories from the Step 1 reference character.
+- Preserve with millimeter precision the exact facial structure, body proportions, skin tone, hairstyle, and every detail of the outfit, footwear, and accessories from the Step 1 reference character.
 
 Render & Studio Specifications (${estiloSeleccionado.nombre}):
 ${estiloSeleccionado.renderSpecsEn}
 
 3-View Character Sheet Layout (Symmetrical T-Pose):
-The character must appear in a single technical turnaround sheet in a symmetrical T-pose against a clean, neutral studio background:
+The character must appear full-body from head to toe in a single technical turnaround sheet in a symmetrical T-pose against a clean, neutral studio background:
 1. Front View: The character facing forward looking directly at the camera.
 2. Side View: The character rotated 90 degrees to their right.
 3. Back View: The character rotated 180 degrees showing the full back.`;
@@ -858,7 +903,7 @@ New Shot / Expression / Angle / Pose:
 -> ${opcionObj.en}
 
 Identity & Outfit Lock (1:1 Match with Step 1):
-- Replicate the exact facial geometry, proportions, eyes, skin tone, hairstyle, clothing folds, and accessories from the Step 1 character without generic alteration.
+- Replicate the exact facial geometry, body proportions, eyes, skin tone, hairstyle, clothing folds, footwear, and accessories from the Step 1 character without generic alteration.
 
 Render & Studio Specifications (${estiloSeleccionado.nombre}):
 ${estiloSeleccionado.renderSpecsEn}
@@ -1030,7 +1075,7 @@ ${estiloSeleccionado.renderSpecsEn}
     }
 
     function copiarPrompt(paso) {
-      const textoACopiar = paso === 'step1' ? getPrompt1ConNota(idiomaPaso1) : getPrompt2En(opcionPaso2Seleccionada);
+      const textoACopiar = paso === 'step1' ? getPrompt1ConNota('en') : getPrompt2En(opcionPaso2Seleccionada);
       navigator.clipboard.writeText(textoACopiar).then(() => mostrarToast("Prompt Copiado", "Listo en el portapapeles en inglés con todo su detalle."));
     }
 
