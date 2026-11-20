@@ -13,28 +13,28 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            sans: ['Google Sans', 'Roboto', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             app: {
-              bg: '#F9EFE6',
-              sidebar: '#DC6A48',
-              cardBg: '#FFF9F3',
-              panelBg: '#FFFFFF',
-              accentGreen: '#A8C3A0',
-              accentYellow: '#F1A85A',
-              accentRose: '#E07A5F',
-              textDark: '#332924',
-              textMuted: '#8C7A70',
+              bg: '#f8fafd',
+              sidebar: '#004a77',
+              cardBg: '#f0f4f9',
+              panelBg: '#ffffff',
+              accentGreen: '#0b57d0',
+              accentYellow: '#c2e7ff',
+              accentRose: '#004a77',
+              textDark: '#1f1f1f',
+              textMuted: '#444746',
 
-              darkBg: '#070A12',
-              darkSidebar: '#0F172A',
-              darkCardBg: '#1E293B',
-              darkPanelBg: '#0F172A',
-              darkText: '#F8FAFC',
-              darkTextMuted: '#94A3B8',
-              darkBorder: '#334155'
+              darkBg: '#131314',
+              darkSidebar: '#1e1f20',
+              darkCardBg: '#1e1f20',
+              darkPanelBg: '#282a2c',
+              darkText: '#e3e3e3',
+              darkTextMuted: '#c4c7c5',
+              darkBorder: '#333537'
             }
           }
         }
@@ -42,67 +42,134 @@
     }
   </script>
   
-  <!-- FontAwesome & Google Fonts -->
+  <!-- FontAwesome, Material Symbols Outlined & Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
   
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+    :root {
+      --accent-active: #004a77;
+      --accent-soft: #c2e7ff;
+      --accent-primary: #0b57d0;
+      --accent-secondary: #00639b;
+      --ink-primary: #1f1f1f;
+      --ink-secondary: #444746;
+      --surface-card: #f0f4f9;
+      --surface-base: #f8fafd;
+      --surface-elevated: #ffffff;
+      --ease-smooth: cubic-bezier(.2, 0, 0, 1);
+    }
+
+    html.dark {
+      --accent-active: #c2e7ff;
+      --accent-soft: #004a77;
+      --accent-primary: #a8c7fa;
+      --accent-secondary: #7fcfff;
+      --ink-primary: #e3e3e3;
+      --ink-secondary: #c4c7c5;
+      --surface-card: #1e1f20;
+      --surface-base: #131314;
+      --surface-elevated: #282a2c;
+    }
+
+    body {
+      font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+      transition: background-color 250ms var(--ease-smooth), color 250ms var(--ease-smooth);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Animación suave Material 3 para botones */
+    button {
+      transition:
+        background-color 220ms var(--ease-smooth),
+        color 220ms var(--ease-smooth),
+        border-color 220ms var(--ease-smooth),
+        transform 180ms var(--ease-smooth),
+        box-shadow 220ms var(--ease-smooth);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--accent-secondary);
+      outline-offset: 2px;
+    }
+
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #DC6A48; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb { background: rgba(68, 71, 70, 0.3); border-radius: 9999px; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 
-<body class="min-h-screen bg-app-bg dark:bg-app-darkBg text-app-textDark dark:text-app-darkText flex justify-center p-3 sm:p-6 selection:bg-[#DC6A48] selection:text-white transition-colors duration-300">
+<body class="min-h-screen bg-[#e9eef6] dark:bg-[#0e0e0f] text-app-textDark dark:text-app-darkText flex justify-center p-3 sm:p-6 selection:bg-[#004a77] selection:text-white transition-colors duration-300">
 
-  <div class="w-full max-w-[1320px] bg-white dark:bg-app-darkSidebar rounded-[40px] shadow-2xl overflow-hidden border border-[#EAD5C3] dark:border-app-darkBorder transition-colors duration-300">
+  <div class="w-full max-w-[1320px] bg-app-bg dark:bg-app-darkBg rounded-[28px] shadow-xl overflow-hidden border border-[#d3e3fd] dark:border-app-darkBorder transition-colors duration-300">
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="w-full bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-6 transition-colors duration-300">
+    <main class="w-full bg-app-bg dark:bg-app-darkBg p-5 sm:p-8 flex flex-col gap-5 transition-colors duration-300">
 
-      <!-- BARRA SUPERIOR (SOLO BOTÓN DE TEMA) -->
+      <!-- BARRA SUPERIOR (SELECTOR DE TEMA CLARO / OSCURO) -->
       <div class="flex items-center justify-end">
-        <button onclick="toggleDarkMode()" class="px-4 py-2.5 rounded-full bg-white dark:bg-app-darkCardBg border border-[#EAD5C3] dark:border-app-darkBorder text-xs font-bold text-app-textDark dark:text-app-darkText flex items-center gap-2 shadow-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer shrink-0">
-          <i id="theme-icon-header" class="fa-solid fa-moon text-app-sidebar dark:text-amber-400"></i>
-          <span id="theme-text-header">Modo Oscuro</span>
-        </button>
+        <div class="inline-flex items-center gap-2 bg-app-cardBg dark:bg-app-darkCardBg p-1.5 rounded-full border border-[#d3e3fd] dark:border-app-darkBorder" role="radiogroup" aria-label="Tema de la interfaz">
+          <button type="button" onclick="setThemeMode('light')" id="btn-theme-light" role="radio" aria-checked="true"
+            class="h-9 px-4 rounded-full text-xs font-medium bg-[#004a77] text-white inline-flex items-center gap-1.5 cursor-pointer">
+            <span id="check-theme-light" class="material-symbols-outlined">check</span>
+            <span>Claro</span>
+          </button>
+          <button type="button" onclick="setThemeMode('dark')" id="btn-theme-dark" role="radio" aria-checked="false"
+            class="h-9 px-4 rounded-full text-xs font-medium bg-[#c2e7ff] text-[#004a77] dark:bg-[#004a77] dark:text-[#c2e7ff] inline-flex items-center gap-1.5 cursor-pointer">
+            <span id="check-theme-dark" class="material-symbols-outlined hidden">check</span>
+            <span>Oscuro</span>
+          </button>
+        </div>
       </div>
 
       <!-- HERO BANNER -->
-      <div class="bg-app-accentRose dark:bg-gradient-to-r dark:from-indigo-900 dark:to-purple-900 rounded-[32px] p-6 sm:p-8 text-white relative overflow-hidden shadow-lg flex flex-col justify-between min-h-[150px] transition-colors duration-300">
+      <div class="bg-[#004a77] dark:bg-[#1e1f20] border border-transparent dark:border-[#333537] rounded-[24px] p-6 sm:p-8 text-white relative overflow-hidden shadow-sm flex flex-col justify-between min-h-[150px] transition-colors duration-300">
         <div class="relative z-10">
-          <h2 class="text-2xl sm:text-3xl font-extrabold mb-1">AI Prompt Studio Pro</h2>
-          <p class="text-xs sm:text-sm text-white/80 font-medium">Biblioteca de consistencia de personajes 3D, hojas de diseño y motores de renderizado industrial</p>
+          <h2 class="text-2xl sm:text-3xl font-medium tracking-tight mb-1.5 text-white dark:text-[#e3e3e3]">AI Prompt Studio Pro</h2>
+          <p class="text-xs sm:text-sm text-[#c2e7ff] dark:text-[#c4c7c5] font-normal">Biblioteca de consistencia de personajes 3D, hojas de diseño y motores de renderizado industrial</p>
         </div>
         
-        <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-4 no-scrollbar" id="categoria-filtros">
-          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-1.5 rounded-full text-xs font-bold bg-white text-app-sidebar shadow-sm transition cursor-pointer">Todos</button>
-          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">💀 Adulto & Sci-Fi</button>
-          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎨 Híbridos</button>
-          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎬 Cine & Familiar</button>
-          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white hover:bg-white/30 transition cursor-pointer">🎮 Gaming & VFX</button>
+        <div class="relative z-10 flex items-center gap-2 overflow-x-auto pt-5 no-scrollbar" id="categoria-filtros">
+          <button onclick="filtrarEstilos('todos')" id="filter-todos" class="btn-filter active px-4 py-2 rounded-full text-xs font-medium bg-white text-[#004a77] dark:bg-[#c2e7ff] dark:text-[#004a77] shadow-sm cursor-pointer">Todos</button>
+          <button onclick="filtrarEstilos('adult')" id="filter-adult" class="btn-filter px-4 py-2 rounded-full text-xs font-medium bg-[#c2e7ff]/20 text-[#c2e7ff] hover:bg-[#c2e7ff]/30 dark:bg-[#004a77]/60 dark:text-[#c2e7ff] dark:hover:bg-[#004a77] cursor-pointer">💀 Adulto & Sci-Fi</button>
+          <button onclick="filtrarEstilos('hybrid')" id="filter-hybrid" class="btn-filter px-4 py-2 rounded-full text-xs font-medium bg-[#c2e7ff]/20 text-[#c2e7ff] hover:bg-[#c2e7ff]/30 dark:bg-[#004a77]/60 dark:text-[#c2e7ff] dark:hover:bg-[#004a77] cursor-pointer">🎨 Híbridos</button>
+          <button onclick="filtrarEstilos('feature')" id="filter-feature" class="btn-filter px-4 py-2 rounded-full text-xs font-medium bg-[#c2e7ff]/20 text-[#c2e7ff] hover:bg-[#c2e7ff]/30 dark:bg-[#004a77]/60 dark:text-[#c2e7ff] dark:hover:bg-[#004a77] cursor-pointer">🎬 Cine & Familiar</button>
+          <button onclick="filtrarEstilos('realism')" id="filter-realism" class="btn-filter px-4 py-2 rounded-full text-xs font-medium bg-[#c2e7ff]/20 text-[#c2e7ff] hover:bg-[#c2e7ff]/30 dark:bg-[#004a77]/60 dark:text-[#c2e7ff] dark:hover:bg-[#004a77] cursor-pointer">🎮 Gaming & VFX</button>
         </div>
-        <div class="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-white/10 pointer-events-none"></div>
+        <div class="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-[#c2e7ff]/10 pointer-events-none"></div>
       </div>
 
       <!-- PASO 1: ESTUDIO -->
-      <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
+      <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[20px] p-6 border border-[#d3e3fd]/80 dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 border-b border-[#d3e3fd] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-sidebar dark:bg-indigo-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">1</span>
+              <span class="w-8 h-8 rounded-full bg-[#004a77] dark:bg-[#c2e7ff] text-white dark:text-[#004a77] font-medium text-sm flex items-center justify-center shrink-0">1</span>
               <div>
-                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 1: Estilo de Estudio Base</h3>
+                <h3 class="text-base font-medium text-app-textDark dark:text-[#e3e3e3]">Paso 1: Estilo de Estudio Base</h3>
                 <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Convierte tu foto al estilo elegido respetando encuadre, pose, ropa y sujetos sin recortar</p>
               </div>
             </div>
-            <span id="badge-estilo-activo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentYellow/20 dark:bg-indigo-500/20 text-app-sidebar dark:text-indigo-300 border border-app-accentYellow/40 dark:border-indigo-500/30">Pixar 3D</span>
+            <span id="badge-estilo-activo" class="px-3.5 py-1 text-xs font-medium rounded-full bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff]">Pixar 3D</span>
           </div>
 
           <!-- GRILLA HORIZONTAL SIN SCROLL -->
@@ -110,7 +177,7 @@
 
           <!-- NOTA OPCIONAL PARA REFUERZO PUNTUAL DE ESCENA -->
           <div class="mb-4">
-            <label for="nota-escena-paso1" class="block text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400 mb-1.5">
+            <label for="nota-escena-paso1" class="block text-[11px] font-medium uppercase tracking-wider text-app-textMuted dark:text-[#c4c7c5] mb-1.5">
               Refuerzo opcional de escena / pose (opcional, solo si querés enfatizar algo de tu foto)
             </label>
             <input
@@ -118,82 +185,82 @@
               type="text"
               oninput="actualizarUI_Paso1()"
               placeholder="Ej: dos personas en selfie frente al espejo, mantener ambos rostros y poses intactos..."
-              class="w-full px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder text-xs text-app-textDark dark:text-slate-200 placeholder:text-app-textMuted/60 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-app-sidebar/40 dark:focus:ring-indigo-500/40 transition"
+              class="w-full px-4 py-2.5 rounded-2xl bg-white dark:bg-[#131314] border border-[#a8c7fa] dark:border-app-darkBorder text-xs text-app-textDark dark:text-[#e3e3e3] placeholder:text-app-textMuted/60 dark:placeholder:text-[#c4c7c5]/50 focus:outline-none focus:ring-2 focus:ring-[#0b57d0]/30 dark:focus:ring-[#a8c7fa]/30 transition"
             >
           </div>
 
           <!-- DESPLEGABLE ÚNICO: PROMPT + TRADUCCIÓN INTERNA -->
-          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group" open>
-            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-indigo-400">
+          <details class="bg-white dark:bg-[#131314] border border-[#d3e3fd] dark:border-app-darkBorder rounded-2xl group" open>
+            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-medium text-[#0b57d0] dark:text-[#a8c7fa]">
               <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt</span>
-              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
+              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-[#c4c7c5] text-xs transition-transform group-open:rotate-180"></i>
             </summary>
-            <div class="p-4 pt-3 border-t border-[#EAD5C3]/50 dark:border-slate-800 space-y-3">
+            <div class="p-4 pt-3 border-t border-[#d3e3fd]/60 dark:border-app-darkBorder space-y-3">
               <div class="flex items-center justify-between gap-2">
-                <span id="label-idioma-paso1" class="text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400">Prompt en Inglés (Listo para IA)</span>
-                <button type="button" onclick="toggleIdiomaPrompt('step1')" id="btn-idioma-step1" class="px-3 py-1.5 rounded-full bg-app-cardBg dark:bg-slate-800 border border-[#EAD5C3] dark:border-slate-700 text-app-sidebar dark:text-indigo-300 hover:bg-[#FFF2E6] dark:hover:bg-slate-700 text-[11px] font-bold flex items-center gap-1.5 transition cursor-pointer">
+                <span id="label-idioma-paso1" class="text-[11px] font-medium uppercase tracking-wider text-app-textMuted dark:text-[#c4c7c5]">Prompt en Inglés (Listo para IA)</span>
+                <button type="button" onclick="toggleIdiomaPrompt('step1')" id="btn-idioma-step1" class="px-3.5 py-1.5 rounded-full bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff] hover:brightness-95 text-[11px] font-medium flex items-center gap-1.5 cursor-pointer">
                   <i class="fa-solid fa-language"></i> Explicación en español
                 </button>
               </div>
-              <div class="font-mono text-xs text-app-textDark dark:text-slate-200 leading-relaxed whitespace-pre-line select-all" id="display-prompt-step1"></div>
+              <div class="font-mono text-xs text-app-textDark dark:text-[#e3e3e3] leading-relaxed whitespace-pre-line select-all" id="display-prompt-step1"></div>
             </div>
           </details>
         </div>
 
         <div class="mt-4 flex justify-end">
-          <button onclick="copiarPrompt('step1')" class="px-5 py-2.5 rounded-full bg-app-sidebar dark:bg-indigo-600 hover:bg-[#c85a3a] dark:hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+          <button onclick="copiarPrompt('step1')" class="px-5 py-2.5 rounded-full bg-[#004a77] dark:bg-[#c2e7ff] hover:brightness-110 text-white dark:text-[#004a77] font-medium text-xs flex items-center gap-2 shadow-sm cursor-pointer">
             <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 1
           </button>
         </div>
       </section>
 
       <!-- PASO 2: POSES, EXPRESIONES, ÁNGULOS Y CHARACTER DESIGN -->
-      <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[32px] p-6 border border-[#EAD5C3] dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
+      <section class="bg-app-cardBg dark:bg-app-darkCardBg rounded-[20px] p-6 border border-[#d3e3fd]/80 dark:border-app-darkBorder shadow-sm flex flex-col justify-between transition-colors duration-300">
         <div>
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#EAD5C3] dark:border-app-darkBorder mb-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 border-b border-[#d3e3fd] dark:border-app-darkBorder mb-4">
             <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-xl bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">2</span>
+              <span class="w-8 h-8 rounded-full bg-[#0b57d0] dark:bg-[#a8c7fa] text-white dark:text-[#004a77] font-medium text-sm flex items-center justify-center shrink-0">2</span>
               <div>
-                <h3 class="text-base font-bold text-app-textDark dark:text-white">Paso 2: Expresión, Pose, Ángulo o Character Design</h3>
+                <h3 class="text-base font-medium text-app-textDark dark:text-[#e3e3e3]">Paso 2: Expresión, Pose, Ángulo o Character Design</h3>
                 <p class="text-xs text-app-textMuted dark:text-app-darkTextMuted">Modifica la toma o genera una hoja de personaje heredando el motor y shaders del Paso 1</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span id="badge-opcion-activa-nombre" class="px-3 py-1 text-xs font-bold rounded-full bg-white dark:bg-slate-900 text-app-textDark dark:text-slate-300 border border-[#EAD5C3] dark:border-slate-700">Risa grande</span>
-              <span id="badge-herencia-estilo" class="px-3 py-1 text-xs font-bold rounded-full bg-app-accentGreen/20 dark:bg-cyan-500/20 text-app-textDark dark:text-cyan-300 border border-app-accentGreen/40 dark:border-cyan-500/30">Hereda: Pixar 3D</span>
+              <span id="badge-opcion-activa-nombre" class="px-3.5 py-1 text-xs font-medium rounded-full bg-white dark:bg-[#131314] text-app-textDark dark:text-[#e3e3e3] border border-[#d3e3fd] dark:border-app-darkBorder">Risa grande</span>
+              <span id="badge-herencia-estilo" class="px-3.5 py-1 text-xs font-medium rounded-full bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff]">Hereda: Pixar 3D</span>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-white dark:bg-slate-900 rounded-2xl border border-[#EAD5C3] dark:border-app-darkBorder mb-4">
-            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm cursor-pointer">😊 Expresiones</button>
-            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">📷 Ángulos</button>
-            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">🧍 Poses</button>
-            <button onclick="cambiarTabPaso2('character_design')" id="tab-character_design" class="py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer">📐 Character Design</button>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-white dark:bg-[#131314] rounded-full border border-[#d3e3fd] dark:border-app-darkBorder mb-4">
+            <button onclick="cambiarTabPaso2('expresiones')" id="tab-expresiones" class="py-2 px-3 text-xs font-medium rounded-full text-center bg-[#004a77] dark:bg-[#c2e7ff] text-white dark:text-[#004a77] cursor-pointer">😊 Expresiones</button>
+            <button onclick="cambiarTabPaso2('angulos')" id="tab-angulos" class="py-2 px-3 text-xs font-medium rounded-full text-center text-app-textMuted dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#1e1f20] cursor-pointer">📷 Ángulos</button>
+            <button onclick="cambiarTabPaso2('poses')" id="tab-poses" class="py-2 px-3 text-xs font-medium rounded-full text-center text-app-textMuted dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#1e1f20] cursor-pointer">🧍 Poses</button>
+            <button onclick="cambiarTabPaso2('character_design')" id="tab-character_design" class="py-2 px-3 text-xs font-medium rounded-full text-center text-app-textMuted dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#1e1f20] cursor-pointer">📐 Character Design</button>
           </div>
 
           <!-- GRILLA OPCIONES PASO 2 SIN SCROLL -->
           <div id="grid-opciones-paso2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-4"></div>
 
           <!-- DESPLEGABLE ÚNICO: PROMPT + TRADUCCIÓN INTERNA -->
-          <details class="bg-white dark:bg-slate-900 border border-[#EAD5C3] dark:border-app-darkBorder rounded-2xl group">
-            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-bold text-app-sidebar dark:text-cyan-400">
+          <details class="bg-white dark:bg-[#131314] border border-[#d3e3fd] dark:border-app-darkBorder rounded-2xl group">
+            <summary class="flex items-center justify-between text-xs p-3.5 cursor-pointer select-none font-medium text-[#0b57d0] dark:text-[#a8c7fa]">
               <span class="flex items-center gap-2"><i class="fa-solid fa-code"></i> Prompt</span>
-              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-slate-500 text-xs transition-transform group-open:rotate-180"></i>
+              <i class="fa-solid fa-chevron-down text-app-textMuted dark:text-[#c4c7c5] text-xs transition-transform group-open:rotate-180"></i>
             </summary>
-            <div class="p-4 pt-3 border-t border-[#EAD5C3]/50 dark:border-slate-800 space-y-3">
+            <div class="p-4 pt-3 border-t border-[#d3e3fd]/60 dark:border-app-darkBorder space-y-3">
               <div class="flex items-center justify-between gap-2">
-                <span id="label-idioma-paso2" class="text-[11px] font-bold uppercase tracking-wider text-app-textMuted dark:text-slate-400">Prompt en Inglés (Listo para IA)</span>
-                <button type="button" onclick="toggleIdiomaPrompt('step2')" id="btn-idioma-step2" class="px-3 py-1.5 rounded-full bg-app-cardBg dark:bg-slate-800 border border-[#EAD5C3] dark:border-slate-700 text-app-sidebar dark:text-cyan-300 hover:bg-[#FFF2E6] dark:hover:bg-slate-700 text-[11px] font-bold flex items-center gap-1.5 transition cursor-pointer">
+                <span id="label-idioma-paso2" class="text-[11px] font-medium uppercase tracking-wider text-app-textMuted dark:text-[#c4c7c5]">Prompt en Inglés (Listo para IA)</span>
+                <button type="button" onclick="toggleIdiomaPrompt('step2')" id="btn-idioma-step2" class="px-3.5 py-1.5 rounded-full bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff] hover:brightness-95 text-[11px] font-medium flex items-center gap-1.5 cursor-pointer">
                   <i class="fa-solid fa-language"></i> Explicación en español
                 </button>
               </div>
-              <div class="font-mono text-xs text-app-textDark dark:text-slate-200 leading-relaxed whitespace-pre-line select-all" id="display-prompt-step2"></div>
+              <div class="font-mono text-xs text-app-textDark dark:text-[#e3e3e3] leading-relaxed whitespace-pre-line select-all" id="display-prompt-step2"></div>
             </div>
           </details>
         </div>
 
         <div class="mt-4 flex justify-end">
-          <button onclick="copiarPrompt('step2')" class="px-5 py-2.5 rounded-full bg-app-accentGreen dark:bg-cyan-500 hover:bg-[#92b08a] dark:hover:bg-cyan-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-2 shadow-md transition cursor-pointer">
+          <button onclick="copiarPrompt('step2')" class="px-5 py-2.5 rounded-full bg-[#0b57d0] dark:bg-[#a8c7fa] hover:brightness-110 text-white dark:text-[#004a77] font-medium text-xs flex items-center gap-2 shadow-sm cursor-pointer">
             <i class="fa-regular fa-copy"></i> Copiar Prompt Paso 2
           </button>
         </div>
@@ -205,31 +272,43 @@
 
   <!-- TOAST -->
   <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-none">
-    <div class="bg-app-textDark dark:bg-slate-900 text-white dark:text-slate-100 border dark:border-emerald-500/40 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3">
-      <div class="w-7 h-7 rounded-xl bg-app-accentGreen dark:bg-emerald-500/20 text-white dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
+    <div class="bg-[#004a77] dark:bg-[#c2e7ff] text-white dark:text-[#004a77] px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3">
+      <div class="w-7 h-7 rounded-full bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff] flex items-center justify-center font-bold text-sm">
         <i class="fa-solid fa-check"></i>
       </div>
       <div>
-        <h4 class="text-xs font-bold" id="toast-title">Prompt Copiado</h4>
-        <p class="text-[11px] text-white/70 dark:text-slate-400" id="toast-msg">Listo en tu portapapeles.</p>
+        <h4 class="text-xs font-medium" id="toast-title">Prompt Copiado</h4>
+        <p class="text-[11px] opacity-85" id="toast-msg">Listo en tu portapapeles.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // MODO OSCURO
-    function toggleDarkMode() {
+    // MODO CLARO / OSCURO (ESTILO PÍLDORAS MATERIAL 3)
+    function setThemeMode(mode) {
       const htmlRoot = document.getElementById('html-root');
-      const isDark = htmlRoot.classList.toggle('dark');
-      const iconHeader = document.getElementById('theme-icon-header');
-      const textHeader = document.getElementById('theme-text-header');
+      const isDark = mode === 'dark';
+      htmlRoot.classList.toggle('dark', isDark);
+
+      const btnLight = document.getElementById('btn-theme-light');
+      const btnDark = document.getElementById('btn-theme-dark');
+      const checkLight = document.getElementById('check-theme-light');
+      const checkDark = document.getElementById('check-theme-dark');
 
       if (isDark) {
-        if(iconHeader) iconHeader.className = "fa-solid fa-sun text-amber-400";
-        if(textHeader) textHeader.innerText = "Modo Claro";
+        btnDark.className = "h-9 px-4 rounded-full text-xs font-medium bg-[#c2e7ff] text-[#004a77] inline-flex items-center gap-1.5 cursor-pointer";
+        btnLight.className = "h-9 px-4 rounded-full text-xs font-medium bg-[#004a77] text-[#c2e7ff] inline-flex items-center gap-1.5 cursor-pointer";
+        btnDark.setAttribute('aria-checked', 'true');
+        btnLight.setAttribute('aria-checked', 'false');
+        checkDark.classList.remove('hidden');
+        checkLight.classList.add('hidden');
       } else {
-        if(iconHeader) iconHeader.className = "fa-solid fa-moon text-app-sidebar";
-        if(textHeader) textHeader.innerText = "Modo Oscuro";
+        btnLight.className = "h-9 px-4 rounded-full text-xs font-medium bg-[#004a77] text-white inline-flex items-center gap-1.5 cursor-pointer";
+        btnDark.className = "h-9 px-4 rounded-full text-xs font-medium bg-[#c2e7ff] text-[#004a77] inline-flex items-center gap-1.5 cursor-pointer";
+        btnLight.setAttribute('aria-checked', 'true');
+        btnDark.setAttribute('aria-checked', 'false');
+        checkLight.classList.remove('hidden');
+        checkDark.classList.add('hidden');
       }
     }
 
@@ -241,7 +320,7 @@
         categoria: "adult",
         badge: "Blur / Sci-Fi VFX",
         icon: "fa-skull",
-        iconColor: "text-app-accentRose dark:text-rose-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Doble digital CGI hiperrealista: respeta encuadre completo, pose y sujetos.",
         promptEs: `PASO 1 (Estilo Blur Studio / Love, Death & Robots / Secret Level):
 [Imagen de Referencia: Foto original de entrada]
@@ -302,7 +381,7 @@ Cinematography, Lighting & Color Grading:
         categoria: "hybrid",
         badge: "Arcane 2D/3D Hybrid",
         icon: "fa-palette",
-        iconColor: "text-app-sidebar dark:text-cyan-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Texturas pictóricas pintadas a mano sobre geometría 3D.",
         promptEs: `PASO 1 (Estilo Fortiche Production / Arcane):
 [Imagen de Referencia: Foto original de entrada]
@@ -343,7 +422,7 @@ Technical Finish (Fortiche / Arcane):
         categoria: "hybrid",
         badge: "Ukiyo-e Cel-shade",
         icon: "fa-khanda",
-        iconColor: "text-app-accentYellow dark:text-amber-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Animación 3D Cel-shade inspirada en grabados Ukiyo-e.",
         promptEs: `PASO 1 (Estilo Samurái de ojos azules / Ukiyo-e 3D):
 [Imagen de Referencia: Foto original de entrada]
@@ -382,7 +461,7 @@ Technical Finish (Ukiyo-e 3D):
         categoria: "adult",
         badge: "Glitch Retro 90s CGI",
         icon: "fa-ghost",
-        iconColor: "text-app-sidebar dark:text-purple-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Estética 3D retro estilo juego de los 90 y terror indie.",
         promptEs: `PASO 1 (Estilo Glitch Productions / The Amazing Digital Circus):
 [Imagen de Referencia: Foto original de entrada]
@@ -421,7 +500,7 @@ Technical Finish (Glitch Retro 90s CGI):
         categoria: "realism",
         badge: "Digic Dark Cinematic",
         icon: "fa-shield-halved",
-        iconColor: "text-app-accentRose dark:text-rose-500",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Cinemáticas oscuras y fotorrealistas para juegos AAA.",
         promptEs: `PASO 1 (Estilo Digic Pictures / Cinemática Fantasía Oscura):
 [Imagen de Referencia: Foto original de entrada]
@@ -460,7 +539,7 @@ Technical Finish (Digic Pictures):
         categoria: "feature",
         badge: "Pixar 3D",
         icon: "fa-film",
-        iconColor: "text-app-sidebar dark:text-indigo-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Cartoon tradicional avanzado (Inside Out, Soul, Toy Story).",
         promptEs: `PASO 1 (Estilo Pixar Animation Studios):
 [Imagen de Referencia: Foto original de entrada]
@@ -500,7 +579,7 @@ Technical Finish (Pixar 3D):
         categoria: "feature",
         badge: "DreamWorks 3D",
         icon: "fa-dragon",
-        iconColor: "text-app-accentYellow dark:text-amber-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Snappy, poses cómicas y caricatura dinámica (Shrek).",
         promptEs: `PASO 1 (Estilo DreamWorks Animation):
 [Imagen de Referencia: Foto original de entrada]
@@ -539,7 +618,7 @@ Technical Finish (DreamWorks 3D):
         categoria: "hybrid",
         badge: "Sony Comic 3D",
         icon: "fa-spider",
-        iconColor: "text-app-sidebar dark:text-purple-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Estilo Híbrido 3D/Comic (Spider-Verse).",
         promptEs: `PASO 1 (Estilo Sony Pictures Animation / Spider-Verse):
 [Imagen de Referencia: Foto original de entrada]
@@ -578,7 +657,7 @@ Technical Finish (Sony Spider-Verse):
         categoria: "feature",
         badge: "Disney Musical 3D",
         icon: "fa-wand-magic",
-        iconColor: "text-app-accentGreen dark:text-cyan-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Cartoon estilizado y musical clásico (Frozen, Moana).",
         promptEs: `PASO 1 (Estilo Walt Disney Animation Studios):
 [Imagen de Referencia: Foto original de entrada]
@@ -617,7 +696,7 @@ Technical Finish (Disney 3D):
         categoria: "feature",
         badge: "Illumination 3D",
         icon: "fa-face-laugh-beam",
-        iconColor: "text-app-accentGreen dark:text-emerald-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Snappy extremo y humorístico (Minions, Mario).",
         promptEs: `PASO 1 (Estilo Illumination Mac Guff):
 [Imagen de Referencia: Foto original de entrada]
@@ -655,7 +734,7 @@ Technical Finish (Illumination 3D):
         categoria: "realism",
         badge: "Wētā Hiperrealismo",
         icon: "fa-eye",
-        iconColor: "text-app-accentRose dark:text-rose-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Hiperrealismo CGI cinematográfico y MoCap (Avatar).",
         promptEs: `PASO 1 (Estilo Wētā FX / ILM Hiperrealismo):
 [Imagen de Referencia: Foto original de entrada]
@@ -694,7 +773,7 @@ Technical Finish (Wētā FX / ILM):
         categoria: "realism",
         badge: "Sims 4 Alpha / UE5.5",
         icon: "fa-gamepad",
-        iconColor: "text-app-accentGreen dark:text-teal-400",
+        iconColor: "text-[#0b57d0] dark:text-[#a8c7fa]",
         descripcionCorta: "Renderizado 3D en tiempo real tipo Unreal Engine 5.5 (Lumen).",
         promptEs: `PASO 1 (Estilo Sims 4 Alpha CC / Unreal Engine 5):
 [Imagen de Referencia: Foto original de entrada]
@@ -747,7 +826,7 @@ Lighting & Camera Setup:
         categoria: "hybrid",
         badge: "Anime 3D CG",
         icon: "fa-bolt",
-        iconColor: "text-app-accentYellow dark:text-sky-400",
+        iconColor: "text-[#00639b] dark:text-[#7fcfff]",
         descripcionCorta: "Anime 3D CG de alta gama (Genshin Impact).",
         promptEs: `PASO 1 (Estilo Anime 3D CG):
 [Imagen de Referencia: Foto original de entrada]
@@ -967,13 +1046,11 @@ ${estiloSeleccionado.renderSpecsEn}
     function filtrarEstilos(cat) {
       filtroCategoriaActual = cat;
       document.querySelectorAll('.btn-filter').forEach(btn => {
-        btn.classList.remove('bg-white', 'text-app-sidebar');
-        btn.classList.add('bg-white/20', 'text-white');
+        btn.className = "btn-filter px-4 py-2 rounded-full text-xs font-medium bg-[#c2e7ff]/20 text-[#c2e7ff] hover:bg-[#c2e7ff]/30 dark:bg-[#004a77]/60 dark:text-[#c2e7ff] dark:hover:bg-[#004a77] cursor-pointer";
       });
       const btnActivo = document.getElementById(`filter-${cat}`);
       if(btnActivo) {
-        btnActivo.classList.remove('bg-white/20', 'text-white');
-        btnActivo.classList.add('bg-white', 'text-app-sidebar');
+        btnActivo.className = "btn-filter active px-4 py-2 rounded-full text-xs font-medium bg-white text-[#004a77] dark:bg-[#c2e7ff] dark:text-[#004a77] shadow-sm cursor-pointer";
       }
       renderEstilos();
     }
@@ -997,21 +1074,21 @@ ${estiloSeleccionado.renderSpecsEn}
           actualizarUI_Paso2();
         };
 
-        btn.className = `p-3.5 rounded-2xl text-xs font-semibold text-left border transition-all duration-150 flex flex-col justify-between gap-1.5 cursor-pointer ${
+        btn.className = `p-3.5 rounded-2xl text-xs font-medium text-left border flex flex-col justify-between gap-1.5 cursor-pointer ${
           esActivo 
-            ? 'bg-app-sidebar dark:bg-indigo-600 text-white border-app-sidebar dark:border-indigo-500 shadow-sm' 
-            : 'bg-white dark:bg-slate-900 border-[#EAD5C3] dark:border-app-darkBorder text-app-textDark dark:text-slate-200 hover:bg-[#FFF2E6] dark:hover:bg-slate-800'
+            ? 'bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff] border-2 border-[#0b57d0] dark:border-[#a8c7fa] shadow-sm' 
+            : 'bg-white dark:bg-[#131314] border-[#d3e3fd] dark:border-app-darkBorder text-app-textDark dark:text-[#e3e3e3] hover:bg-[#d3e3fd]/40 dark:hover:bg-[#282a2c]'
         }`;
 
         btn.innerHTML = `
           <div class="flex items-start justify-between gap-2 w-full">
-            <span class="font-bold flex items-center gap-2 leading-snug ${esActivo ? 'text-white' : 'text-app-textDark dark:text-slate-200'}">
-              <i class="fa-solid ${estilo.icon} shrink-0 ${esActivo ? 'text-white' : estilo.iconColor}"></i>
+            <span class="font-medium flex items-center gap-2 leading-snug ${esActivo ? 'text-[#004a77] dark:text-[#c2e7ff]' : 'text-app-textDark dark:text-[#e3e3e3]'}">
+              <i class="fa-solid ${estilo.icon} shrink-0 ${esActivo ? 'text-[#004a77] dark:text-[#c2e7ff]' : estilo.iconColor}"></i>
               <span>${estilo.nombre}</span>
             </span>
-            ${esActivo ? '<i class="fa-solid fa-circle-check text-white text-xs shrink-0 mt-0.5"></i>' : ''}
+            ${esActivo ? '<i class="fa-solid fa-circle-check text-[#0b57d0] dark:text-[#a8c7fa] text-xs shrink-0 mt-0.5"></i>' : ''}
           </div>
-          <p class="text-[11px] ${esActivo ? 'text-white/85' : 'text-app-textMuted dark:text-slate-400'} leading-snug font-normal">${estilo.descripcionCorta}</p>
+          <p class="text-[11px] ${esActivo ? 'text-[#004a77]/85 dark:text-[#c2e7ff]/85' : 'text-app-textMuted dark:text-[#c4c7c5]'} leading-snug font-normal">${estilo.descripcionCorta}</p>
         `;
         contenedor.appendChild(btn);
       });
@@ -1022,9 +1099,9 @@ ${estiloSeleccionado.renderSpecsEn}
       ['expresiones', 'angulos', 'poses', 'character_design'].forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
         if(t === tabKey) {
-          btn.className = "py-2 px-3 text-xs font-bold rounded-xl transition text-center bg-app-sidebar dark:bg-indigo-600 text-white shadow-sm cursor-pointer";
+          btn.className = "py-2 px-3 text-xs font-medium rounded-full text-center bg-[#004a77] dark:bg-[#c2e7ff] text-white dark:text-[#004a77] cursor-pointer";
         } else {
-          btn.className = "py-2 px-3 text-xs font-bold rounded-xl transition text-center text-app-textMuted dark:text-slate-400 hover:text-app-textDark dark:hover:text-white cursor-pointer";
+          btn.className = "py-2 px-3 text-xs font-medium rounded-full text-center text-app-textMuted dark:text-[#c4c7c5] hover:bg-[#f0f4f9] dark:hover:bg-[#1e1f20] cursor-pointer";
         }
       });
       opcionPaso2Seleccionada = opcionesPaso2[tabKey][0];
@@ -1052,22 +1129,22 @@ ${estiloSeleccionado.renderSpecsEn}
           actualizarUI_Paso2();
         };
 
-        btn.className = `p-3 rounded-2xl text-xs font-medium text-left border transition-all flex items-center justify-between gap-2 cursor-pointer ${
+        btn.className = `p-3 rounded-2xl text-xs font-medium text-left border flex items-center justify-between gap-2 cursor-pointer ${
           esActivo 
-            ? 'bg-app-accentGreen dark:bg-cyan-500 text-white dark:text-slate-950 border-app-accentGreen dark:border-cyan-400 font-bold shadow-sm' 
-            : 'bg-white dark:bg-slate-900 border-[#EAD5C3] dark:border-app-darkBorder text-app-textDark dark:text-slate-200 hover:bg-[#FFF2E6] dark:hover:bg-slate-800'
+            ? 'bg-[#c2e7ff] dark:bg-[#004a77] text-[#004a77] dark:text-[#c2e7ff] border-2 border-[#0b57d0] dark:border-[#a8c7fa] shadow-sm' 
+            : 'bg-white dark:bg-[#131314] border-[#d3e3fd] dark:border-app-darkBorder text-app-textDark dark:text-[#e3e3e3] hover:bg-[#d3e3fd]/40 dark:hover:bg-[#282a2c]'
         }`;
 
         if (item.id === "TURNAROUND_3_VIEWS") {
           btn.innerHTML = `
             <div class="flex flex-col gap-1">
-              <span class="font-bold flex items-center gap-2"><i class="fa-solid fa-person-rays"></i> ${item.es}</span>
-              <span class="text-[11px] font-normal opacity-90">${item.descEs}</span>
+              <span class="font-medium flex items-center gap-2"><i class="fa-solid fa-person-rays"></i> ${item.es}</span>
+              <span class="text-[11px] font-normal opacity-85">${item.descEs}</span>
             </div>
-            ${esActivo ? '<i class="fa-solid fa-check text-sm shrink-0"></i>' : ''}
+            ${esActivo ? '<i class="fa-solid fa-check text-[#0b57d0] dark:text-[#a8c7fa] text-sm shrink-0"></i>' : ''}
           `;
         } else {
-          btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-xs shrink-0"></i>' : ''}`;
+          btn.innerHTML = `<span class="truncate">${item.es}</span> ${esActivo ? '<i class="fa-solid fa-check text-[#0b57d0] dark:text-[#a8c7fa] text-xs shrink-0"></i>' : ''}`;
         }
 
         contenedor.appendChild(btn);
